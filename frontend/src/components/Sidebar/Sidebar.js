@@ -102,6 +102,7 @@ const Sidebar = (props) => {
   }
 
   return (
+    <>
     <Navbar
       className="navbar-vertical fixed-left navbar-light bg-white"
       expand="md"
@@ -269,6 +270,7 @@ const Sidebar = (props) => {
         </Collapse>
       </Container>
     </Navbar>
+    </>
   );
 };
 
