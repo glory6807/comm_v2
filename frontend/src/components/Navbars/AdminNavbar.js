@@ -60,14 +60,6 @@ const AdminNavbar = (props) => {
             <a class="h4 mb-0 text-white d-none d-lg-inline-block mr-5" href="/mem/list">회원게시판</a>
             <a class="h4 mb-0 text-white d-none d-lg-inline-block mr-4" href="/noti/list">공지사항</a> */}
           </span>
-
-          
-              <NavItem>
-                <NavLink className="nav-link-icon" to="/auth/login" tag={Link}>
-                  <i className="ni ni-key-25" />
-                  <span className="nav-link-inner--text">Login</span>
-                </NavLink>
-              </NavItem>
           <Nav className="align-items-center d-none d-md-flex" navbar>
             <UncontrolledDropdown nav>
               <DropdownToggle className="pr-0" nav>
