@@ -16,16 +16,8 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forRoot({
-                type: 'mysql',
-                host: 'maria-instance.cax8xhgqikxw.us-east-2.rds.amazonaws.com',
-                port: 3306,
-                username: 'admin',
-                password: '1q2w3e4r!#',
-                database: 'ywc9403',
-                entities: [],
-                synchronize: true,
-            }), movies_module_1.MoviesModule
+            typeorm_1.TypeOrmModule.forRoot(),
+            movies_module_1.MoviesModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [],

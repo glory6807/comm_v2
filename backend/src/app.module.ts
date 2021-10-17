@@ -7,16 +7,8 @@ import { AppController } from './app.controller';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: '',
-      port: ,
-      username: '',
-      password: '',
-      database: '',
-      entities: [],
-      synchronize: true,
-    }), MoviesModule],
+    TypeOrmModule.forRoot()
+    ,MoviesModule],
   controllers: [AppController],
   providers: [],
 })
