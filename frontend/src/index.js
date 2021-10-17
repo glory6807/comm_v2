@@ -25,13 +25,22 @@ import "assets/scss/argon-dashboard-react.scss";
 
 import AdminLayout from "layouts/Admin.js";
 import AuthLayout from "layouts/Auth.js";
+import BoardLayout from "layouts/Board.js";
+
+import FreeBoard from "views/boardRouter/FreeBoard.js";
+import MemBoard from "views/boardRouter/MemBoard.js";
+import NotiBoard from "views/boardRouter/NotiBoard.js";
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
+      <Route path="/free/:d" render={(props) => <FreeBoard {...props} />} />
+      <Route path="/mem/:d" render={(props) => <MemBoard {...props} />} />
+      <Route path="/noti/:d" render={(props) => <NotiBoard {...props} />} />
+
       <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
       <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
-      <Redirect from="/" to="/admin/index" />
+      <Redirect from="/" to="/auth/login" />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")

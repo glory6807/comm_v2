@@ -15,7 +15,7 @@ const Icons = () => {
   const [copiedText, setCopiedText] = useState();
   return (
     <>
-      <div> FREE BOARD LIST </div>
+      <div> FREE BOARD EDIT </div>
     </>
   );
 };

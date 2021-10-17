@@ -23,6 +23,10 @@ import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
 
+import FreeList from "views/freeBoard/FreeBoardList.js";
+import MemList from "views/memBoard/MemBoardList.js";
+import NotiList from "views/notiBoard/NotiBoardList.js";
+
 var routes = [
   {
     path: "/index",
