@@ -78,6 +78,7 @@ const Admin = (props) => {
       <div className="main-content" ref={mainContent}>
         <AdminNavbar
           {...props}
+          routes={routes}
           brandText={getBrandText(props.location.pathname)}
         />
         <Switch>

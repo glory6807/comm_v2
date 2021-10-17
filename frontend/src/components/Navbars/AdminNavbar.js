@@ -16,6 +16,7 @@
 
 */
 import { Link } from "react-router-dom";
+import { NavLink as NavLinkRRD} from "react-router-dom";
 // reactstrap components
 import {
   DropdownMenu,
@@ -28,13 +29,38 @@ import {
   InputGroupText,
   Input,
   InputGroup,
+  NavbarBrand,
   Navbar,
+  NavItem,
+  NavLink,
   Nav,
   Container,
   Media,
 } from "reactstrap";
 
+  // creates the links that appear in the left menu / Sidebar
+  const createLinks = (routes) => {
+    return routes.map((prop, key) => {
+      return (
+        <NavItem key={key}>
+          <NavLink
+            to={prop.layout + prop.path}
+            tag={NavLinkRRD}
+            activeClassName="active"
+          >
+            <i className={prop.icon} />
+            {prop.name}
+          </NavLink>
+        </NavItem>
+      );
+    });
+  };
+
+  
+
 const AdminNavbar = (props) => {
+
+  const { bgColor, routes, logo } = props;
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -45,7 +71,13 @@ const AdminNavbar = (props) => {
           >
             {props.brandText}
           </Link>
-          <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+          <span className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+            <Nav navbar>{createLinks(routes)}</Nav>
+            <a class="h4 mb-0 text-white d-none d-lg-inline-block mr-5" href="/">자유게시판</a>
+            <a class="h4 mb-0 text-white d-none d-lg-inline-block mr-5" href="/">회원게시판</a>
+            <a class="h4 mb-0 text-white d-none d-lg-inline-block mr-4" href="/">공지사항</a>
+          </span>
+          {/* <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <FormGroup className="mb-0">
               <InputGroup className="input-group-alternative">
                 <InputGroupAddon addonType="prepend">
@@ -56,7 +88,7 @@ const AdminNavbar = (props) => {
                 <Input placeholder="Search" type="text" />
               </InputGroup>
             </FormGroup>
-          </Form>
+          </Form> */}
           <Nav className="align-items-center d-none d-md-flex" navbar>
             <UncontrolledDropdown nav>
               <DropdownToggle className="pr-0" nav>
