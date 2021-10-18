@@ -1,15 +1,11 @@
 import { Module } from '@nestjs/common';
 
-import { TypeOrmModule } from '@nestjs/typeorm';
-
-import { MoviesModule } from './movies/movies.module';
 import { AppController } from './app.controller';
+import { Querybuilder } from './querybuilder/querybuilder';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot()
-    ,MoviesModule],
+  imports: [],
   controllers: [AppController],
-  providers: [],
+  providers: [Querybuilder],
 })
 export class AppModule {}

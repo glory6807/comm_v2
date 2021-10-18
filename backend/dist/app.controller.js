@@ -11,9 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
+const querybuilder_1 = require("./querybuilder/querybuilder");
 let AppController = class AppController {
+    constructor(query) {
+        this.query = query;
+    }
     home() {
-        return "Welcome to my Movie API";
+        this.query.executeQuery();
+        return "COMM API";
     }
 };
 __decorate([
@@ -23,7 +28,8 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "home", null);
 AppController = __decorate([
-    (0, common_1.Controller)('')
+    (0, common_1.Controller)(''),
+    __metadata("design:paramtypes", [querybuilder_1.Querybuilder])
 ], AppController);
 exports.AppController = AppController;
 //# sourceMappingURL=app.controller.js.map
