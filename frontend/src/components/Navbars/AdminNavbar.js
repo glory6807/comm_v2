@@ -6,13 +6,6 @@ import {
   DropdownItem,
   UncontrolledDropdown,
   DropdownToggle,
-  Form,
-  FormGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Input,
-  InputGroup,
-  NavbarBrand,
   Navbar,
   NavItem,
   NavLink,
@@ -43,7 +36,7 @@ import {
 
 const AdminNavbar = (props) => {
 
-  const { bgColor, routes, logo } = props;
+  const { routes } = props;
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">

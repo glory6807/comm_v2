@@ -24,12 +24,11 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/argon-dashboard-react.scss";
 
 import AdminLayout from "layouts/Admin.js";
-import AuthLayout from "layouts/Auth.js";
-import BoardLayout from "layouts/Board.js";
+import AuthLayout from "routes/Auth.js";
 
-import FreeBoard from "views/boardRouter/FreeBoard.js";
-import MemBoard from "views/boardRouter/MemBoard.js";
-import NotiBoard from "views/boardRouter/NotiBoard.js";
+import FreeBoard from "routes/FreeBoard.js";
+import MemBoard from "routes/MemBoard.js";
+import NotiBoard from "routes/NotiBoard.js";
 
 ReactDOM.render(
   <BrowserRouter>
