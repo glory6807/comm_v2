@@ -1,3 +1,20 @@
+/*!
+
+=========================================================
+* Argon Dashboard React - v1.2.1
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
 import { Link } from "react-router-dom";
 // reactstrap components
 import {
@@ -52,21 +69,9 @@ const AdminNavbar = () => {
             </div>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink className="nav-link-icon" to="/free/list" tag={Link}>
+                <NavLink className="nav-link-icon" to="/" tag={Link}>
                   <i className="ni ni-planet" />
-                  <span className="h4 mb-0 text-white d-none d-lg-inline-block mr-5">자유게시판</span>
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className="nav-link-icon" to="/mem/list" tag={Link}>
-                  <i className="ni ni-planet" />
-                  <span className="h4 mb-0 text-white d-none d-lg-inline-block mr-5">회원게시판</span>
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className="nav-link-icon" to="/noti/list" tag={Link}>
-                  <i className="ni ni-planet" />
-                  <span className="h4 mb-0 text-white d-none d-lg-inline-block mr-5">공지사항</span>
+                  <span className="nav-link-inner--text">Dashboard</span>
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -85,7 +90,7 @@ const AdminNavbar = () => {
                   <span className="nav-link-inner--text">Login</span>
                 </NavLink>
               </NavItem>
-              {/* <NavItem>
+              <NavItem>
                 <NavLink
                   className="nav-link-icon"
                   to="/admin/user-profile"
@@ -94,7 +99,7 @@ const AdminNavbar = () => {
                   <i className="ni ni-single-02" />
                   <span className="nav-link-inner--text">Profile</span>
                 </NavLink>
-              </NavItem> */}
+              </NavItem>
             </Nav>
           </UncontrolledCollapse>
         </Container>

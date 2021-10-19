@@ -24,22 +24,14 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/argon-dashboard-react.scss";
 
 import AdminLayout from "layouts/Admin.js";
-import AuthLayout from "routes/Auth.js";
-
-import FreeBoard from "routes/FreeBoard.js";
-import MemBoard from "routes/MemBoard.js";
-import NotiBoard from "routes/NotiBoard.js";
+import AuthLayout from "layouts/Auth.js";
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/free/:d" render={(props) => <FreeBoard {...props} />} />
-      <Route path="/mem/:d" render={(props) => <MemBoard {...props} />} />
-      <Route path="/noti/:d" render={(props) => <NotiBoard {...props} />} />
-
       <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
       <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
-      <Redirect from="/" to="/auth/login" />
+      <Redirect from="/" to="/admin/index" />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")

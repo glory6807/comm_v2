@@ -13,6 +13,12 @@ async function bootstrap() {
     })
   );
 
-  await app.listen(8080);
+  await app.listen(8080, ()=>{
+    console.log("-------------------------------------------------------------------------");
+    console.log("COMM_V2 Backend API Server is running...");
+    console.log("Server 8080 Port Listening...");
+    console.log("-------------------------------------------------------------------------");
+  });
+
 }
 bootstrap();

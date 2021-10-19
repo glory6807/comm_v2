@@ -6,6 +6,13 @@ import {
   DropdownItem,
   UncontrolledDropdown,
   DropdownToggle,
+  Form,
+  FormGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Input,
+  InputGroup,
+  NavbarBrand,
   Navbar,
   NavItem,
   NavLink,
@@ -36,7 +43,7 @@ import {
 
 const AdminNavbar = (props) => {
 
-  const { routes } = props;
+  const { bgColor, routes, logo } = props;
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -49,10 +56,22 @@ const AdminNavbar = (props) => {
           </Link>
           <span className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <Nav navbar>{createLinks(routes)}</Nav>
-            {/* <a class="h4 mb-0 text-white d-none d-lg-inline-block mr-5" href="/free/list">자유게시판</a>
-            <a class="h4 mb-0 text-white d-none d-lg-inline-block mr-5" href="/mem/list">회원게시판</a>
-            <a class="h4 mb-0 text-white d-none d-lg-inline-block mr-4" href="/noti/list">공지사항</a> */}
+            <a class="h4 mb-0 text-white d-none d-lg-inline-block mr-5" href="/">자유게시판</a>
+            <a class="h4 mb-0 text-white d-none d-lg-inline-block mr-5" href="/">회원게시판</a>
+            <a class="h4 mb-0 text-white d-none d-lg-inline-block mr-4" href="/">공지사항</a>
           </span>
+          {/* <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+            <FormGroup className="mb-0">
+              <InputGroup className="input-group-alternative">
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText>
+                    <i className="fas fa-search" />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input placeholder="Search" type="text" />
+              </InputGroup>
+            </FormGroup>
+          </Form> */}
           <Nav className="align-items-center d-none d-md-flex" navbar>
             <UncontrolledDropdown nav>
               <DropdownToggle className="pr-0" nav>
