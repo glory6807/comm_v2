@@ -12,13 +12,32 @@ let Querybuilder = class Querybuilder {
     constructor() {
         this.mysql = require('mysql2');
         this.mybatisMapper = require('mybatis-mapper');
+        this.connInfo = require('../../db_config.json');
+        this.connection = this.mysql.createConnection(this.connInfo);
+        this.preMapperRoad = './src/querybuilder/sql/';
     }
-    executeQuery() {
-        this.mybatisMapper.createMapper(['/Users/choi/Desktop/SYSTEM/comm_v2/backend/src/sql/member/member.xml']);
-        var query = this.mybatisMapper.getStatement('member', 'testBasic', { param: 'param' }, { language: 'sql', indent: '  ' });
+    executeSQL(queryFileName, queryId, param) {
+        return this.createSQL(queryFileName, queryId, param);
+    }
+    executeSQLWithPaging(queryFileName, queryId, param) {
+        return this.createSQL(queryFileName, queryId, param);
+    }
+    createSQL(queryFileName, queryId, param) {
+        this.mybatisMapper.createMapper([this.preMapperRoad + queryFileName + '.xml']);
+        var query = this.mybatisMapper.getStatement(queryFileName, queryId, param, { language: 'sql', indent: '  ' });
         this.connection.query(query, function (err, results, fields) {
-            console.log("------------------------------------------------------------------------------------------------------");
+            console.log("----------------------------------------------QUERY BUILDER START--------------------------------------------------------\n\n");
+            if (err != null || err != undefined) {
+                console.log("ERR : ");
+                console.log(err);
+                return;
+            }
+            console.log("QUERY ID : " + queryId + "\n");
+            console.log(query);
+            console.log("\nRESULT : ");
             console.log(results);
+            console.log("\n\n----------------------------------------------QUERY BUILDER FINISH--------------------------------------------------------");
+            return results;
         });
     }
 };

@@ -1,5 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get } from '@nestjs/common';
+import { ExampleParamDto } from './dto/ExampleParamDto';
 import { Querybuilder } from './querybuilder/querybuilder';
+
 
 @Controller('')
 export class AppController {
@@ -7,9 +9,11 @@ export class AppController {
     constructor(readonly query : Querybuilder){}
 
     @Get()
-    home(){
-        this.query.executeQuery();
+    home(@Body() param : ExampleParamDto){
+        let result = this.query.executeSQL("member", "testBasic", param);
         // create the connection to database
-        return "COMM API";
+
+        console.log("??? >>> " + result);
+        return result;
     }
 }

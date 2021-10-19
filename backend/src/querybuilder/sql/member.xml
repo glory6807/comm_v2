@@ -6,6 +6,7 @@
           ,GRADE
           ,IS_DEL
       FROM MEMBER 
-     WHERE MEM_ID = 'adm'
+     WHERE MEM_ID = #{title}
+        OR MEM_ID = 'adm'
   </select>
 </mapper>
