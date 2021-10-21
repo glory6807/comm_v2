@@ -7,12 +7,12 @@ export class BoardController {
     
     constructor(readonly memberService:BoardService){};
 
-    @Get("/board")
+    @Get("")
     home(@Body() param : ExampleParamDto){
         return this.memberService.getBoardList(param);
     }
 
-    @Post("/board")
+    @Post("")
     saveBoardList(@Body() paramArr : ExampleParamDto[]){
         this.memberService.saveBoardList(paramArr);
         return true;
