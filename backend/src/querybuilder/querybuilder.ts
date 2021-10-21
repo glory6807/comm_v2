@@ -3,52 +3,43 @@ import { Injectable } from "@nestjs/common";
 @Injectable()
 export class Querybuilder {
 
-    private mysql  = require('mysql2');
+    private mysql  = require('mysql2/promise');
     private mybatisMapper  = require('mybatis-mapper');
     private connInfo = require('../../db_config.json');
+    private mapperRoad = './src/querybuilder/sql/';        
+    private pool = this.mysql.createPool(this.connInfo);
 
-    private connection = this.mysql.createConnection(this.connInfo);
-    private preMapperRoad = './src/querybuilder/sql/';
 
     // description : 일반 쿼리 실행
     // param : 쿼리 파일명, 쿼리아이디, 쿼리 파라미터
-    executeSQL(queryFileName: string, queryId: string, param: any){
-        return this.createSQL(queryFileName, queryId, param);
-    }
+    async executeQB(queryFileName: string, queryId: string, param: any){
+        
+        console.log("------------------------------------QUERY BUILDER START-------------------------------------");
+        const connection = await this.pool.getConnection(async conn => conn);
+        try{
+            await this.mybatisMapper.createMapper([ this.mapperRoad + queryFileName + '.xml' ]);
+            var query = await this.mybatisMapper.getStatement(queryFileName, queryId, param, {language: 'sql', indent: '  '});
 
-    // description : 페이징 쿼리 실행
-    // param : 쿼리 파일명, 쿼리아이디, 쿼리 파라미터
-    executeSQLWithPaging(queryFileName: string, queryId: string, param: any){
-        return this.createSQL(queryFileName, queryId, param);
-    }
-
-
-
-
-    // 아래는 SQL을 만드는 함수입니다. 
-    createSQL(queryFileName: string, queryId: string, param: any){
-        this.mybatisMapper.createMapper([ this.preMapperRoad + queryFileName + '.xml' ]);
-                                                    //xml 네임값. // queryId // Param       :?
-        var query = this.mybatisMapper.getStatement(queryFileName, queryId, param, {language: 'sql', indent: '  '});
-
-        this.connection.query(query, function(err, results, fields) {
-            console.log("----------------------------------------------QUERY BUILDER START--------------------------------------------------------\n\n");
-            
-            if (err != null || err != undefined){
-                console.log("ERR : ");
-                console.log(err);
-                return;
-            }
-
-
-            console.log("QUERY ID : " + queryId + "\n");
+            // 쿼리 로그
             console.log(query);
-            
-            console.log("\nRESULT : ");
-            console.log(results);
 
-            console.log("\n\n----------------------------------------------QUERY BUILDER FINISH--------------------------------------------------------");
-            return results;
-        });
+            await connection.beginTransaction(); // START TRANSACTION
+			const [rows] = await connection.query(query);
+			await connection.commit(); // COMMIT
+			connection.release();
+
+			return rows;
+        }catch(e){
+			await connection.rollback(); // ROLLBACK
+			connection.release();
+			console.log('Query Error');
+			return false;
+        }finally{
+
+            console.log("------------------------------------QUERY BUILDER END-------------------------------------");
+        }
+
+
     }
+
 }
