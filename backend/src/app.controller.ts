@@ -1,22 +1,15 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ExampleParamDto } from './dto/ExampleParamDto';
-import { MemberService } from './member/member.service';
+import { BoardService } from './board/board.service';
 
 @Controller('')
 export class AppController {
 
-    constructor(readonly memberService:MemberService){};
+    constructor(readonly memberService:BoardService){};
 
     @Get()
-    home(@Body() param : ExampleParamDto){
-        return this.memberService.getBoardList(param);
+    home(){
+        return "COMM_V2 API";
     }
-
-    @Post("/board")
-    saveBoardList(@Body() paramArr : ExampleParamDto[]){
-        this.memberService.saveBoardList(paramArr);
-        return true;
-    }
-
     
 }

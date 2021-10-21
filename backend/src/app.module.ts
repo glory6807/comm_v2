@@ -2,11 +2,12 @@ import { Module } from '@nestjs/common';
 
 import { AppController } from './app.controller';
 import { Querybuilder } from './querybuilder/querybuilder';
-import { MemberService } from './member/member.service';
+import { BoardService } from './board/board.service';
+import { BoardController } from './board/board.controller';
 
 @Module({
   imports: [],
-  controllers: [AppController],
-  providers: [Querybuilder, MemberService],
+  controllers: [AppController, BoardController],
+  providers: [Querybuilder, BoardService],
 })
 export class AppModule {}

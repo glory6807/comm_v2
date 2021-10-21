@@ -3,7 +3,7 @@ import { ExampleParamDto } from 'src/dto/ExampleParamDto';
 import { Querybuilder } from 'src/querybuilder/querybuilder';
 
 @Injectable()
-export class MemberService {
+export class BoardService {
 
     constructor(readonly dao : Querybuilder){}
 
