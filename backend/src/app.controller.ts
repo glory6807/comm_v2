@@ -6,11 +6,28 @@ export class AppController {
 
     constructor(readonly memberService:BoardService){};
 
-    @Render('freeList')
-    @Get()
-    home(){
-        console.log('hihi');
+    @Get('/freeList')
+    home(@Body() param:any){
+        console.log('GET HOME');
+
+        console.log("GET param >>> ");
+        console.log(param);
+
         return "COMM_V2 API";
     }
+
+    @Post('/freeList')
+    postHome(@Body() param:any){
+        console.log('POST HOME');
+
+        console.log("POST param >>> ");
+        console.log(param);
+
+        return "COMM_V2 API";
+    }
+
+    // PUT CONTROLLER
+
+    // DELETE CONTROLLER
     
 }
