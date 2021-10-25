@@ -1,4 +1,4 @@
-import CommonAxios from '../utils/CommonAxios.js'
+import CommonAxios from './CommonAxios.js'
 
 
 const getList = async () => {   
