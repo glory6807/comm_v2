@@ -1,4 +1,5 @@
-// import { useState } from "react";
+ import React from "react";
+ import AxiosData from 'utils/axios.js'
 // reactstrap components
 // import {
 //   Card,
@@ -10,13 +11,18 @@
 //   UncontrolledTooltip,
 // } from "reactstrap";
 // core components
+function test() {
+  console.log('test in');
+  AxiosData.getList();
+}
 
-const Icons = () => {
+const FreeBoard = () => {
   return (
     <>
       <div> FREE BOARD LIST </div>
+      <button onClick={ () => {test()} }>testBtn</button>
     </>
   );
 };
 
-export default Icons;
+export default FreeBoard;

@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 // core components
 
 import FreeList from "views/freeBoard/FreeBoardList.js";
-import FreeEdit from "views/freeBoard/FreeBoardEdit.js";
 
 function FreeBoard(match) {
 
@@ -15,9 +14,6 @@ function FreeBoard(match) {
       <Switch>
         <Route exact path="/free/list">
             <FreeList/>
-        </Route>
-        <Route exact path="/free/edit">
-            <FreeEdit/>
         </Route>
         {/* <Route exact path="/notice-page/view/:boardNo" component={NoticeView}>
         </Route>

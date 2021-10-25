@@ -1,1 +1,16 @@
-// 여기에 공통 axios 만들예정..?
+import CommonAxios from '../utils/CommonAxios.js'
+
+
+const getList = async () => {   
+        console.log('get in');    
+        return await CommonAxios({
+                url: '/board/freeList',
+                method: 'get'
+            })
+}
+
+const Send = {
+    getList
+}
+
+export default Send;
