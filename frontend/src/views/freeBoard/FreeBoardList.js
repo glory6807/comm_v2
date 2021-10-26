@@ -1,16 +1,6 @@
  import React from "react";
- import AxiosData from 'utils/AxiosApi.js'
-// reactstrap components
-// import {
-//   Card,
-//   CardHeader,
-//   CardBody,
-//   Container,
-//   Row,
-//   Col,
-//   UncontrolledTooltip,
-// } from "reactstrap";
-// core components
+ import AxiosData from 'utils/FreeAxios.js'
+
 function test() {
   console.log('test in');
   AxiosData.getList();

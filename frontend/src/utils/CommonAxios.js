@@ -11,7 +11,7 @@ const axiosInstance = Axios.create({
 // NEST.js 에서 Get Decorator는 파라미터를 받을 수 없음. 
 // localhost:3000/board/freeList?boardNo=111 이런식으로 쿼리스트링을 사용하거나,
 // 쿼리스트링을 사용하지 못하는 상황이라면 POST 함수를 사용하는게 맞음.
-const axGet = (url)=>{
+const axiosGet = (url)=>{
   console.log("GET API EXECUTE");
 
   axiosInstance.get(url)
@@ -24,7 +24,7 @@ const axGet = (url)=>{
 
 
 // POST function
-const axPost = (url, param)=>{
+const axiosPost = (url, param)=>{
   console.log("POST API EXECUTE");
 
   axiosInstance.post(url,param)
@@ -48,10 +48,12 @@ const axPost = (url, param)=>{
 axiosInstance.interceptors.request.use(
   (config) => {
     console.log("AXIOS REQUEST INTERCEPTOR");
+    document.body.classList.add('loading-indicator');
     return config;
   },
   (err) => {
     console.log(err);
+    document.body.classList.remove('loading-indicator');
     return Promise.reject(err);
   }
 );
@@ -59,17 +61,19 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (config) => {
     console.log("AXIOS RESPONSE INTERCEPTOR");
+    document.body.classList.remove('loading-indicator');
     return config;
   },
   (err) => {
     console.log(err);
+    document.body.classList.remove('loading-indicator');
     return Promise.reject(err);
   }
 );
 
 const functionList = {
-  axGet,
-  axPost
+  axiosGet,
+  axiosPost
 }
 
 export default functionList;
