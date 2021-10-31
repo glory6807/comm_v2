@@ -31,7 +31,7 @@ const Login = () => {
 
   const loginWithKakao = () =>{
     const kakaoLogin = new window.Kakao.Auth.authorize({
-      redirectUri: 'https://developers.kakao.com/tool/demo/oauth'
+      redirectUri: 'http://localhost:3000/oauth'
     });
     kakaoLogin.init();
   };
