@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 // core components
 
 import NotiList from "views/notiBoard/NotiBoardList.js";
+import NotiView from "views/notiBoard/NotiBoardView.js";
+import NotiWrite from "views/notiBoard/NotiBoardWrite.js";
 
 function NotiBoard(match) {
 
@@ -14,6 +16,12 @@ function NotiBoard(match) {
       <Switch>
         <Route exact path="/noti/list">
             <NotiList/>
+        </Route>
+        <Route exact path="/noti/view">
+            <NotiView/>
+        </Route>
+        <Route exact path="/noti/write">
+            <NotiWrite/>
         </Route>
         {/* <Route exact path="/notice-page/view/:boardNo" component={NoticeView}>
         </Route>
