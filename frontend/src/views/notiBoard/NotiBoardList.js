@@ -24,6 +24,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { uriSave } from 'modules/uriReducer';
+import { selectRow } from 'modules/boardReducer';
 
 function NotiBoardList(){
 
@@ -32,6 +33,10 @@ function NotiBoardList(){
   const {lastId} = useSelector(state => state.boardReducer)
 
   const dispatch = useDispatch();
+
+  const selectContent = (id) => {
+    dispatch(selectRow(id));
+  }
 
   function onClick(){
     dispatch(uriSave('/'));
@@ -56,7 +61,11 @@ function NotiBoardList(){
 
               <tr>
                 <td>{rowData.id}</td>
-                <td>{rowData.title}</td>
+                <td onClick={()=>selectContent(rowData.id)}>
+                  <Link to = '/noti/view'>
+                    {rowData.title}
+                  </Link>
+                </td>
               </tr>
           
             )) :
