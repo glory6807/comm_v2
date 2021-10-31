@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 // reactstrap components
 import {
   Button,
@@ -14,7 +16,30 @@ import {
   Col,
 } from "reactstrap";
 
+
 const Login = () => {
+
+  const initializeNaverLogin = () => {
+    const naverLogin = new window.naver.LoginWithNaverId({
+      clientId: 'eC1wzaTn1yfRuIxN6hNz',
+      callbackUrl: 'http://localhost:8080/oauth', 
+      isPopup: false, // popup 형식으로 띄울것인지 설정
+      loginButton: { color: 'white', type: 1, height: '47' }, //버튼의 스타일, 타입, 크기를 지정
+    });
+    naverLogin.init();
+  };
+
+  const loginWithKakao = () =>{
+    const kakaoLogin = new window.Kakao.Auth.authorize({
+      redirectUri: 'https://developers.kakao.com/tool/demo/oauth'
+    });
+    kakaoLogin.init();
+  };
+    
+  useEffect(() => {
+    initializeNaverLogin();
+  }, []);
+
   return (
     <>
       <Col lg="5" md="7">
@@ -58,7 +83,17 @@ const Login = () => {
                 </span>
                 <span className="btn-inner--text">Google</span>
               </Button>
-            </div>
+              <div id='naverIdLogin' />
+              <div>
+                <button id="custom-login-btn" onClick={loginWithKakao}>
+                  <img
+                    alt=""
+                    src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
+                    width="222"
+                  />
+                </button>
+              </div>
+              </div>
           </CardHeader>
           <CardBody className="px-lg-5 py-lg-5">
             <div className="text-center text-muted mb-4">

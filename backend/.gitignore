@@ -1,4 +1,5 @@
 /node_modules
 ormconfig.json
 db_config.json
+login_config.json
 /dist
