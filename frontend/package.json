@@ -46,12 +46,12 @@
   "dependencies": {
     "-": "^0.0.1",
     "@fortawesome/fontawesome-free": "5.15.3",
-    "D": "^1.0.0",
     "axios": "^0.23.0",
     "bootstrap": "4.6.0",
     "chart.js": "2.9.4",
     "classnames": "2.3.1",
     "config": "^3.3.6",
+    "D": "^1.0.0",
     "eslint": "^7.32.0",
     "eslint-config-react-app": "^6.0.0",
     "moment": "2.29.1",
@@ -62,9 +62,11 @@
     "react-chartjs-2": "2.11.1",
     "react-copy-to-clipboard": "5.0.3",
     "react-dom": "17.0.2",
+    "react-redux": "^7.2.6",
     "react-router-dom": "5.2.0",
     "react-scripts": "4.0.3",
-    "reactstrap": "8.9.0"
+    "reactstrap": "8.9.0",
+    "redux": "^4.1.2"
   },
   "devDependencies": {
     "gulp": "4.0.2",

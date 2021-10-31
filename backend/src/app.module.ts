@@ -5,10 +5,12 @@ import { Querybuilder } from './querybuilder/querybuilder';
 import { BoardService } from './board/board.service';
 import { BoardController } from './board/board.controller';
 import { AuthController } from './auth/auth.controller';
+import { FreeController } from './free/free.controller';
+import { FreeService } from './free/free.service';
 
 @Module({
   imports: [],
-  controllers: [AppController, BoardController, AuthController],
-  providers: [Querybuilder, BoardService],
+  controllers: [AppController, BoardController, FreeController, AuthController],
+  providers: [Querybuilder, BoardService, FreeService],
 })
 export class AppModule {}
