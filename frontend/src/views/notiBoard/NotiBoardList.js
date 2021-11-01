@@ -38,7 +38,7 @@ function NotiBoardList(){
     dispatch(selectRow(id));
   }
 
-  function onClick(){
+  function homeClick(){
     dispatch(uriSave('/'));
   }
 
@@ -78,7 +78,7 @@ function NotiBoardList(){
         </tbody>
       </table>
       <Link to='/'>
-        <button onClick={onClick}>HOME</button>
+        <button onClick={homeClick}>HOME</button>
       </Link>
       <Link to='/noti/write'>
         <button onClick={writeClick}>WRITE</button>

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
+import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { dataSave } from "modules/boardReducer";
 import { uriSave } from "modules/uriReducer";
-import { useHistory } from "react-router";
 
 function NotiBoardWrite(){
 
@@ -10,8 +11,11 @@ function NotiBoardWrite(){
     const [content, setContent] = useState('');
 
     const dispatch = useDispatch();
-
     const history = useHistory();
+
+    function goList(){
+        dispatch(uriSave('/noti/list'));
+      }
 
     const onSave = () => {
         const _inputData = {
@@ -46,6 +50,9 @@ function NotiBoardWrite(){
                 </div>
                 <div>
                     <button type='button' onClick={onSave}>WRITE</button>
+                    <Link to = '/noti/list'>
+                        <button type='button' onClick={goList}>BACK</button>
+                    </Link>
                 </div>
             </div>
         </div>
