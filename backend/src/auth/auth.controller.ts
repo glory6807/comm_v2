@@ -29,10 +29,10 @@ export class AuthController {
         console.log("KAKAO LOGIN END");
     }
   
-    @Get('')
+    @Get('/naverLogin')
     getProfile(@Req() req) {
 
-        console.log("HI REDIRECT");
-        return req.user;
+        console.log("NAVER LOGIN");
+        return 'HELLO';
     }
 }
