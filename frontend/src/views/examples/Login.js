@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import GoogleButton from "./GoogleButton";
 
 // reactstrap components
 import {
@@ -66,7 +67,7 @@ const Login = () => {
                 </span>
                 <span className="btn-inner--text">Github</span>
               </Button>
-              <Button
+              {/* <Button
                 className="btn-neutral btn-icon"
                 color="default"
                 href="#pablo"
@@ -82,7 +83,9 @@ const Login = () => {
                   />
                 </span>
                 <span className="btn-inner--text">Google</span>
-              </Button>
+                <GoogleButton/>
+              </Button> */}
+              <GoogleButton/>
               <div id='naverIdLogin' />
               <div>
                 <button id="custom-login-btn" onClick={loginWithKakao}>
