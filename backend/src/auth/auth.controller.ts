@@ -1,4 +1,4 @@
-import { Controller, Get, Header, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Headers, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
 import { HttpService } from '@nestjs/axios';
 import { map } from 'rxjs';
@@ -36,6 +36,21 @@ export class AuthController {
 
         console.log(response)
 
+    }
+
+    @Get('/naverLogin')
+    getProfile(@Headers() headers) {
+        const httpservice = new HttpService();
+
+        const auth = 'bearer ' + headers.authorization;
+        const url = "https://openapi.naver.com/v1/nid/me";
+        
+        return httpservice.post(url, {}, {
+                    headers : {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+headers.authorization
+                    }
+               }).pipe(map((res) => {console.log(res.data)}));
     }
   
 }
