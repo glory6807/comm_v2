@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
-import { uriSave } from "modules/uriReducer";
+// import { uriSave } from "modules/uriReducer";
 import { selectRow, editContent } from 'modules/boardReducer';
 
 function NotiBoardEdit(){

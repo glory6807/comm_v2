@@ -11,7 +11,7 @@ import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [],
-  controllers: [AppController, BoardController, FreeController, AuthController],
-  providers: [Querybuilder, BoardService, FreeService, AuthService],
+  controllers: [AppController, BoardController, FreeController, AuthController, NotiController],
+  providers: [Querybuilder, BoardService, FreeService, AuthService, NotiService],
 })
 export class AppModule {}

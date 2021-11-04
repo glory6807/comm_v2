@@ -3,7 +3,7 @@ import { Request } from 'express';
 import { HttpService } from '@nestjs/axios';
 import { map } from 'rxjs';
 
-@Controller('oauth')
+@Controller('/oauth')
 export class AuthController {
 
 
@@ -39,9 +39,7 @@ export class AuthController {
     }
   
     @Get('/naverLogin')
-    getProfile(@Req() req) {
-
-        console.log("NAVER LOGIN");
-        return 'HELLO';
+    getProfile(@Headers() headers) {
+        console.log(headers);
     }
 }
