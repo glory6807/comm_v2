@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import GoogleButton from "./GoogleButton";
 
 // reactstrap components
 import {
@@ -68,7 +69,7 @@ const Login = () => {
 
   const loginWithKakao = () =>{
     const kakaoLogin = new window.Kakao.Auth.authorize({
-      redirectUri: 'http://localhost:3000/oauth'
+      redirectUri: 'http://localhost:8080/oauth'
     });
     kakaoLogin.init();
   };
@@ -103,7 +104,7 @@ const Login = () => {
                 </span>
                 <span className="btn-inner--text">Github</span>
               </Button>
-              <Button
+              {/* <Button
                 className="btn-neutral btn-icon"
                 color="default"
                 href="#pablo"
@@ -119,7 +120,8 @@ const Login = () => {
                   />
                 </span>
                 <span className="btn-inner--text">Google</span>
-              </Button>
+              </Button>*/}
+              <GoogleButton/>
               <div onClick={LoginNaver} id='naverIdLogin' />
               <div>
                 <button id="custom-login-btn" onClick={loginWithKakao}>
