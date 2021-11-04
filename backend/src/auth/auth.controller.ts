@@ -38,8 +38,4 @@ export class AuthController {
 
     }
   
-    @Get('/naverLogin')
-    getProfile(@Headers() headers) {
-        console.log(headers);
-    }
 }

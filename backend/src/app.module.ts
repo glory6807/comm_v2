@@ -8,6 +8,8 @@ import { AuthController } from './auth/auth.controller';
 import { FreeController } from './free/free.controller';
 import { FreeService } from './free/free.service';
 import { AuthService } from './auth/auth.service';
+import { NotiService } from './noti/noti.service';
+import { NotiController } from './noti/noti.controller';
 
 @Module({
   imports: [],
