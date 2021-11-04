@@ -7,7 +7,7 @@ export class NotiController {
 
     constructor(readonly notiService:NotiService){};
 
-    @Get("/noti/list")
+    @Get("/list")
     home(@Body() param : any){
         console.log("Notice Controller 컨트롤러");
         return null;
