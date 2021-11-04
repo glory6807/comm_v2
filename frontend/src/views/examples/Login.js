@@ -19,14 +19,51 @@ import {
 
 const Login = () => {
 
-  const initializeNaverLogin = () => {
-    const naverLogin = new window.naver.LoginWithNaverId({
+  const { naver } = window;
+
+  function LoginNaver() {
+    initializeNaverLogin();
+    UserProfile();
+  }
+
+  useEffect(LoginNaver, []);
+
+  function initializeNaverLogin() {
+    const naverLogin = new naver.LoginWithNaverId({
       clientId: 'eC1wzaTn1yfRuIxN6hNz',
-      callbackUrl: 'http://localhost:8080/oauth/naverLogin', 
-      isPopup: false, // popup 형식으로 띄울것인지 설정
-      loginButton: { color: 'white', type: 1, height: '47' }, //버튼의 스타일, 타입, 크기를 지정
+      callbackUrl: 'http://localhost:3000/auth/login',
+      callbackhHandle: true,
+      isPopup: false,
+      loginButton: { color: 'white', type: 1, height: '47' },
     });
     naverLogin.init();
+  };
+
+  function UserProfile() {
+    console.log("UserProfile in");
+    window.location.href.includes('access_token') && GetUser();
+    function GetUser() {
+      console.log("GetUser in");
+      const location = window.location.href.split('=')[1];
+      const loca = location.split('&')[0];
+      const header = {
+        Authorization : loca,
+      };
+      console.log("token: ", loca);
+      fetch('/oauth/naverLogin' , {
+        method: "get",
+        headers : header,
+      })
+      .then(res => console.log(res))
+      .then(res => {
+        //localStorage.setItem("access_token", res.token);
+        // setUserData({
+        //   nickname : res.nickname,
+        //   image : res.image
+        // })
+      })
+      .catch(err => console.log("err : ", err));
+    }
   };
 
   const loginWithKakao = () =>{
@@ -83,7 +120,7 @@ const Login = () => {
                 </span>
                 <span className="btn-inner--text">Google</span>
               </Button>
-              <div id='naverIdLogin' />
+              <div onClick={LoginNaver} id='naverIdLogin' />
               <div>
                 <button id="custom-login-btn" onClick={loginWithKakao}>
                   <img

@@ -1,7 +1,7 @@
-import { Controller, Get, Header, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Headers, Param, Post, Query, Req, Res, UseGuards } from '@nestjs/common';
 
 
-@Controller('oauth')
+@Controller('/oauth')
 export class AuthController {
 
     public loginConfig = require('../../login_config.json');
@@ -30,9 +30,7 @@ export class AuthController {
     }
   
     @Get('/naverLogin')
-    getProfile(@Req() req) {
-
-        console.log("NAVER LOGIN");
-        return 'HELLO';
+    getProfile(@Headers() headers) {
+        console.log(headers);
     }
 }
