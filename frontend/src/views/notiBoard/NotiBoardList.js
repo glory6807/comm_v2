@@ -1,30 +1,9 @@
-// import {
-//   Badge,
-//   Card,
-//   CardHeader,
-//   CardFooter,
-//   DropdownMenu,
-//   DropdownItem,
-//   UncontrolledDropdown,
-//   DropdownToggle,
-//   Media,
-//   Pagination,
-//   PaginationItem,
-//   PaginationLink,
-//   Progress,
-//   Table,
-//   Container,
-//   Row,
-//   UncontrolledTooltip,
-// } from "reactstrap";
-// core components
-// import Header from "components/Headers/Header.js";
-
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { uriSave } from 'modules/uriReducer';
 import { selectRow } from 'modules/boardReducer';
+import AxiosData from 'utils/NotiAxios.js';
 
 function NotiBoardList(){
 
@@ -46,9 +25,26 @@ function NotiBoardList(){
     dispatch(uriSave('/noti/write'));
   }
 
+  function test(){
+    console.log('테스트 버튼');
+    AxiosData.getList();
+  }
+
+  // useEffect(async() => {
+  //   try{
+  //     const res = await axios.get('/noti/list')
+  //   } catch(e){
+  //     console.log('error : ' + e.message);
+  //   }
+
+  // },[])
+
+  
+
   return (
     <>
       <div> NOTI BOARD LIST </div>
+      <button onClick={ () => {test()} }>TEST BTN</button>
       <table>
         <thead>
           <th>ID..</th>
