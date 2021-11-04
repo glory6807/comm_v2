@@ -15,6 +15,7 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { getOriginalNode } from "typescript";
 
 
 const Login = () => {
@@ -31,7 +32,7 @@ const Login = () => {
 
   const loginWithKakao = () =>{
     const kakaoLogin = new window.Kakao.Auth.authorize({
-      redirectUri: 'http://localhost:8080/oauth'
+      redirectUri: 'http://localhost:3000/kakaoLogin'
     });
     kakaoLogin.init();
   };
