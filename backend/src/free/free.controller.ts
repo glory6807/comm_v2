@@ -3,8 +3,23 @@ import { FreeService } from './free.service'
 
 @Controller('free')
 export class FreeController {
-    freeService :FreeService;
+    
+    constructor(readonly freeService:FreeService){};
 
-    constructor() {}
+    @Get('/list')
+    home(@Body() param:any){
+        console.log('FreeController');
+        return this.freeService.getBoardList();
+    }
+
+    // @Post('/freeList')
+    // postHome(@Body() param:any){
+    //     console.log('POST HOME');
+
+    //     console.log("POST param >>> ");
+    //     console.log(param);
+
+    //     return "COMM_V2 API";
+    // }
 
 }
