@@ -10,8 +10,8 @@ export class NotiController {
     @Get("/list")
     home(@Body() param : any){
         console.log("Notice Controller 컨트롤러");
-        return null;
-        // return this.notiService.getBoardList(param);
+        // return null;
+        return this.notiService.getBoardList(param);
     }
 
 }
