@@ -74,10 +74,6 @@ const Login = () => {
     });
     kakaoLogin.init();
   };
-    
-  useEffect(() => {
-    initializeNaverLogin();
-  }, []);
 
   return (
     <>
