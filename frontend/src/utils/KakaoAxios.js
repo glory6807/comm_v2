@@ -1,8 +1,15 @@
+import { isConstructorDeclaration } from 'typescript';
 import CommonAxios from './CommonAxios.js'
 
 
 const authorizeToken = async (code) => {
-    CommonAxios.axiosPost("/oauth/kakaoLogin", code);
+    return await CommonAxios({
+        url : "/oauth/kakaoLogin"
+       ,method: 'POST'
+       ,data : {
+         'code' : code
+       }
+    })
 }
 
 const Send = {
