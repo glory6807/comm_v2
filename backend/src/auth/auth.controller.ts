@@ -43,5 +43,11 @@ export class AuthController {
                     }
                }).pipe(map((res) => {console.log(res.data)}));
     }
+
+    @Post('/googleLogin')
+    googleLogin(@Req() req: Request){
+        console.log('구글로그인 컨트롤러');
+        console.log(req.body);
+    }
   
 }

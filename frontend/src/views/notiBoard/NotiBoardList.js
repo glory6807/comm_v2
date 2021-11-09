@@ -10,14 +10,9 @@ function NotiBoardList(){
   // DB에서 받아올 데이터를 담을 그릇
   const [initData, setInitData] = useState([{
     inputData: {
-      board_itx : '',
+      board_no : '',
       board_ttl : '',
       board_cntn : ''
-      // idx:'',
-      // title:'',
-      // content:'',
-      // writer:'',
-      // write_date:''
     },
   }])
   
@@ -27,29 +22,29 @@ function NotiBoardList(){
   useEffect(async() => {
     // NOTICE_BOARD에서 글번호 1~10 게시글의 ttl, cntn 가져옴
 
-    // AxiosData.getList().then((res)=>{
-    //   console.log('resres');
-    //   console.log(res);
-    // })
+    AxiosData.getList().then((res)=>{
+      const _inputData = res.data;
 
-    // const res = AxiosData.getList();
-    // const _inputData = await res.data.map((rowData) => ({
-    //     board_itx : rowData.board_itx,
-    //     board_ttl : rowData.board_ttl,
-    //     board_cntn : rowData.board_cntn
-    // }))
+      console.log(_inputData);
 
-    // initData에 concat으로 게시글 10개 추가
-    // setInitData(initData.concat(_inputData))
+      setInitData(initData.concat(_inputData))
 
-    console.log(' init data ' );
-    // console.log(initData);
+    })
   },[])
 
   // useEffect(() => {
   //   // initData가 set될 때마다 boardReducer 호출
   //   dispatch(init_Data(initData))
   // },[initData])
+
+  function checkInput(){
+    console.log('check input');
+    console.log(initData);
+  }
+
+  function dbWriteClick(){
+    AxiosData.writeBoard();
+  }
 
 
   // redux 임시
@@ -118,8 +113,12 @@ function NotiBoardList(){
         <button onClick={homeClick}>HOME</button>
       </Link>
       <Link to='/noti/write'>
-        <button onClick={writeClick}>WRITE</button>
+        <button onClick={writeClick}>WRITE_임시</button>
       </Link>
+      <Link to='/noti/write'>
+        <button onClick={dbWriteClick}>WRITE_DB</button>
+      </Link>
+      <button onClick={checkInput}>CHECK</button>
     </>
   );
 }

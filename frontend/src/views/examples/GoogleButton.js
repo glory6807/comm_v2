@@ -1,35 +1,53 @@
-import React from "react";
-import GoogleLogin from "react-google-login";
+import axios from 'axios';
+import React, { Component } from 'react';
+import { GoogleLogin } from 'react-google-login';
 
-const clientId = "584673240291-hhlhk15fsp18l0f9mq2taqdq1fsoc90c.apps.googleusercontent.com";
+class GLogin extends Component {
 
-export default function GoogleButton({ onSocial }){
-    const onSuccess = async(response) => {
-        console.log('google login success');
-        console.log(response);
-
-        const { googleId, profileObj : { email, name } } = response;
-
-        // await onSocial({
-        //     socialId : googleId,
-        //     socialType : 'google',
-        //     email,
-        //     nickname : name
-        // });
+    constructor(props){
+        super(props);
+        this.state = {
+            id: '',
+            email: '',
+            name: '',
+            provider: '',
+        }
     }
 
-    const onFailure = (error) => {
-        console.log('google login failure');
-        console.log(error);
+    // Google Login
+    responseGoogle = (res) => {
+
+        axios({
+            method: 'POST',
+            url: '/oauth/googleLogin',
+            data:{
+                res
+            }
+        }).then((res)=> {
+            // if(res.data.msg === 'success'){
+            //     // 토큰 받아오기
+            //     const googleToken = res.data.token;
+            // }
+        })
     }
 
-    return (
-        <div>
-            <GoogleLogin
-                clientId = {clientId}
-                responseType={"id_token"}
-                onSuccess={onSuccess}
-                onFailure={onFailure}/>
-        </div>
-    )
+    // Google Login Fail
+    responseFail = (err) => {
+        console.log(err);
+    }
+
+    render() {
+        return (
+            <>
+                <GoogleLogin
+                    clientId="584673240291-hhlhk15fsp18l0f9mq2taqdq1fsoc90c.apps.googleusercontent.com"
+                    buttonText="Google Login"
+                    onSuccess={this.responseGoogle}
+                    onFailure={this.responseFail}
+                />
+            </>
+        )
+    }
 }
+
+export default GLogin;

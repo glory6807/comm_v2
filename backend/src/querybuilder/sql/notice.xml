@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">  
+  <select id="selectList">
+
+    SELECT BOARD_TTL,
+            BOARD_CNTN
+    FROM TM_BOARD
+    WHERE BOARD_TYPE = 'NOTI'
+  </select>
+
+  <insert id="insertBoard">
+    <!-- INSERT INTO TM_BOARD
+      (BOARD_NO, BOARD_TYPE, BOARD_TTL, BOARD_CNTN, BOARD_WRTR, REG_DT, MOD_DT, IS_DEL)
+    VALUES
+      (2, 'NOTI', 'TITLE2', 'CONTENT2', 'WRITER2', NOW(), NOW(), 'N'); -->
+  </insert>
+</mapper>

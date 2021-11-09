@@ -9,7 +9,12 @@ export class NotiService {
 
     async getBoardList(param:any){
         console.log('notice service - ㅠㅠ');
-        return await this.dao.select("board", "selectList", param);
+        return await this.dao.select("notice", "selectList", param);
+    }
+
+    async insertBoard(param:any){
+        console.log('notice service - write');
+        return await this.dao.select("notice", "insertBoard", param);
     }
 
 }

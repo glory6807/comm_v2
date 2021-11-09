@@ -1,14 +1,21 @@
 import CommonAxios from './CommonAxios.js'
 
-
 const getList = async () => {
-    // CommonAxios.axiosGet("/oauth/naverLogin");
-    CommonAxios.axiosGet("/noti/list");
-    // CommonAxios.axiosPost("/board/freeList", {data:"POST hi", data2:"POST hi2"}); 
+    return await CommonAxios({
+        url: '/noti/list',
+        method: 'GET'
+    })
+}
+
+const writeBoard = async () => {
+    return await CommonAxios({
+        url: '/noti/write',
+        method: 'GET'
+    })
 }
 
 const Send = {
-    getList
+    getList, writeBoard
 }
 
 export default Send;
