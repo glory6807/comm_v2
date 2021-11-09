@@ -2,10 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="free">  
   <select id="selectList">
-    SELECT BOARD_TTL
-          ,CRT_DT
-          ,IS_DEL
-      FROM BOARD_FREE 
-     WHERE IS_DEL = 'Y'
+    SELECT BOARD_NO
+          ,BOARD_TTL
+          ,BOARD_WRTR
+          ,REG_DT
+      FROM TM_BOARD
+     WHERE BOARD_TYPE = 'FREE'
+       AND IS_DEL = 'N'
   </select>
 </mapper>

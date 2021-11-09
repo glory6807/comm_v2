@@ -42,10 +42,8 @@ const Login = () => {
   };
 
   function UserProfile() {
-    console.log("UserProfile in");
     window.location.href.includes('access_token') && GetUser();
     function GetUser() {
-      console.log("GetUser in");
       const location = window.location.href.split('=')[1];
       const loca = location.split('&')[0];
       const header = {
