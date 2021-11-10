@@ -6,7 +6,7 @@ import { produce } from "immer";
 const GET_POST = "GET_POST";
 const ONE_POST = "ONE_POST";
 const ADD_POST = "ADD_POST";
-const IS_MANAGER = "IS_MANAGER";
+// const IS_MANAGER = "IS_MANAGER";
 const DELETE_POST = "DELETE_POST";
 
 // actionCreators

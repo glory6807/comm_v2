@@ -12,6 +12,7 @@ const NotiList = (props) => {
 
     // post list 가져옴
     const postList = useSelector((state) => state.postReducer.post_list);
+    
     // const is_loading = useSelector((state) => state.post.is_loading);
     // const is_login = useSelector((state) => state.user.is_login);
     // const user = useSelector((state) => state.user?.user);

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as postReducer } from "../../modules/postReducer";
+import { actionCreators as postActions } from "../../modules/postReducer";
 import { Link } from "react-router-dom";
 
 
