@@ -5,6 +5,8 @@ const _SELECT = 'DATA_SELECT';
 const _EDIT = 'DATA_EDIT';
 const _DELETE = 'DATA_DELETE';
 
+// ★★★★★ 임시 테스트용 reducer ★★★★★
+
 export const dataSave = (inputData) => ({
     type: _SAVE,
     inputData: {

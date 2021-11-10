@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="notice">  
-  <select id="selectList">
+<mapper namespace="notice"> 
 
-    SELECT BOARD_TTL,
-            BOARD_CNTN
+  <select id="selectList">
+    SELECT *
     FROM TM_BOARD
     WHERE BOARD_TYPE = 'NOTI'
+      AND IS_DEL = 'N'
+  </select>
+
+  <select id="getOne">
+    SELECT *
+    FROM TM_BOARD
+    WHERE BOARD_TYPE = 'NOTI'
+      AND IS_DEL = 'N'
+      AND BOARD_NO = #{boardNo}
   </select>
 
   <insert id="insertBoard">

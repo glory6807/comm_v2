@@ -12,9 +12,15 @@ export class NotiService {
         return await this.dao.select("notice", "selectList", param);
     }
 
+    async getOne(boardNo: number){
+        console.log('notice service - get one');
+        console.log('no : ' + boardNo);
+        return await this.dao.select("notice", "getOne", boardNo);
+    }
+
     async insertBoard(param:any){
         console.log('notice service - write');
-        return await this.dao.select("notice", "insertBoard", param);
+        return await this.dao.insert("notice", "insertBoard", param);
     }
 
 }

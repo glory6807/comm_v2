@@ -1,53 +1,52 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from "react-router";
+import React, { useEffect } from "react";
+import { useParams } from "react-router";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as postReducer } from "../../modules/postReducer";
+import { Link } from "react-router-dom";
 
-import { uriSave } from 'modules/uriReducer';
-import { selectRow, removeContent } from 'modules/boardReducer';
 
-function NotiBoardView(){
+// import { uriSave } from 'modules/uriReducer';
+// import { selectRow, removeContent } from 'modules/boardReducer';
 
-  const { selectRowData } = useSelector(state => state.boardReducer)
-
-  const dispatch = useDispatch();
+const NotiBoardView = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { board_no } = useParams();
 
-  const goEdit = (id) => {
-    dispatch(selectRow(id));
-  }
+  const detail = useSelector((state) => state.postReducer);
 
-  const goDelete = (id) => {
-    dispatch(removeContent(id));
-    history.push('/noti/list');
-  }
+  // useEffect(() => {
+  //   dispatch(postReducer.getOnePostAPI(board_no));
+  // }, [dispatch, board_no]);
 
-  function goList(){
-    dispatch(uriSave('/noti/list'));
-  }
-
-  return (
+  return(
+    <>
     <div>
-      <h2>NOTI BOARD VIEW</h2>
+      <h2>NOTI BOARD VIEW1</h2>
       <div>
         <div>
-          <div>title : {selectRowData.title}</div>
+          <div>title : {detail.BOARD_TTL}</div>
         </div>
         <div>
-          <div>content : {selectRowData.content}</div>
+          <div>content : {detail.BOARD_CNTN}</div>
         </div>
         <div>
           <Link to = '/noti/list'>
-            <button type='button' onClick={goList}>LIST</button>
+            <button>list</button>
+            {/* <button type='button' onClick={goList}>LIST</button> */}
           </Link>
           <Link to = '/noti/edit'>
-            <button type='button' onClick={() => goEdit(selectRowData.id)}>EDIT</button>
+            <button>edit</button>
+            {/* <button type='button' onClick={() => goEdit(selectRowData.id)}>EDIT</button> */}
           </Link>
-          <button type='button' onClick={() => goDelete(selectRowData.id)}>DELETE</button>
+          {/* <button type='button' onClick={() => goDelete(selectRowData.id)}>DELETE</button> */}
         </div>
       </div>
     </div>
+    </>
   )
+
 }
-  
+
 export default NotiBoardView;

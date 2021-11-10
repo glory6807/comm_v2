@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import rootReducer from "modules/rootReducer";
+import store from "modules/rootReducer";
 
 import "assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -18,7 +18,7 @@ import MemBoard from "routes/MemBoard.js";
 import NotiBoard from "routes/NotiBoard.js";
 import KakaoLogin from "routes/KakaoLogin.js";
 
-const store = createStore(rootReducer);
+// const store = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>
