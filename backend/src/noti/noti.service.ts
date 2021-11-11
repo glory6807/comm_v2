@@ -12,10 +12,17 @@ export class NotiService {
         return await this.dao.select("notice", "selectList", param);
     }
 
-    async getOne(boardNo: number){
+    // async getOne(boardNo: number){
+    //     console.log('notice service - get one');
+    //     console.log('no : ' + boardNo);
+    //     return await this.dao.select("notice", "getOne", boardNo);
+    // }
+
+    async getOne(param:any){
         console.log('notice service - get one');
-        console.log('no : ' + boardNo);
-        return await this.dao.select("notice", "getOne", boardNo);
+        console.log('no : ' + param);
+        console.log('typeof : ' + typeof param);
+        return await this.dao.select("notice", "getOne", param);
     }
 
     async insertBoard(param:any){

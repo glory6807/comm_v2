@@ -25,32 +25,53 @@ const initialState = {
 // post list
 const getPostAPI = () => {
     return function(dispatch, getState, { history }){
-        axios({
-            method: "GET",
-            url: "/noti/list",
-        }).then((res) => {
-            const post_list = res.data;
-            dispatch(getPost(post_list));
-            // if(res.data.msg === "success") {
-            //     const post_list = res.data.data;
-            //     dispatch(getPost(post_list));
-            // } else {
-            //     console.log("post list 가져오기 fail");
-            // }
-        }).catch((err) => {
-            console.log("getPostAPI 오류 발생", err);
-        })
+        axios.get("/noti/list")
+            .then((res) => {
+                const post_list = res.data;
+                dispatch(getPost(post_list));
+            }).catch((err) => {
+                console.log("getPostAPI 오류 발생", err);
+            })
+        // axios({
+        //     method: "GET",
+        //     url: "/noti/list",
+        // }).then((res) => {
+        //     const post_list = res.data;
+        //     dispatch(getPost(post_list));
+        //     // if(res.data.msg === "success") {
+        //     //     const post_list = res.data.data;
+        //     //     dispatch(getPost(post_list));
+        //     // } else {
+        //     //     console.log("post list 가져오기 fail");
+        //     // }
+        // }).catch((err) => {
+        //     console.log("getPostAPI 오류 발생", err);
+        // })
     }
 }
 
 // get one
 const getOnePostAPI = (boardNo) => {
     return async function(dispatch, getState, { history }){
+
+        // axios.post("/noti/view", JSON.stringify(formdata), {
+        //     headers: {
+        //         "Contents-Type": `application/json`,
+        //     },
+        // })
+        // .then((res) => {
+        //     console.log('get one api');
+        //     console.log(boardNo);
+        //     dispatch(onePost(res.data));
+        // }).catch((err) => {
+        //     console.log("getOnePostAPI 오류 발생", err);
+        // })
+
+
         await axios
             .get(`/noti/view/${boardNo}`)
             .then((res) => {
                 console.log('get one api');
-                console.log(boardNo);
                 dispatch(onePost(res.data));
                 // if(res.data.msg === "success"){
                 //     dispatch(onePost(res.data.data));

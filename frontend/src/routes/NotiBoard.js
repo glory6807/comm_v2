@@ -18,10 +18,10 @@ function NotiBoard(match) {
         <Route exact path="/noti/list">
             <NotiList/>
         </Route>
-        <Route exact path="/noti/view">
+        <Route exact path="/noti/view/:boardNo">
             <NotiView/>
         </Route>
-        <Route exact path="/noti/edit">
+        <Route exact path="/noti/edit/:boardNo">
             <NotiEdit/>
         </Route>
         <Route exact path="/noti/write">

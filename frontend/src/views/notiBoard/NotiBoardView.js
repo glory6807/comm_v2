@@ -23,7 +23,7 @@ const NotiBoardView = () => {
   return(
     <>
     <div>
-      <h2>NOTI BOARD VIEW1</h2>
+      <h2>NOTI BOARD VIEW : {detail.BOARD_NO}</h2>
       <div>
         <div>
           <div>title : {detail.BOARD_TTL}</div>

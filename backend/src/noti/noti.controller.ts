@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ExampleParamDto } from 'src/dto/ExampleParamDto';
 import { NotiService } from './noti.service';
 
@@ -14,11 +14,21 @@ export class NotiController {
         return this.notiService.getBoardList(param);
     }
 
-    @Get("/view/:board_no")
-    getOne(@Param('board_no') boardNo: number){
+    // @Get("/view/:board_no")
+    // getOne(@Param('board_no') boardNo: number){
+    //     console.log("Notice Controller - view");
+    //     console.log("board no : " + boardNo);
+    //     return this.notiService.getOne(boardNo);
+    // }
+
+    @Get("/view/:boardNo")
+    getOne(@Param() params : any){
         console.log("Notice Controller - view");
-        console.log("board no : " + boardNo);
-        return this.notiService.getOne(boardNo);
+        console.log("board no : " + params);
+        console.log("type of : " + typeof params);
+        var exam = this.notiService.getOne(params);
+        console.log("exam : " + exam);
+        return exam;
     }
 
     @Get("/write")

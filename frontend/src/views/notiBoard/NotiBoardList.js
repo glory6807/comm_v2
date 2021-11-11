@@ -50,7 +50,7 @@ const NotiList = (props) => {
                 return  <tr>
                             <th scope="col">{data.BOARD_NO}</th>
                             <th scope="col" onClick={()=>goDetail(data.BOARD_NO)}>
-                                <Link to='/noti/view'>
+                                <Link to={`/noti/view/${data.BOARD_NO}`}>
                                     {data.BOARD_TTL}
                                 </Link>
                             </th>
