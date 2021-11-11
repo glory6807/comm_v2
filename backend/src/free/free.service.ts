@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Param } from '@nestjs/common';
 import { FreeParamDto } from 'src/dto/FreeParamDto';
 import { Querybuilder } from 'src/querybuilder/querybuilder';
 
@@ -9,5 +9,10 @@ export class FreeService {
 
     async getBoardList(){
         return await this.dao.select("free", "selectList", {});
+    }
+
+    async getBoardOne(@Param('boardNo') boardNo :number){
+        const param = { boardNo : boardNo }
+        return await this.dao.select("free", "selectOne", param);
     }
 }

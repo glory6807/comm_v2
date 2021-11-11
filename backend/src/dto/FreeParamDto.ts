@@ -9,6 +9,9 @@ export class FreeParamDto{
     readonly boardTtl: string;
 
     @IsString()   
+    readonly boardCntn: string;
+
+    @IsString()   
     readonly boardWrtr: string;
 
     @IsDate()

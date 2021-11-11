@@ -1,5 +1,6 @@
  import React, { useEffect, useState } from "react";
- import { useLocation } from "react-router-dom";
+ import { useSelector, useDispatch } from "react-redux";
+ import { useLocation, useHistory } from "react-router-dom";
  import AxiosData from 'utils/FreeAxios.js'
 
  import {
@@ -21,13 +22,14 @@ import AuthFooter from "components/Footers/AuthFooter.js";
 const FreeBoard = () => {
 
   const [freeDatas, setFreeDatas] = useState([]);
+  const history = useHistory();
 
   function FreeList() {
     AxiosData.getList().then((res)=> {
       setFreeDatas(res.data)
     })
   }
-
+  
   //scroll
   const mainContent = React.useRef(null);
   const location = useLocation();
@@ -72,7 +74,13 @@ const FreeBoard = () => {
                     { freeDatas && freeDatas.map(data => {
                         return  <tr>
                                   <th scope="col">{data.BOARD_NO}</th>
-                                  <th scope="col">{data.BOARD_TTL}</th>
+                                  <th scope="col" onClick={ () => { history.push({
+                                                                                  pathname: '/free/view',
+                                                                                  search: `?BOARD_NO=${data.BOARD_NO}`,  // query string
+                                                                                  state: {  // location state
+                                                                                    BOARD_NO: data.BOARD_NO, 
+                                                                                  }});  } }>
+                                                  {data.BOARD_TTL}</th>
                                   <th scope="col">{data.BOARD_WRTR}</th>
                                   <th scope="col">{data.REG_DT}</th>
                                 </tr>

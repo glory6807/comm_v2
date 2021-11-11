@@ -10,4 +10,14 @@
      WHERE BOARD_TYPE = 'FREE'
        AND IS_DEL = 'N'
   </select>
+
+  <select id="selectOne" parameterType="number">
+    SELECT BOARD_NO
+          ,BOARD_CNTN
+          ,BOARD_WRTR
+          ,REG_DT
+      FROM TM_BOARD
+     WHERE BOARD_TYPE = 'FREE'
+       AND BOARD_NO = ${boardNo}
+  </select>
 </mapper>

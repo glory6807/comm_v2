@@ -8,15 +8,20 @@ const getList = async () => {
     })
 }
 
-// const postList = async () => {
-//     CommonAxios.axiosPost("/board/freeListPost", {data:"POST hi", data2:"POST hi2"}); 
-// }
+const getOne = async (boardNo) => {
+    console.log(boardNo);
+    return await CommonAxios({
+        url: '/free/view',
+        method: 'GET',
+        params: {'boardNo' : boardNo}
+    })
+}
 
 
 
 const Send = {
     getList,
-    // postList
+    getOne
 }
 
 export default Send;
