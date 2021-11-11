@@ -5,7 +5,17 @@ import { Querybuilder } from 'src/querybuilder/querybuilder';
 export class AuthService {
     constructor(readonly dao : Querybuilder){}
 
-    async isUserByEmail(email:string){
-        return await this.dao.select("auth", "selectSnsUserByEmail", email);
+    async saveUserByProfile(param:any){
+
+        console.log(param);
+
+        var sqlParam = {
+            'id':param.id,
+            'nickname':param.kakao_account.profile.nickname,
+            'email':param.kakao_account.email,
+            'regType':'kakao'
+        }
+
+        return await this.dao.insert("auth", "selectUserById", sqlParam);
     }
 }

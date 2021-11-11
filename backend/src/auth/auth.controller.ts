@@ -19,14 +19,12 @@ export class AuthController {
         var token = await this.kakaoAuthService.getTokenByKakaoApi(req.body.code.code);
         var profile = await this.kakaoAuthService.getProfileByKakaoApi(token);
         
-        console.log("TOKEN:" + token);
-        console.log(profile);
         // 프로필 가져와 이메일을 기준으로 DB 조회 후 없으면,
         // 간편 회원가입 동의
+        console.log(profile.data);
+        var result = await this.authService.saveUserByProfile(profile.data);
 
-
-        // 간편 회원가입 후 DB INSERT
-
+        console.log(result);
     }
 
     @Get('/naverLogin')
