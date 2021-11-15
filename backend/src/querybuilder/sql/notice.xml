@@ -9,7 +9,7 @@
       AND IS_DEL = 'N'
   </select>
 
-  <select id="getOne">
+  <select id="getOne" resultType="dto.NotiParamDto">
     SELECT *
     FROM TM_BOARD
     WHERE BOARD_TYPE = 'NOTI'

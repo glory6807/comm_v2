@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { ExampleParamDto } from 'src/dto/ExampleParamDto';
 import { Querybuilder } from 'src/querybuilder/querybuilder';
 
 @Injectable()
