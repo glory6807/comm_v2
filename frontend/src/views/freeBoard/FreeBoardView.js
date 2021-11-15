@@ -16,7 +16,7 @@ import AuthFooter from "components/Footers/AuthFooter.js";
 
 const FreeBoardView = () => {
 
-  const [freeData, setFreeData] = useState([]);
+  const [freeData, setFreeData] = useState({});
 
   //scroll
   const mainContent = React.useRef(null);
@@ -37,7 +37,6 @@ const FreeBoardView = () => {
 
   function initFreeView() {
     getBoardNo();
-    getFreeView();
   }
 
   useEffect(initFreeView, []);
@@ -49,11 +48,15 @@ const FreeBoardView = () => {
     getFreeView(boardNo);
   }
 
-  function getFreeView(boardNo) {
-    AxiosData.getOne(boardNo).then((res)=> {
-      setFreeData(res.data);
+  async function getFreeView(boardNo) {
+    await AxiosData.getOne(boardNo).then((res)=> {
+    const test = JSON.parse(JSON.stringify(res.data[0]));
+       console.log(test);
+       setFreeData(test);
     })
+    
   }
+
 
   return (
     <>
@@ -66,6 +69,10 @@ const FreeBoardView = () => {
               <Card className="shadow">
                 <CardHeader className="border-0">
                   <h3 className="mb-0">FREE BOARD</h3>
+                    <div>{ freeData.BOARD_NO }</div>
+                    <div>{ freeData.BOARD_CNTN }</div>
+                    <div>{ freeData.BOARD_WRTR }</div>
+                    <div>{ freeData.REG_DT }</div> 
                 </CardHeader>
                 <Table className="align-items-center table-flush" responsive></Table>
               </Card>
