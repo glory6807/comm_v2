@@ -7,11 +7,12 @@ import axios from "axios";
 import uriReducer from "./uriReducer";
 import boardReducer from "./boardReducer"
 import postReducer from "./postReducer";
+import testReducer from './testReducer';
 
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-    uriReducer, boardReducer, postReducer
+    uriReducer, boardReducer, postReducer, testReducer
 });
 
 const middlewares = [thunk.withExtraArgument({ history: history })];
