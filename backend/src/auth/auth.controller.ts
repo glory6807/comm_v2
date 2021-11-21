@@ -19,9 +19,7 @@ export class AuthController {
         var token = await this.kakaoAuthService.getTokenByKakaoApi(req.body.code.code);
         var profile = await this.kakaoAuthService.getProfileByKakaoApi(token);
         
-        // 프로필 가져와 이메일을 기준으로 DB 조회 후 없으면,
-        // 간편 회원가입 동의
-        console.log(profile.data);
+        console.log("KAKAO TOKEN " + token);
         var result = await this.authService.saveUserByProfile(profile.data);
 
         console.log(result);
