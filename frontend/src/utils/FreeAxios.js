@@ -10,10 +10,15 @@ const getUser = async (header) => {
 }
 
 const getList = async () => {
-    return await CommonAxios({
+    const freeListData = await CommonAxios({
         url: '/free/list',
         method: 'GET'
     })
+
+    return {
+            type: 'GET_FREE_DATA',
+        payload : freeListData.data
+    }
 }
 
 const getOne = async (boardNo) => {

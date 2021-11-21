@@ -18,17 +18,25 @@
 // core components
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
+import testReducer from './../../modules/testReducer';
 
 const FreeBoard = () => {
 
   const [freeDatas, setFreeDatas] = useState([]);
-  const history = useHistory();
+  const faqData = useSelector((state) => state.testReducer);
+  const dispatch = useDispatch(); // 디스패치 사용하도록하기
+  //const history = useHistory();
 
   function FreeList() {
-    AxiosData.getList().then((res)=> {
-      setFreeDatas(res.data)
-    })
+    AxiosData.getList().then(
+      function(result){
+        console.log(result)
+        dispatch(result) 
+      }
+    )
   }
+
+  console.log(faqData)
   
   //scroll
   const mainContent = React.useRef(null);
@@ -71,7 +79,7 @@ const FreeBoard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    { freeDatas && freeDatas.map(data => {
+                    {/* { freeDatas && freeDatas.map(data => {
                         return  <tr>
                                   <th scope="col">{data.BOARD_NO}</th>
                                   <th scope="col" onClick={ () => { history.push({
@@ -85,7 +93,7 @@ const FreeBoard = () => {
                                   <th scope="col">{data.REG_DT}</th>
                                 </tr>
                       })
-                    }
+                    } */}
                   </tbody>
                 </Table>
                 <CardFooter className="py-4">

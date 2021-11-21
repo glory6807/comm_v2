@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import axios from "axios";
 import { produce } from "immer";
+import AxiosData from 'utils/NotiAxios.js'
 
 // actions
 const GET_POST = "GET_POST";
@@ -25,13 +26,20 @@ const initialState = {
 // post list
 const getPostAPI = () => {
     return function(dispatch, getState, { history }){
-        axios.get("/noti/list")
-            .then((res) => {
-                const post_list = res.data;
-                dispatch(getPost(post_list));
-            }).catch((err) => {
-                console.log("getPostAPI 오류 발생", err);
-            })
+        // axios.get("/noti/list")
+        //     .then((res) => {
+        //         const post_list = res.data;
+        //         dispatch(getPost(post_list));
+        //     }).catch((err) => {
+        //         console.log("getPostAPI 오류 발생", err);
+        //     })
+
+        AxiosData.getList().then((res)=> {
+            const post_list = res.data;
+            dispatch(getPost(post_list));
+        }).catch((err) => {
+            console.log("getPostAPI 오류 발생", err);
+        })
         // axios({
         //     method: "GET",
         //     url: "/noti/list",

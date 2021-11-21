@@ -3,7 +3,7 @@ import Axios from "axios";
 // Axios create 를 이용하여 Axios 객체 생성.
 // 이로서 timeout 3000을 설정값을 가진 Axios 객체 생성.
 const axiosInstance = Axios.create({
-    timeout : 3000
+    timeout : 10000
 });
 
 
