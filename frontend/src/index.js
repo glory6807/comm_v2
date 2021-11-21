@@ -31,6 +31,7 @@ ReactDOM.render(
         <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
         <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
         <Route path="/kakaoLogin" render={(props) => <KakaoLogin {...props} />} />
+        <Route path="/main" render={(props) => <KakaoLogin {...props} />} />
         <Redirect from="/" to="/auth/login" />
       </Switch>
     </BrowserRouter>
