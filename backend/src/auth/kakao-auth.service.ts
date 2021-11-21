@@ -32,12 +32,9 @@ export class KakaoAuthService {
         try {
             tokenResponse = await httpservice.post(url, '', this.headerConfig).toPromise();
         } catch (error) {
-            console.log(error);
             return error;
         }
 
-        console.log(tokenResponse.data)
-        
         return tokenResponse.data.access_token.toString();
     }
 

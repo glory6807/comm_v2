@@ -13,10 +13,11 @@ import { NotiController } from './noti/noti.controller';
 import { KakaoAuthService } from './auth/kakao-auth.service';
 import { MemberController } from './member/member.controller';
 import { MemberService } from './member/member.service';
+import { JwtService } from './auth/jwt/jwt.service';
 
 @Module({
   imports: [],
   controllers: [AppController, BoardController, FreeController, AuthController, NotiController, MemberController],
-  providers: [Querybuilder, BoardService, FreeService, AuthService, NotiService, KakaoAuthService, MemberService],
+  providers: [Querybuilder, BoardService, FreeService, AuthService, NotiService, KakaoAuthService, MemberService, JwtService],
 })
 export class AppModule {}

@@ -11,14 +11,14 @@ const Login = () => {
     let code = new URL(window.location.href).searchParams.get("code");
     code = {"code" : code};
     
-    console.log(code);
     axios.authorizeToken(code).then((response)=>{
       
       if(response.data === ""){
-        console.log(window.localStorage);
-        //history.push("/");
+        console.log(response.data);
+        //history.push("/main");
       }else{
         
+        console.log(response.data);
       }
 
     });

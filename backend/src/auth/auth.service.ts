@@ -1,6 +1,5 @@
 import { Injectable, Param } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { map } from 'rxjs';
 import { Querybuilder } from 'src/querybuilder/querybuilder';
 
 @Injectable()
@@ -8,8 +7,6 @@ export class AuthService {
     constructor(readonly dao : Querybuilder){}
 
     async saveUserByProfile(param:any){
-
-        console.log(param);
 
         var sqlParam = {
             'id':param.id,
@@ -51,6 +48,5 @@ export class AuthService {
         }
         return await this.dao.insert("auth", "selectUserById", googleProfile);
     }
-
 
 }

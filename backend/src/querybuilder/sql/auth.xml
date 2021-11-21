@@ -20,4 +20,11 @@
                                         WHERE X.USR_ID = A.USR_ID)
   </insert>
 
+  <select id="findOneById">
+    SELECT USR_ID
+          ,NICK_NAME
+          ,REG_TYPE
+      FROM TM_CM_USR
+     WHERE USR_ID = #{id}
+  </select>
 </mapper>
