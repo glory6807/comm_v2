@@ -34,9 +34,8 @@ export class AuthController {
     }
 
     @Post('/googleLogin')
-    googleLogin(@Req() req: Request){
-        console.log('구글로그인 컨트롤러');
-        console.log(req.body);
+    async googleLogin(@Req() req: Request){
+        await this.authService.getGoogleProfile(req.body);
     }
   
 }
