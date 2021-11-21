@@ -42,5 +42,15 @@ export class AuthService {
         return await this.dao.insert("auth", "selectUserById", profileParam);
     }
 
+    async getGoogleProfile(param: any) {
+        let googleProfile = {
+            'id' : param.res.googleId,
+            'nickname' : param.res.name,
+            'email' : param.res.email,
+            'regType' : 'google'
+        }
+        return await this.dao.insert("auth", "selectUserById", googleProfile);
+    }
+
 
 }

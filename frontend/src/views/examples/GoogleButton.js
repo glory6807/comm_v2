@@ -16,6 +16,7 @@ class GLogin extends Component {
 
     // Google Login
     responseGoogle = (res) => {
+        res = res.profileObj;
 
         axios({
             method: 'POST',
