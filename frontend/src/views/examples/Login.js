@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import GoogleButton from "./GoogleButton";
+import KaKaoLogin from 'react-kakao-login';
 
 // reactstrap components
 import {

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">  
+  <select id="selectList">
+    SELECT BOARD_NO
+          ,BOARD_TTL
+          ,BOARD_WRTR
+          ,REG_DT
+      FROM TM_BOARD
+     WHERE BOARD_TYPE = 'MEM'
+       AND IS_DEL = 'N'
+  </select>
+
+  <select id="selectOne" parameterType="number">
+    SELECT BOARD_NO
+          ,BOARD_CNTN
+          ,BOARD_WRTR
+          ,REG_DT
+      FROM TM_BOARD
+     WHERE BOARD_TYPE = 'MEM'
+       AND BOARD_NO = ${boardNo}
+  </select>
+</mapper>
