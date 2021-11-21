@@ -15,7 +15,8 @@ const Login = () => {
     axios.authorizeToken(code).then((response)=>{
       
       if(response.data === ""){
-        history.push("auth/register");
+        console.log(window.localStorage);
+        //history.push("/");
       }else{
         
       }

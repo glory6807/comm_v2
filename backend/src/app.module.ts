@@ -11,10 +11,12 @@ import { AuthService } from './auth/auth.service';
 import { NotiService } from './noti/noti.service';
 import { NotiController } from './noti/noti.controller';
 import { KakaoAuthService } from './auth/kakao-auth.service';
+import { MemberController } from './member/member.controller';
+import { MemberService } from './member/member.service';
 
 @Module({
   imports: [],
-  controllers: [AppController, BoardController, FreeController, AuthController, NotiController],
-  providers: [Querybuilder, BoardService, FreeService, AuthService, NotiService, KakaoAuthService],
+  controllers: [AppController, BoardController, FreeController, AuthController, NotiController, MemberController],
+  providers: [Querybuilder, BoardService, FreeService, AuthService, NotiService, KakaoAuthService, MemberService],
 })
 export class AppModule {}
