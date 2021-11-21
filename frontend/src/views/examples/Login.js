@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import GoogleButton from "./GoogleButton";
 import KaKaoLogin from 'react-kakao-login';
+import freeAxios from "../../utils/FreeAxios.js";
+import * as config from "../../utils/CommonConfig.js";
 
 // reactstrap components
 import {
@@ -33,38 +35,28 @@ const Login = () => {
 
   function initializeNaverLogin() {
     const naverLogin = new naver.LoginWithNaverId({
-      clientId: 'eC1wzaTn1yfRuIxN6hNz',
-      callbackUrl: 'http://localhost:3000/auth/login',
+      clientId: config.NAVER_CLIENT_ID,
+      callbackUrl: config.NAVER_CALLBACK_URL,
       callbackhHandle: true,
       isPopup: false,
-      loginButton: { color: 'white', type: 1, height: '47' },
+      loginButton: { color: 'green', type: 3, height: '50' },
     });
     naverLogin.init();
   };
 
   function UserProfile() {
     window.location.href.includes('access_token') && GetUser();
-    function GetUser() {
-      const location = window.location.href.split('=')[1];
-      const loca = location.split('&')[0];
-      const header = {
-        Authorization : loca,
-      };
-      console.log("token: ", loca);
-      fetch('/oauth/naverLogin' , {
-        method: "get",
-        headers : header,
+
+    async function GetUser() {
+      const preToken = window.location.href.split('=')[1];
+      const token = preToken.split('&')[0];
+      const header = { Authorization : token };
+
+      await freeAxios.getUser(header).then( res => {
+        console.log(res)
       })
-      .then(res => console.log(res))
-      .then(res => {
-        //localStorage.setItem("access_token", res.token);
-        // setUserData({
-        //   nickname : res.nickname,
-        //   image : res.image
-        // })
-      })
-      .catch(err => console.log("err : ", err));
     }
+
   };
 
   const loginWithKakao = () =>{
@@ -83,23 +75,6 @@ const Login = () => {
               <small>Sign in with</small>
             </div>
             <div className="btn-wrapper text-center">
-              <Button
-                className="btn-neutral btn-icon"
-                color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className="btn-inner--icon">
-                  <img
-                    alt="..."
-                    src={
-                      require("../../assets/img/icons/common/github.svg")
-                        .default
-                    }
-                  />
-                </span>
-                <span className="btn-inner--text">Github</span>
-              </Button>
               {/* <Button
                 className="btn-neutral btn-icon"
                 color="default"

@@ -15,8 +15,7 @@ export class FreeController {
 
     @Get('/view')
     getOne(@Query('boardNo') boardNo: number){
-        console.log(typeof boardNo);
-        return this.freeService.getBoardOne(boardNo);
+        return this.freeService.getBoardOne(boardNo); 
     }
 
 }

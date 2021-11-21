@@ -1,5 +1,13 @@
 import CommonAxios from './CommonAxios.js'
 
+const getUser = async (header) => {
+    console.log(header)
+    return await CommonAxios({
+        url: '/oauth/naverLogin',
+        method: 'GET',
+        params: header
+    })
+}
 
 const getList = async () => {
     return await CommonAxios({
@@ -9,7 +17,6 @@ const getList = async () => {
 }
 
 const getOne = async (boardNo) => {
-    console.log(boardNo);
     return await CommonAxios({
         url: '/free/view',
         method: 'GET',
@@ -20,6 +27,7 @@ const getOne = async (boardNo) => {
 
 
 const Send = {
+    getUser,
     getList,
     getOne
 }
