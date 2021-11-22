@@ -1,7 +1,5 @@
 import { Controller, Get, Body, Query, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
-import { HttpService } from '@nestjs/axios';
-import { map } from 'rxjs';
 import { AuthService } from './auth.service';
 import { KakaoAuthService } from './kakao-auth.service';
 import { JwtService } from './jwt/jwt.service';
@@ -23,14 +21,11 @@ export class AuthController {
         var result = await this.authService.saveUserByProfile(profile.data);
 
         if (result){
-            var comm_v2_token = await this.jwtService.createJwtToken(profile.data.id);
+            var comm_v2_token = await this.jwtService.createJwtToken(profile.data.id
+                                                                    ,profile.data.kakao_account.email
+                                                                    ,profile.data.properties.nickname);
             
-            return {
-                "comm_v2_token" : comm_v2_token,
-                "user_id" : profile.data.id,
-                "email" : profile.data.kakao_account.email,
-                "nick_name" : profile.data.properties.nickname
-            }
+            return comm_v2_token;
         }else{
             return null;
         }

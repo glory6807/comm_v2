@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import axios from 'utils/KakaoAxios.js';
 import { useHistory } from "react-router-dom";
+import CookieUtil from '../utils/CookieUtil.js';
 
 // reactstrap components
 
@@ -14,11 +15,10 @@ const Login = () => {
     axios.authorizeToken(code).then((response)=>{
       
       if(response.data === ""){
-        console.log(response.data);
-        //history.push("/main");
-      }else{
         
-        console.log(response.data);
+      }else{
+        CookieUtil.setLoginCookie(response.data);
+        history.push("/main");
       }
 
     });
