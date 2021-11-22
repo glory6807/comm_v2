@@ -25,19 +25,17 @@ const FreeBoard = () => {
   const [freeDatas, setFreeDatas] = useState([]);
   const faqData = useSelector((state) => state.testReducer);
   const dispatch = useDispatch(); // 디스패치 사용하도록하기
-  //const history = useHistory();
+  const history = useHistory();
 
   function FreeList() {
     AxiosData.getList().then(
       function(result){
-        console.log(result)
         dispatch(result) 
       }
     )
+    setFreeDatas(faqData.data)
   }
 
-  console.log(faqData)
-  
   //scroll
   const mainContent = React.useRef(null);
   const location = useLocation();
@@ -79,7 +77,7 @@ const FreeBoard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {/* { freeDatas && freeDatas.map(data => {
+                    { freeDatas && freeDatas.map(data => {
                         return  <tr>
                                   <th scope="col">{data.BOARD_NO}</th>
                                   <th scope="col" onClick={ () => { history.push({
@@ -93,7 +91,7 @@ const FreeBoard = () => {
                                   <th scope="col">{data.REG_DT}</th>
                                 </tr>
                       })
-                    } */}
+                    }
                   </tbody>
                 </Table>
                 <CardFooter className="py-4">

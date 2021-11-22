@@ -8,7 +8,6 @@ const initialState = {
     switch (action.type) {
   
       case 'GET_FREE_DATA':
-        console.log('action' + action)
         return { ...state, data: [...action.payload] };
   
       default:
