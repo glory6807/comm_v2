@@ -36,7 +36,12 @@ export class AuthService {
             'regType':'naver'
         }
 
-        return await this.dao.insert("auth", "selectUserById", profileParam);
+        if(profileParam) {
+            await this.dao.insert("auth", "selectUserById", profileParam);
+            return profileParam;
+        } else {
+            return null;
+        }
     }
 
     async getGoogleProfile(param: any) {

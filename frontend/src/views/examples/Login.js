@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import GoogleButton from "./GoogleButton";
 import KaKaoLogin from 'react-kakao-login';
+import { useHistory } from "react-router-dom";
 import freeAxios from "../../utils/FreeAxios.js";
 import * as config from "../../utils/CommonConfig.js";
 
@@ -25,7 +26,7 @@ import { getOriginalNode } from "typescript";
 const Login = () => {
 
   const { naver } = window;
-
+  let history = useHistory();
   function LoginNaver() {
     initializeNaverLogin();
     UserProfile();
@@ -53,7 +54,15 @@ const Login = () => {
       const header = { Authorization : token };
 
       await freeAxios.getUser(header).then( res => {
-        console.log(res)
+        console.log('res : ' + JSON.stringify(res))
+        history.push("/main");
+
+        if(res === ""){
+        
+        }else{
+          //CookieUtil.setLoginCookie(response.data);
+          history.push("/main");
+        }
       })
     }
 
