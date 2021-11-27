@@ -1,5 +1,5 @@
 const initialState = {
-    data: []
+    freeDatas: []
   };
   
   //상태가 변화할 때 수행되는 함수
@@ -8,7 +8,7 @@ const initialState = {
     switch (action.type) {
   
       case 'GET_FREE_DATA':
-        return { ...state, data: [...action.payload] };
+        return { ...state, freeDatas: [...action.payload] };
   
       default:
         return state;

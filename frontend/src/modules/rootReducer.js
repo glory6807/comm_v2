@@ -12,7 +12,10 @@ import testReducer from './testReducer';
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-    uriReducer, boardReducer, postReducer, testReducer
+    uriReducer, 
+    boardReducer, 
+    postReducer, 
+    free : testReducer
 });
 
 const middlewares = [thunk.withExtraArgument({ history: history })];
