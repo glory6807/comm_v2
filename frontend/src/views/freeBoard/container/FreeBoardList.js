@@ -1,31 +1,28 @@
- import React, { useEffect, useState } from "react";
+ import React, { useEffect } from "react";
  import { useSelector, useDispatch } from "react-redux";
- import { useLocation, useHistory } from "react-router-dom";
- import AxiosData from 'utils/FreeAxios.js'
+ import { useLocation, useRef } from "react-router-dom";
+ import AxiosData from "utils/FreeAxios.js"
 
  import {
   Card,
   CardHeader,
   CardFooter,
   Container,
-  Pagination,
   PaginationItem,
   PaginationLink,
-  Table,
   Row,
 } from "reactstrap";
 
 // core components
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
-import testReducer from './../../modules/testReducer';
+import FreeBoardCntn from "../component/FreeBoardCntn.js";
+import Paging from "components/Pagination/Paging.js";
 
 const FreeBoard = () => {
 
-  const [freeDatas, setFreeDatas] = useState([]);
-  const faqData = useSelector((state) => state.testReducer);
-  const dispatch = useDispatch(); // 디스패치 사용하도록하기
-  const history = useHistory();
+  const dispatch = useDispatch();
+  const freeDatas = useSelector((state) => state.free.freeDatas);
 
   function FreeList() {
     AxiosData.getList().then(
@@ -33,27 +30,25 @@ const FreeBoard = () => {
         dispatch(result) 
       }
     )
-    setFreeDatas(faqData.data)
   }
 
+  useEffect(FreeList, []);
+
   //scroll
-  const mainContent = React.useRef(null);
+  const mainContent = useRef(null);
   const location = useLocation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.classList.add("bg-default");
     return () => {
       document.body.classList.remove("bg-default");
     };
   }, []);
-  React.useEffect(() => {
+  useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainContent.current.scrollTop = 0;
   }, [location]);
-
-  //get list
-  useEffect(FreeList, []);
 
   return (
     <>
@@ -66,35 +61,10 @@ const FreeBoard = () => {
               <Card className="shadow">
                 <CardHeader className="border-0">
                   <h3 className="mb-0">FREE BOARD</h3>
-                </CardHeader>
-                <Table className="align-items-center table-flush" responsive>
-                  <thead className="thead-light">
-                    <tr>
-                      <th scope="col">No</th>
-                      <th scope="col">title</th>
-                      <th scope="col">writer</th>
-                      <th scope="col">regDate</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    { freeDatas && freeDatas.map(data => {
-                        return  <tr>
-                                  <th scope="col">{data.BOARD_NO}</th>
-                                  <th scope="col" onClick={ () => { history.push({
-                                                                                  pathname: '/free/view',
-                                                                                  search: `?BOARD_NO=${data.BOARD_NO}`,  // query string
-                                                                                  state: {  // location state
-                                                                                    BOARD_NO: data.BOARD_NO, 
-                                                                                  }});  } }>
-                                                  {data.BOARD_TTL}</th>
-                                  <th scope="col">{data.BOARD_WRTR}</th>
-                                  <th scope="col">{data.REG_DT}</th>
-                                </tr>
-                      })
-                    }
-                  </tbody>
-                </Table>
-                <CardFooter className="py-4">
+                </CardHeader>                
+                  <FreeBoardCntn freeDatas={freeDatas}/>
+                  <Paging />
+                {/* <CardFooter className="py-4">
                   <nav aria-label="...">
                     <Pagination
                       className="pagination justify-content-end mb-0"
@@ -145,7 +115,7 @@ const FreeBoard = () => {
                       </PaginationItem>
                     </Pagination>
                   </nav>
-                </CardFooter>
+                </CardFooter> */}
               </Card>
             </div>
           </Row>

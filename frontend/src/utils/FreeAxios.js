@@ -1,7 +1,6 @@
 import CommonAxios from './CommonAxios.js'
 
 const getUser = async (header) => {
-    console.log(header)
     return await CommonAxios({
         url: '/oauth/naverLogin',
         method: 'GET',

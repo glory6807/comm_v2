@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 // core components
 
-import FreeList from "views/freeBoard/FreeBoardList.js";
+import FreeList from "views/freeBoard/container/FreeBoardList.js";
 import FreeView from "views/freeBoard/FreeBoardView.js";
 
 function FreeBoard(match) {

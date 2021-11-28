@@ -1,5 +1,7 @@
 const initialState = {
-    freeDatas: []
+    freeDatas: [
+      // BOARD_NO, BOARD_TTL, BOARD_WRTR, REG_DT
+    ]
   };
   
   //상태가 변화할 때 수행되는 함수
