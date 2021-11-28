@@ -17,6 +17,7 @@ import FreeBoard from "routes/FreeBoard.js";
 import MemBoard from "routes/MemBoard.js";
 import NotiBoard from "routes/NotiBoard.js";
 import KakaoLogin from "routes/KakaoLogin.js";
+import Main from "views/main/Main";
 
 // const store = createStore(rootReducer);
 
@@ -31,7 +32,7 @@ ReactDOM.render(
         <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
         <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
         <Route path="/kakaoLogin" render={(props) => <KakaoLogin {...props} />} />
-        <Route path="/main" render={(props) => <KakaoLogin {...props} />} />
+        <Route path="/main" render={(props) => <Main {...props} />} />
         <Redirect from="/" to="/auth/login" />
       </Switch>
     </BrowserRouter>
