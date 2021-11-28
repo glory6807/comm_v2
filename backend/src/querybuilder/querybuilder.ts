@@ -29,7 +29,6 @@ export class Querybuilder {
     // param : 쿼리 파일명, 쿼리아이디, 쿼리 파라미터
     async select(queryFileName: string, queryId: string, param: any){
     
-        console.log(this.connectionInfo);
         console.log("------------------------------------QUERY BUILDER START-------------------------------------");
         try{
             const connection = await this.pool.getConnection(async conn => conn);
