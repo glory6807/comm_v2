@@ -6,13 +6,30 @@ export class Querybuilder {
     private mysql  = require('mysql2/promise');
     private mybatisMapper  = require('mybatis-mapper');
     private connInfo = require('../../db_config.json');
-    private mapperRoad = './src/querybuilder/sql/';        
-    private pool = this.mysql.createPool(this.connInfo);
+    private mapperRoad = './src/querybuilder/sql/';   
+    
+    private connectionInfo = {
+        host : this.connInfo.host,
+        user : this.connInfo.user,
+        database : this.connInfo.database,
+        password : this.connInfo.password
+        ,typeCast : function (field: any, next: any) {
+            if (field.type == 'VAR_STRING') {
+                return field.string();
+            } 
+            return next();
+        }
+    };
 
 
+    private pool = this.mysql.createPool(this.connectionInfo);
+
+    
     // description : 일반 쿼리 실행
     // param : 쿼리 파일명, 쿼리아이디, 쿼리 파라미터
     async select(queryFileName: string, queryId: string, param: any){
+    
+        console.log(this.connectionInfo);
         console.log("------------------------------------QUERY BUILDER START-------------------------------------");
         try{
             const connection = await this.pool.getConnection(async conn => conn);
