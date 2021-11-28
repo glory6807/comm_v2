@@ -34,7 +34,15 @@ export class AuthController {
     @Get('/naverLogin')
     async naverProfile(@Query('Authorization') naverToken: string) {
         let result = await this.authService.getNaverProfile(naverToken);
-        return result;
+
+        if(result){
+            var comm_v2_token = await this.jwtService.createJwtToken(result.id
+                                                                    ,result.email
+                                                                    ,result.nickname);            
+            return comm_v2_token;
+        } else {
+            return null; 
+        }
     }
 
     @Post('/googleLogin')
