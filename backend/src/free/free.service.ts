@@ -7,6 +7,10 @@ export class FreeService {
 
     constructor(readonly dao : Querybuilder){}
 
+    async getBoardCount(){
+        return await this.dao.select("free", "selectListCount", {});
+    }
+
     async getBoardList(){
         return await this.dao.select("free", "selectList", {});
     }

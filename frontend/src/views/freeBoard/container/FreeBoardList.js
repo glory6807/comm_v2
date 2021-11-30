@@ -22,7 +22,8 @@ import Paging from "components/Pagination/Paging.js";
 const FreeBoard = () => {
 
   const dispatch = useDispatch();
-  const freeDatas = useSelector((state) => state.free.freeDatas);
+  const { freeDatas, count } = useSelector((state) => ({ freeDatas : state.free.freeDatas,
+                                                         count : state.free.count }));
 
   function FreeList() {
     AxiosData.getList().then(
@@ -63,7 +64,7 @@ const FreeBoard = () => {
                   <h3 className="mb-0">FREE BOARD</h3>
                 </CardHeader>                
                   <FreeBoardCntn freeDatas={freeDatas}/>
-                  <Paging />
+                  <Paging count={count}/>
                 {/* <CardFooter className="py-4">
                   <nav aria-label="...">
                     <Pagination

@@ -8,9 +8,13 @@ export class FreeController {
     constructor(readonly freeService:FreeService){};
 
     @Get('/list')
-    getList(@Body() param:any){
+    async getList(@Body() param:any){
         console.log('FreeController');
-        return this.freeService.getBoardList();
+        const array = [];
+        const count = await this.freeService.getBoardCount();
+        const freeData = await this.freeService.getBoardList();
+        array.push(count, freeData)
+        return array;
     }
 
     @Get('/view')

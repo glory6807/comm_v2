@@ -16,7 +16,8 @@ const getList = async () => {
 
     return {
             type: 'GET_FREE_DATA',
-        payload : freeListData.data
+        payload : { count : freeListData.data[0],
+                    freeDatas : freeListData.data[1]}
     }
 }
 

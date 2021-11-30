@@ -8,9 +8,10 @@ const initialState = {
   //Type에 따른 상태변화
   const testReducer = (state = initialState, action) => {
     switch (action.type) {
-  
       case 'GET_FREE_DATA':
-        return { ...state, freeDatas: [...action.payload] };
+        return { ...state,
+                 freeDatas: action.payload.freeDatas,
+                 count: action.payload.count }
   
       default:
         return state;
