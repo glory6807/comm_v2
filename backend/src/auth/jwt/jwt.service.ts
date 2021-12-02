@@ -1,11 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { GlobalVariableService } from 'src/global-variable/global-variable.service';
 
 @Injectable()
 export class JwtService {
 
+
     private jwt = require('jsonwebtoken');
 
     async createJwtToken(id: string, email: string, nickname: string){
+
+        GlobalVariableService.VISIT_USR_CNT++;
                                                           // 1시간    1일     //100일
         var token = this.jwt.sign({login_id: id, exp: Math.floor(Date.now() / 1000) + ((60 * 60) * 24 * 100)}, 'edddc81b-b051-4b66-9a2f-f6538efaf81c');
 

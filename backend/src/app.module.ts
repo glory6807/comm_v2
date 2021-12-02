@@ -1,4 +1,5 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { ScheduleModule } from '@nestjs/schedule';
 
 import { AppController } from './app.controller';
 import { Querybuilder } from './querybuilder/querybuilder';
@@ -13,11 +14,17 @@ import { MemberController } from './member/member.controller';
 import { MemberService } from './member/member.service';
 import { JwtService } from './auth/jwt/jwt.service';
 import { AuthCheckMiddleware } from './middleware/AuthCheckMiddleware';
+import { MainController } from './main/main.controller';
+import { MainService } from './main/main.service';
+import { GlobalVariableService } from './global-variable/global-variable.service';
+import { UsrSchedulerService } from './schedule/usr-scheduler.service';
 
 @Module({
-  imports: [],
-  controllers: [AppController, FreeController, AuthController, NotiController, MemberController],
-  providers: [Querybuilder, FreeService, AuthService, NotiService, KakaoAuthService, MemberService, JwtService],
+  imports: [
+    ScheduleModule.forRoot()
+  ],
+  controllers: [AppController, FreeController, AuthController, NotiController, MemberController, MainController],
+  providers: [Querybuilder, FreeService, AuthService, NotiService, KakaoAuthService, MemberService, JwtService, MainService, GlobalVariableService, UsrSchedulerService],
 })
 export class AppModule implements NestModule{
   configure(consumer: MiddlewareConsumer){
