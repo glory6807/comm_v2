@@ -27,7 +27,7 @@ export class Querybuilder {
     
     // description : 일반 쿼리 실행
     // param : 쿼리 파일명, 쿼리아이디, 쿼리 파라미터
-    async select(queryFileName: string, queryId: string, param: any){
+    async select(queryFileName: string, queryId: string, param?: any){
     
         console.log("------------------------------------QUERY BUILDER START-------------------------------------");
         try{
@@ -58,7 +58,7 @@ export class Querybuilder {
     }
 
 
-    async insert(queryFileName: string, queryId: string, param: any){
+    async insert(queryFileName: string, queryId: string, param?: any){
         
         console.log("------------------------------------QUERY BUILDER START-------------------------------------");
         try{

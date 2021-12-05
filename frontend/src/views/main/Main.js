@@ -11,8 +11,16 @@ import {
 
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
+import Axios from 'utils/MainAxios.js';
 
 const Index = () => {
+
+  const [analysisData, setSnalysisData] = useState();
+  useEffect(() => {
+    Axios.getAnalysisData().then((result)=>{
+      setSnalysisData(result.data);
+    });
+  }, []);
 
   return (
     <>
@@ -63,11 +71,10 @@ const Index = () => {
           <Col xl="4">
             <Card className="shadow mt-5">
               <CardHeader className="bg-transparent">
-                <Row className="align-items-center">
-                  <div className="col">
+                <div className="col">
                     <h2 className="mb-0">총 회원수</h2>
-                  </div>
-                </Row>
+                    <h2 className="mb-0">{analysisData.USR_TOTAL_CNT} 명</h2>
+                </div>
               </CardHeader>
             </Card>
           </Col>
@@ -78,6 +85,7 @@ const Index = () => {
                 <Row className="align-items-center">
                   <div className="col">
                     <h2 className="mb-0">총 게시글 수</h2>
+                    <h2 className="mb-0">{analysisData.BOARD_TOTAL_CNT} 개</h2>
                   </div>
                 </Row>
               </CardHeader>
@@ -90,6 +98,7 @@ const Index = () => {
                 <Row className="align-items-center">
                   <div className="col">
                     <h2 className="mb-0">오늘 방문자 수</h2>
+                    <h2 className="mb-0">{analysisData.VISIT_USR_CNT} 명</h2>
                   </div>
                 </Row>
               </CardHeader>

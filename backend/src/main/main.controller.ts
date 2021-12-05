@@ -13,13 +13,10 @@ export class MainController {
         return this.mainService.getRecentBoardList();
     }
 
-    @Get('/cnt')
-    getCountData(){
-        var cntData = this.mainService.getCountData();
-        console.log(GlobalVariableService.VISIT_USR_CNT);
-
-        
-        return this.mainService.getCountData();
+    @Get('/analysisData')
+    async getCountData(){
+        var cntData = await this.mainService.getAnalysisData();
+        return Object.assign(cntData, {VISIT_USR_CNT : GlobalVariableService.VISIT_USR_CNT});
     }
 
     @Get('/recentUsr')

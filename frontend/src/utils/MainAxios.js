@@ -1,15 +1,14 @@
 import CommonAxios from './CommonAxios.js'
 
-const getUser = async (header) => {
+const getAnalysisData = async () => {
     return await CommonAxios({
-        url: '/main/naverLogin',
-        method: 'GET',
-        params: header
+        url: '/main/analysisData',
+        method: 'GET'
     })
 }
 
 const Send = {
-    getUser
+    getAnalysisData
 }
 
 export default Send;

@@ -9,7 +9,9 @@ export class MainService {
         return await this.dao.select("main", "selectRecentBoardList", {});
     }
 
-    async getCountData(){
-        return await this.dao.select("main", "selectTotalCnt", {});
+    async getAnalysisData(){
+        var data = await this.dao.select("main", "selectTotalCnt");
+        data = data[0];
+        return data;
     }
 }

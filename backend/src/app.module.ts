@@ -18,13 +18,14 @@ import { MainController } from './main/main.controller';
 import { MainService } from './main/main.service';
 import { GlobalVariableService } from './global-variable/global-variable.service';
 import { UsrSchedulerService } from './schedule/usr-scheduler.service';
+import { AnalyzeSchedulerService } from './schedule/analyze-scheduler.service';
 
 @Module({
   imports: [
     ScheduleModule.forRoot()
   ],
   controllers: [AppController, FreeController, AuthController, NotiController, MemberController, MainController],
-  providers: [Querybuilder, FreeService, AuthService, NotiService, KakaoAuthService, MemberService, JwtService, MainService, GlobalVariableService, UsrSchedulerService],
+  providers: [Querybuilder, FreeService, AuthService, NotiService, KakaoAuthService, MemberService, JwtService, MainService, GlobalVariableService, UsrSchedulerService, AnalyzeSchedulerService],
 })
 export class AppModule implements NestModule{
   configure(consumer: MiddlewareConsumer){
