@@ -2,7 +2,8 @@ const initialState = {
     freeDatas: [
       // BOARD_NO, BOARD_TTL, BOARD_WRTR, REG_DT
     ],
-    count : 0
+    count : 0,
+    page : 0
   };
   
   //상태가 변화할 때 수행되는 함수
@@ -13,7 +14,8 @@ const initialState = {
       case 'GET_FREE_DATA':
         return { ...state,
                  freeDatas: action.payload.freeDatas,
-                 count: action.payload.count }
+                 count: action.payload.count,
+                 page : action.payload.page }
   
       default:
         return state;

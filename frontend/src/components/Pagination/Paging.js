@@ -1,43 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Paging.css';
 import Pagination from "react-js-pagination";
 
-const Paging = ({total}) => {
-    const [page, setPage] = useState(1);
-    const handlePageChange = (page) => { setPage(page); console.log('click') };
-    const handlePageChange2 = (page) => { setPage(page); console.log('no!!!') };
+const Paging = ({page, count, setPage}) => {
 
-    if(total !== 0) {
-        console.log('count5 : ' + JSON.stringify(total))
-        console.log(typeof parseInt(JSON.stringify(total)))
-        console.log('success!!!!!')
+        console.log('page : ' + JSON.stringify(page))
+        console.log('count : ' + JSON.stringify(count))
+        console.log('setPage : ' + JSON.stringify(setPage))
+
         return (
-            <Pagination activePage={page} 
+            <Pagination activePage={page && page} 
                         itemsCountPerPage={10} 
-                        totalItemsCount={parseInt(JSON.stringify(total[0].COUNT))} 
+                        totalItemsCount={count && count[0].COUNT} 
                         pageRangeDisplayed={5} 
                         prevPageText={"‹"} 
                         nextPageText={"›"} 
-                        onChange={handlePageChange} 
+                        onChange={setPage} 
             />
         );
-
-    } else {
-        console.log('fail.....')
-        return (
-            <Pagination activePage={page} 
-                        itemsCountPerPage={10} 
-                        totalItemsCount={10} 
-                        pageRangeDisplayed={5} 
-                        prevPageText={"‹"} 
-                        nextPageText={"›"} 
-                        onChange={handlePageChange2} 
-            />
-        );
-    }
-   
-
-    
 };
 
 export default Paging;

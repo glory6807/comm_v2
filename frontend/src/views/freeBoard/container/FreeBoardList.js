@@ -1,4 +1,4 @@
- import React, { useEffect, useRef, useState } from "react";
+ import React, { useEffect, useRef, useCallback } from "react";
  import { useSelector, useDispatch } from "react-redux";
  import { useLocation } from "react-router-dom";
  import AxiosData from "utils/FreeAxios.js"
@@ -22,29 +22,33 @@ import Paging from "components/Pagination/Paging.js";
 const FreeBoard = () => {
 
   const dispatch = useDispatch();
-  const [ total, setTotal ] = useState(0);
-  const { freeDatas, count } = useSelector((state) => ({ freeDatas : state.free.freeDatas,
-                                                         count : state.free.count }));
+  const { freeDatas, count, page } = useSelector((state) => ({ freeDatas : state.free.freeDatas,
+                                                         count : state.free.count,
+                                                         page : state.free.page }));
   
   console.log('count1 : ' + JSON.stringify(count))
   //setTotal(count)
-  console.log('total : ' + total)
-  function FreeList() {
+  function FreeList(param) {
     console.log('count2 : ' + JSON.stringify(count))
-    AxiosData.getList().then(
-      function(result){
+     AxiosData.getList().then(
+       function(result){
         console.log('count3 : ' + JSON.stringify(count))
         dispatch(result);
-        console.log('result : ' + JSON.stringify(result))
-        console.log('count4 : ' + JSON.stringify(result.payload.count))
-        setTotal(result.payload.count)
-        console.log('total2 : ' + total)
-      }
-    )
+       }
+     )
     
   }
   
   useEffect(FreeList, []);
+
+  const setPage = useCallback( (page) => { 
+    AxiosData.getList(page).then(
+      function(result){
+       console.log('useCallback !! ')
+       dispatch(result);
+      }
+    )
+   }, [] );
 
   //scroll
   const mainContent = useRef(null);
@@ -76,7 +80,7 @@ const FreeBoard = () => {
                   <h3 className="mb-0">FREE BOARD</h3>
                 </CardHeader>                
                   <FreeBoardCntn freeDatas={freeDatas}/>
-                  <Paging total={total}/>
+                  <Paging page={page} count={count} setPage={setPage}/>
                 {/* <CardFooter className="py-4">
                   <nav aria-label="...">
                     <Pagination

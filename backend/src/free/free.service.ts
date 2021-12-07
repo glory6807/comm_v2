@@ -11,8 +11,11 @@ export class FreeService {
         return await this.dao.select("free", "selectListCount", {});
     }
 
-    async getBoardList(){
-        return await this.dao.select("free", "selectList", {});
+    async getBoardList(@Param('curPage') curPage :number){
+        const offset = 10 * curPage - 10;
+        console.log('offset : ' + offset)
+        const param = { offset : offset }
+        return await this.dao.select("free", "selectList", param);
     }
 
     async getBoardOne(@Param('boardNo') boardNo :number){
