@@ -8,16 +8,19 @@ const getUser = async (header) => {
     })
 }
 
-const getList = async () => {
+const getList = async (page) => {
+    console.log('page? ' + page)
     const freeListData = await CommonAxios({
         url: '/free/list',
-        method: 'GET'
+        method: 'GET',
+        params: {'page' : page}
     })
 
     return {
             type: 'GET_FREE_DATA',
         payload : { count : freeListData.data[0],
-                    freeDatas : freeListData.data[1]}
+                    freeDatas : freeListData.data[1],
+                    page : freeListData.data[2]}
     }
 }
 

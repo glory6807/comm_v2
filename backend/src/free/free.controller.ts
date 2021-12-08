@@ -8,12 +8,13 @@ export class FreeController {
     constructor(readonly freeService:FreeService){};
 
     @Get('/list')
-    async getList(@Body() param:any){
+    async getList(@Query('page') curPage: number){
         console.log('FreeController');
         const array = [];
         const count = await this.freeService.getBoardCount();
-        const freeData = await this.freeService.getBoardList();
-        array.push(count, freeData)
+        const freeData = await this.freeService.getBoardList(curPage);
+        const page = {'page' : 1}
+        array.push(count, freeData, page)
         return array;
     }
 

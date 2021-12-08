@@ -1,4 +1,4 @@
- import React, { useEffect, useRef } from "react";
+ import React, { useEffect, useRef, useCallback } from "react";
  import { useSelector, useDispatch } from "react-redux";
  import { useLocation } from "react-router-dom";
  import AxiosData from "utils/FreeAxios.js"
@@ -22,18 +22,33 @@ import Paging from "components/Pagination/Paging.js";
 const FreeBoard = () => {
 
   const dispatch = useDispatch();
-  const { freeDatas, count } = useSelector((state) => ({ freeDatas : state.free.freeDatas,
-                                                         count : state.free.count }));
+  const { freeDatas, count, page } = useSelector((state) => ({ freeDatas : state.free.freeDatas,
+                                                         count : state.free.count,
+                                                         page : state.free.page }));
+  
+  console.log('count1 : ' + JSON.stringify(count))
+  //setTotal(count)
+  function FreeList(param) {
+    console.log('count2 : ' + JSON.stringify(count))
+     AxiosData.getList().then(
+       function(result){
+        console.log('count3 : ' + JSON.stringify(count))
+        dispatch(result);
+       }
+     )
+    
+  }
+  
+  useEffect(FreeList, []);
 
-  function FreeList() {
-    AxiosData.getList().then(
+  const setPage = useCallback( (page) => { 
+    AxiosData.getList(page).then(
       function(result){
-        dispatch(result) 
+       console.log('useCallback !! ')
+       dispatch(result);
       }
     )
-  }
-
-  useEffect(FreeList, []);
+   }, [] );
 
   //scroll
   const mainContent = useRef(null);
@@ -52,6 +67,7 @@ const FreeBoard = () => {
   }, [location]);
 
   return (
+    
     <>
       <div className="main-content" ref={mainContent}>
       <AuthNavbar />
@@ -64,7 +80,7 @@ const FreeBoard = () => {
                   <h3 className="mb-0">FREE BOARD</h3>
                 </CardHeader>                
                   <FreeBoardCntn freeDatas={freeDatas}/>
-                  <Paging count={count}/>
+                  <Paging page={page} count={count} setPage={setPage}/>
                 {/* <CardFooter className="py-4">
                   <nav aria-label="...">
                     <Pagination
