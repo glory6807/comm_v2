@@ -7,7 +7,7 @@ export class AnalyzeSchedulerService {
 
 constructor(readonly dao : Querybuilder){}
 
-  @Cron('10 * * * * *')
+  //@Cron('8 * * * * *')
   async analyzeCntBatch() {
     console.log("메인 데이터 집계 배치 START");
     await this.dao.insert("main", "updateAnalysis");

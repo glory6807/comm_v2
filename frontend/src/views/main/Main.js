@@ -14,8 +14,7 @@ import AuthFooter from "components/Footers/AuthFooter.js";
 import Axios from 'utils/MainAxios.js';
 
 const Index = () => {
-
-  const [analysisData, setSnalysisData] = useState();
+  const [analysisData, setSnalysisData] = useState({"USR_TOTAL_CNT":0, "BOARD_TOTAL_CNT":0, "VISIT_USR_CNT":0});
   useEffect(() => {
     Axios.getAnalysisData().then((result)=>{
       setSnalysisData(result.data);
@@ -39,7 +38,6 @@ const Index = () => {
                 </Row>
               </CardHeader>
               <CardBody>
-                {/* Chart */}
                 <div className="chart">
                   
                 </div>
@@ -58,7 +56,7 @@ const Index = () => {
               </CardHeader>
               <CardBody>
                 <div className="chart">
-                  <Row>
+                  <Row className="text-center">
                     <Col>최영우</Col>
                     <Col>2021.12.31</Col>
                   </Row>

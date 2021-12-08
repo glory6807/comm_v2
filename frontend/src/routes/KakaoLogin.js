@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect } from "react"; 
+import { useSelector, useDispatch } from "react-redux";
 import axios from 'utils/KakaoAxios.js';
 import { useHistory } from "react-router-dom";
 import CookieUtil from '../utils/CookieUtil.js';
@@ -7,6 +8,7 @@ import CookieUtil from '../utils/CookieUtil.js';
 
 const Login = () => {
   let history = useHistory();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let code = new URL(window.location.href).searchParams.get("code");
@@ -17,7 +19,8 @@ const Login = () => {
       if(response.data === ""){
         
       }else{
-        CookieUtil.setLoginCookie(response.data);
+        dispatch(response);
+        //CookieUtil.setLoginCookie(response.data);
         history.push("/main");
       }
 

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import GoogleButton from "./GoogleButton";
-import KaKaoLogin from 'react-kakao-login';
 import { useHistory } from "react-router-dom";
 import freeAxios from "../../utils/FreeAxios.js";
 import * as config from "../../utils/CommonConfig.js";

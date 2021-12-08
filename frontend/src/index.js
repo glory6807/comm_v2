@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 import store from "modules/rootReducer";
 
 import "assets/plugins/nucleo/css/nucleo.css";
