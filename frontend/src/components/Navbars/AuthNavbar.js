@@ -15,7 +15,12 @@ import {
 
 const AdminNavbar = () => {
 
-  const {loginData}  = useSelector((state) => state);
+  const {id, email, nickname}  = useSelector((state) => ({ id : state.free.id, 
+                                                           email : state.free.email, 
+                                                           nickname : state.free.nickname }));
+  console.log('id ::: ' + id)
+  console.log('email ::: ' + email)
+  console.log('nickname ::: ' + nickname)
 
   return (
     <>
@@ -76,11 +81,11 @@ const AdminNavbar = () => {
               </NavItem>
               <NavItem>
                 <NavLink className="nav-link-icon" to="/auth/login" tag={Link}>
-                  <i className="ni ni-key-25" />
+                  {/* <i className="ni ni-key-25" />
                   {
                     console.log({loginData})
                   }
-                  <span className="nav-link-inner--text">{loginData}Login</span>
+                  <span className="nav-link-inner--text">{loginData}Login</span> */}
                 </NavLink>
               </NavItem>
               {/* <NavItem>
