@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import GoogleButton from "./GoogleButton";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import freeAxios from "../../utils/FreeAxios.js";
 import * as config from "../../utils/CommonConfig.js";
 
@@ -23,7 +24,10 @@ import {
 const Login = () => {
 
   const { naver } = window;
-  let history = useHistory();
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   function LoginNaver() {
     initializeNaverLogin();
     UserProfile();
@@ -52,14 +56,15 @@ const Login = () => {
 
       await freeAxios.getUser(header).then( res => {
         console.log('res : ' + JSON.stringify(res))
+        dispatch(log(res.data.user_id, res.data.email, res.data.nick_name))
         history.push("/main");
 
-        if(res === ""){
+        // if(res === ""){
         
-        }else{
-          //CookieUtil.setLoginCookie(response.data);
-          history.push("/main");
-        }
+        // }else{
+        //   //CookieUtil.setLoginCookie(response.data);
+        //   history.push("/main");
+        // }
       })
     }
 
@@ -70,6 +75,19 @@ const Login = () => {
       redirectUri: 'http://localhost:3000/kakaoLogin'
     });
     kakaoLogin.init();
+  };
+
+  const log = (id, email, nickname) => {
+
+    return {
+        type: 'NAVER_LOGIN_USER',
+          payload: {
+            id: id,
+            email: email,
+            nickname: nickname
+          }
+      };
+  
   };
 
   return (
