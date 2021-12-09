@@ -17,12 +17,11 @@ import { useEffect } from "react";
 
 const AdminNavbar = () => {
 
-  const {id, email, nickname}  = useSelector((state) => ({ id : state.free.id, 
-                                                           email : state.free.email, 
-                                                           nickname : state.free.nickname }));
-  console.log('id ::: ' + id)
-  console.log('email ::: ' + email)
-  console.log('nickname ::: ' + nickname)
+  const {id, email, nickname, comm_v2_token}  = useSelector((state) => ({ id : state.login.id, 
+                                                                        email : state.login.email, 
+                                                                        nickname : state.login.nickname,
+                                                                        comm_v2_token : state.login.comm_v2_token
+                                                                      }));
 
   return (
     <>
@@ -82,11 +81,7 @@ const AdminNavbar = () => {
               </NavItem>
               <NavItem>
                 <NavLink className="nav-link-icon" to="/auth/login" tag={Link}>
-                  {/* <i className="ni ni-key-25" />
-                  {
-                    console.log({loginData})
-                  }
-                  <span className="nav-link-inner--text">{loginData}Login</span> */}
+                  {nickname}&nbsp;님
                 </NavLink>
               </NavItem>
               {/* <NavItem>

@@ -22,19 +22,29 @@ const Login = () => {
       }else{
         console.log("AXIOS RETURN>>>>>")
         console.log(response);
-        dispatch(response);
+        dispatch(loginDispatch(response.data.user_id, response.data.email, response.data.nick_name, response.data.comm_v2_token));
         //CookieUtil.setLoginCookie(response.data);
-        //history.push("/main");
+        history.push("/main");
       }
 
     });
     
   }, []);
 
+  const loginDispatch = (id, email, nickname, comm_v2_token) => {
+    return {
+      type: 'GET_TOKEN_DATA',
+        payload: {
+          id: id,
+          email: email,
+          nickname: nickname,
+          comm_v2_token : comm_v2_token
+        }
+    };
+  }
+
   return (
     <>
-      <button>123{loginData[0]}</button>
-      
     </>
   );
 };
