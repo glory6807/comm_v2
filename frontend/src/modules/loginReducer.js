@@ -1,5 +1,5 @@
 const initialState = {
-  loginData : {}
+  loginData : []
 };
 
 //상태가 변화할 때 수행되는 함수
@@ -11,7 +11,7 @@ const loginReducer = (state = initialState, action) => {
     case 'GET_TOKEN_DATA':
 
       console.log("???");
-      console.log(action.payload);
+      console.log(state);
       return { ...state,
                loginData: action.payload
               }

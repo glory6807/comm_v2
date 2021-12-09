@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+
 // reactstrap components
 import {
   UncontrolledCollapse,
@@ -12,14 +13,14 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { useEffect } from "react";
 
 const AdminNavbar = () => {
 
-  const {loginData}  = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   return (
     <>
-      
       <Navbar className="navbar-top navbar-horizontal navbar-dark" expand="md">
         <Container className="px-4">
           <NavbarBrand to="/" tag={Link}>
@@ -77,10 +78,7 @@ const AdminNavbar = () => {
               <NavItem>
                 <NavLink className="nav-link-icon" to="/auth/login" tag={Link}>
                   <i className="ni ni-key-25" />
-                  {
-                    console.log({loginData})
-                  }
-                  <span className="nav-link-inner--text">{loginData}Login</span>
+                  <span className="nav-link-inner--text">Login</span>
                 </NavLink>
               </NavItem>
               {/* <NavItem>

@@ -5,7 +5,7 @@ import { GlobalVariableService } from 'src/global-variable/global-variable.servi
 @Injectable()
 export class UsrSchedulerService {
 
-  @Cron('0 0 24 * * *')
+  //@Cron('0 0 24 * * *')
   initVisitCnt() {
     GlobalVariableService.VISIT_USR_CNT = 0;
   }
