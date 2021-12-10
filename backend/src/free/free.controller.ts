@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Query } from '@nestjs/common';
 import { FreeService } from './free.service'
 import { FreeParamDto } from 'src/dto/FreeParamDto';
+import { isNull } from 'util';
 
 @Controller('free')
 export class FreeController {
@@ -11,10 +12,15 @@ export class FreeController {
     async getList(@Query('page') curPage: number){
         console.log('FreeController');
         const array = [];
-        const count = await this.freeService.getBoardCount();
+        //게시판 처음 로드될 때 페이지 설정을 위해 넣어줌
+        if(isNaN(curPage)) {
+            curPage = 1;
+        }
         const freeData = await this.freeService.getBoardList(curPage);
-        const page = {'page' : 1}
-        array.push(count, freeData, page)
+        const count = await this.freeService.getBoardCount();
+        const page = {'page' : curPage}
+        array.push(freeData, count, page)
+
         return array;
     }
 

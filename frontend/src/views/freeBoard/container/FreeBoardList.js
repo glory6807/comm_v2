@@ -28,7 +28,7 @@ const FreeBoard = () => {
   
   console.log('count1 : ' + JSON.stringify(count))
   //setTotal(count)
-  function FreeList(param) {
+  function FreeList() {
     console.log('count2 : ' + JSON.stringify(count))
      AxiosData.getList().then(
        function(result){
@@ -48,7 +48,7 @@ const FreeBoard = () => {
        dispatch(result);
       }
     )
-   }, [] );
+   }, [dispatch] );
 
   //scroll
   const mainContent = useRef(null);
