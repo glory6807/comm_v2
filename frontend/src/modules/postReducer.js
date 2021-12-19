@@ -1,22 +1,3 @@
-// import { createAction, handleActions } from "redux-actions";
-// import axios from "axios";
-// import { produce } from "immer";
-// import AxiosData from 'utils/NotiAxios.js'
-
-// // actions
-// const GET_POST = "GET_POST";
-// const ONE_POST = "ONE_POST";
-// const ADD_POST = "ADD_POST";
-// // const IS_MANAGER = "IS_MANAGER";
-// const DELETE_POST = "DELETE_POST";
-
-// // actionCreators
-// const getPost = createAction(GET_POST, (post_list) => ({ post_list }));
-// const addPost = createAction(ADD_POST, (post) => ({ post }));
-// const onePost = createAction(ONE_POST, (post) => ({ post }));
-// // const isManager = createAction(IS_MANAGER, (button) => ({ button }));
-// const deletePost = createAction(DELETE_POST, (itemId, icrId) => ({ itemId, icrId }));
-
 // initialState
 const initialState = {
     notiDatas: [],
