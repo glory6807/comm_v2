@@ -2,19 +2,29 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as postActions } from "../../modules/postReducer";
 import { Link } from "react-router-dom";
+import NotiAxios from "utils/NotiAxios.js";
 
 
 // import { uriSave } from 'modules/uriReducer';
 // import { selectRow, removeContent } from 'modules/boardReducer';
 
 const NotiBoardView = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
-  const { board_no } = useParams();
+  const { boardNo } = useParams();
 
-  const detail = useSelector((state) => state.postReducer);
+  const detail = useSelector((state) => state.noti.notiiData);
+
+  function NotiView(param){
+    console.log('noti view');
+    NotiAxios.getOne(boardNo).then(
+      function(result){
+          dispatch(result);
+      }
+  )
+  }
+
+  useEffect(NotiView, []);
 
   // useEffect(() => {
   //   dispatch(postReducer.getOnePostAPI(board_no));

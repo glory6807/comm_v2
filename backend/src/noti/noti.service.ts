@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Param } from '@nestjs/common';
 import { Querybuilder } from 'src/querybuilder/querybuilder';
 
 @Injectable()
@@ -6,21 +6,18 @@ export class NotiService {
 
     constructor(readonly dao : Querybuilder){}
 
-    async getBoardList(param:any){
-        console.log('notice service - ㅠㅠ');
+    async getBoardCount(){
+        return await this.dao.select("notice", "getCount", {});
+    }
+
+    async getBoardList(@Param('curPage') curPage: number){
+        const offset = 10 * curPage - 10;
+        const param = { offset : offset }
         return await this.dao.select("notice", "selectList", param);
     }
 
-    // async getOne(boardNo: number){
-    //     console.log('notice service - get one');
-    //     console.log('no : ' + boardNo);
-    //     return await this.dao.select("notice", "getOne", boardNo);
-    // }
-
-    async getOne(param:any){
-        console.log('notice service - get one');
-        console.log('no : ' + param);
-        console.log('typeof : ' + typeof param);
+    async getOne(@Param('boardNo') boardNo: number){
+        const param = {boardNo : boardNo}
         return await this.dao.select("notice", "getOne", param);
     }
 

@@ -13,7 +13,7 @@ export const history = createBrowserHistory();
 const rootReducer = combineReducers({
     uriReducer, 
     boardReducer, 
-    postReducer, 
+    noti : postReducer, 
     free : testReducer,
     login : loginReducer
 });
