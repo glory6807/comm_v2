@@ -51,7 +51,13 @@ export class AuthService {
             'email' : param.res.email,
             'regType' : 'google'
         }
-        return await this.dao.insert("auth", "selectUserById", googleProfile);
+
+        if(googleProfile){
+            await this.dao.insert("auth", "selectUserById", googleProfile);
+            return googleProfile;
+        } else {
+            return null;
+        }
     }
 
 }
