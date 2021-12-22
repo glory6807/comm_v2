@@ -25,7 +25,6 @@ export class NotiController {
     async getOne(@Query('boardNo') boardNo: number){
         console.log('notice controller - get one');
         const notiData = await this.notiService.getOne(boardNo);
-
         return notiData;
     }
 

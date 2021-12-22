@@ -29,17 +29,17 @@ const getOne = async (boardNo) => {
     return {
         type: 'GET_NOTICE_ONE',
         payload: {
-            notiData : notiData
+            oneNoti : notiData.data[0]
         }
     }
 }
 
-const writeBoard = async () => {
-    return await CommonAxios({
-        url: '/noti/write',
-        method: 'GET'
-    })
-}
+// const writeBoard = async () => {
+//     return await CommonAxios({
+//         url: '/noti/write',
+//         method: 'GET'
+//     })
+// }
 
 const Send = {
     getList, getOne

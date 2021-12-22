@@ -1,15 +1,9 @@
 import React, { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 import NotiAxios from "utils/NotiAxios.js";
-// import { actionCreators as postActions } from "../../modules/postReducer";
-// import { uriSave } from 'modules/uriReducer';
-// import { history } from "../../modules/rootReducer"
-
-import { Table } from "reactstrap";
-import { Link } from "react-router-dom";
 
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import Paging from "components/Pagination/Paging.js";
@@ -19,6 +13,7 @@ import {
     CardHeader,
     Container,
     Row,
+    Table
   } from "reactstrap";
 
 const NotiList = () => {
@@ -30,16 +25,6 @@ const NotiList = () => {
                                         notiDatas : state.noti.notiDatas,
                                         count : state.noti.count,
                                         page : state.noti.page}));
-    
-    // const is_loading = useSelector((state) => state.post.is_loading);
-    // const is_login = useSelector((state) => state.user.is_login);
-    // const user = useSelector((state) => state.user?.user);
-
-    // useEffect(() => {
-    //     // post 가져오기
-    //     dispatch(postActions.getPostAPI());
-    // }, [dispatch, postList.postLength]);
-
 
     function NotiList(param) {
         // 초기 게시글 가져오기
@@ -84,12 +69,13 @@ const NotiList = () => {
                         { notiDatas && notiDatas.map(data => {
                             return  <tr>
                                         <th scope="col">{data.BOARD_NO}</th>
-                                        <th scope="col" onClick={ () => { history.push({
+                                        {/* <th scope="col" onClick={ () => { history.push({
                                                                     pathname: '/noti/view',
                                                                     search: `?boardNo=${data.BOARD_NO}`,
                                                                     state: {  // location state
                                                                         boardNo: data.BOARD_NO, 
-                                                                    }});  } }>
+                                                                    }});  } }> */}
+                                        <th scope="col" onClick={ () => {history.push({pathname: `/noti/view/${data.BOARD_NO}`})} }>
                                         {/* <th scope="col" onClick={()=>{}}> */}
                                             <Link to={`/noti/view/${data.BOARD_NO}`}>
                                                 {data.BOARD_TTL}
