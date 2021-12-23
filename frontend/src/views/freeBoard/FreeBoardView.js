@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import AxiosData from 'utils/FreeAxios.js'
 
 import {
@@ -16,8 +17,7 @@ import AuthFooter from "components/Footers/AuthFooter.js";
 
 const FreeBoardView = () => {
 
-  const [freeData, setFreeData] = useState({});
-
+  const { selectRowData } = useSelector((state) => ({selectRowData : state.free.selectRowData}));
   //scroll
   const mainContent = React.useRef(null);
   const location = useLocation();
@@ -34,30 +34,6 @@ const FreeBoardView = () => {
     mainContent.current.scrollTop = 0;
   }, [location]);
 
-
-  function initFreeView() {
-    getBoardNo();
-  }
-
-  useEffect(initFreeView, []);
-
-  function getBoardNo() {
-    window.location.href.includes('BOARD_NO');
-    const preBoardNo = window.location.href.split('=')[1];
-    const boardNo = preBoardNo.split('&')[0];
-    getFreeView(boardNo);
-  }
-
-  async function getFreeView(boardNo) {
-    await AxiosData.getOne(boardNo).then((res)=> {
-    const test = JSON.parse(JSON.stringify(res.data[0]));
-       console.log(test);
-       setFreeData(test);
-    })
-    
-  }
-
-
   return (
     <>
       <div className="main-content" ref={mainContent}>
@@ -69,10 +45,10 @@ const FreeBoardView = () => {
               <Card className="shadow">
                 <CardHeader className="border-0">
                   <h3 className="mb-0">FREE BOARD</h3>
-                    <div>{ freeData.BOARD_NO }</div>
-                    <div>{ freeData.BOARD_CNTN }</div>
-                    <div>{ freeData.BOARD_WRTR }</div>
-                    <div>{ freeData.REG_DT }</div> 
+                    <div>{ selectRowData.BOARD_NO }</div>
+                    <div>{ selectRowData.BOARD_TTL }</div>
+                    <div>{ selectRowData.BOARD_WRTR }</div>
+                    <div>{ selectRowData.REG_DT }</div>
                 </CardHeader>
                 <Table className="align-items-center table-flush" responsive></Table>
               </Card>

@@ -17,6 +17,13 @@ const loginReducer = (state = initialState, action) => {
                comm_v2_token : action.payload.comm_v2_token
               }
 
+    case 'NAVER_LOGIN_USER':
+      return { ...state,
+                id: action.payload.id,
+                email: action.payload.email,
+                nickname : action.payload.nickname
+      }
+
     default:
       return state;
   }
