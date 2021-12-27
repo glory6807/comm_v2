@@ -47,7 +47,16 @@ export class AuthController {
 
     @Post('/googleLogin')
     async googleLogin(@Req() req: Request){
-        await this.authService.getGoogleProfile(req.body);
+        let result = await this.authService.getGoogleProfile(req.body);
+        console.log('google login');
+        console.log(result);
+        if(result){
+            var comm_v2_token = await this.jwtService.createJwtToken(result.id, result.email, result.nickname);
+            console.log(comm_v2_token);
+            return comm_v2_token;
+        } else {
+            return null;
+        }
     }
   
 }

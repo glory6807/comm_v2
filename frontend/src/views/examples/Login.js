@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import GoogleButton from "./GoogleButton";
+import GoogleButton from "../../routes/GoogleLogin.js";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import freeAxios from "../../utils/FreeAxios.js";
@@ -99,23 +99,6 @@ const Login = () => {
               <small>Sign in with</small>
             </div>
             <div className="btn-wrapper text-center">
-              {/* <Button
-                className="btn-neutral btn-icon"
-                color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className="btn-inner--icon">
-                  <img
-                    alt="..."
-                    src={
-                      require("../../assets/img/icons/common/google.svg")
-                        .default
-                    }
-                  />
-                </span>
-                <span className="btn-inner--text">Google</span>
-              </Button>*/}
               <GoogleButton/>
               <div onClick={LoginNaver} id='naverIdLogin' />
               <div>

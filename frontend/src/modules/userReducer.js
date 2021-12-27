@@ -1,3 +1,8 @@
+// ★★★★★ 임시 테스트용 reducer ★★★★★
+// ★★★★★ 임시 테스트용 reducer ★★★★★
+// ★★★★★ 임시 테스트용 reducer ★★★★★
+// ★★★★★ 임시 테스트용 reducer ★★★★★
+// ★★★★★ 임시 테스트용 reducer ★★★★★
 import { createAction, handleActions } from "redux-actions";
 import axios from "axios";
 

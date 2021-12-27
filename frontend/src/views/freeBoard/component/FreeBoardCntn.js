@@ -1,11 +1,23 @@
 import React from 'react';
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { Table } from "reactstrap";
 
 const FreeBoardCntn = ({freeDatas}) => {
 
-    const history = useHistory();
+    const dispatch = useDispatch();
+
+    const selectContent = (id) => {
+      dispatch(selectRow(id))
+    }
+
+    const selectRow = (id) => ({
+          type: 'GET_FREE_DATA_ONE',
+            payload: {
+              id: id
+            }
+    });
 
     return (
       <Table className="align-items-center table-flush" responsive>
@@ -20,16 +32,11 @@ const FreeBoardCntn = ({freeDatas}) => {
         <tbody>
           { freeDatas && freeDatas.map(data => {
               return  <tr>
-                        <th scope="col">{data.BOARD_NO}</th>
-                        <th scope="col" onClick={ () => { history.push({
-                                                                        pathname: '/free/view',
-                                                                        search: `?BOARD_NO=${data.BOARD_NO}`,  // query string
-                                                                        state: {  // location state
-                                                                          BOARD_NO: data.BOARD_NO, 
-                                                                        }});  } }>
-                                        {data.BOARD_TTL}</th>
-                        <th scope="col">{data.BOARD_WRTR}</th>
-                        <th scope="col">{data.REG_DT}</th>
+                        <td>{data.BOARD_NO}</td>
+                        <td onClick={ () => selectContent(data.BOARD_NO)}>
+                          <Link to='/free/view'>{data.BOARD_TTL}</Link></td>
+                        <td>{data.BOARD_WRTR}</td>
+                        <td>{data.REG_DT}</td>
                       </tr>
             })
           }

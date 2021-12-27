@@ -18,8 +18,8 @@ const getList = async (page) => {
 
     return {
             type: 'GET_FREE_DATA',
-        payload : { count : freeListData.data[0],
-                    freeDatas : freeListData.data[1],
+        payload : { freeDatas : freeListData.data[0],
+                    count : freeListData.data[1],                    
                     page : freeListData.data[2]}
     }
 }
