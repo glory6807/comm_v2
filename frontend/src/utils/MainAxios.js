@@ -7,8 +7,24 @@ const getAnalysisData = async () => {
     })
 }
 
+const getRecentBoardList = async() =>{
+    return await CommonAxios({
+        url: '/main/',
+        method: 'GET'
+    })
+}
+
+const getRecentUsrList = async() => {
+    return await CommonAxios({
+        url: '/main/recentUsr',
+        method: 'GET'
+    })
+}
+
 const Send = {
-    getAnalysisData
+    getAnalysisData,
+    getRecentBoardList,
+    getRecentUsrList
 }
 
 export default Send;

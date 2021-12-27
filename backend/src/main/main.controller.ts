@@ -21,7 +21,7 @@ export class MainController {
 
     @Get('/recentUsr')
     getRecentUsr(){
-
+        return this.mainService.getRecentUsrList();
     }
 
 }

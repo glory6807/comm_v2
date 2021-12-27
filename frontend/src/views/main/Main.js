@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  Button,
   Card,
   CardHeader,
   CardBody,
@@ -15,11 +14,26 @@ import Axios from 'utils/MainAxios.js';
 
 const Index = () => {
   const [analysisData, setSnalysisData] = useState({"USR_TOTAL_CNT":0, "BOARD_TOTAL_CNT":0, "VISIT_USR_CNT":0});
+  const [recentBoardList, setRecentBoardList] = useState([]);
+  const [recentUsrList, setRecentUsrList] = useState([]);
+
   useEffect(() => {
     Axios.getAnalysisData().then((result)=>{
       setSnalysisData(result.data);
     });
+
+    Axios.getRecentBoardList().then((result)=>{
+      setRecentBoardList(result.data);
+    });
+
+    Axios.getRecentUsrList().then((result) => {
+      setRecentUsrList(result.data);
+    })
   }, []);
+
+  useEffect(() => {
+    console.log(recentBoardList)
+  }, [recentBoardList]);
 
   return (
     <>
@@ -38,9 +52,22 @@ const Index = () => {
                 </Row>
               </CardHeader>
               <CardBody>
-                <div className="chart">
-                  
-                </div>
+                <Row>
+                  <Col md="10" style={{color:"white"}}>제목</Col>
+                  <Col md="2" style={{color:"white"}}>작성자</Col>
+                </Row>
+                {
+                  recentBoardList.map((obj, index)=>{
+                    return (
+                      <>
+                        <Row>
+                          <Col md="10" key={index + "TTL"} style={{color:"white"}}>{obj.BOARD_TTL}</Col>
+                          <Col md="2"  key={index + "WRTR"} style={{color:"white"}}>{obj.BOARD_WRTR}</Col>
+                        </Row>
+                      </>
+                    )
+                  })
+                }
               </CardBody>
             </Card>
           </Col>
@@ -56,10 +83,18 @@ const Index = () => {
               </CardHeader>
               <CardBody>
                 <div className="chart">
-                  <Row className="text-center">
-                    <Col>최영우</Col>
-                    <Col>2021.12.31</Col>
-                  </Row>
+                {
+                  recentUsrList.map((obj, index)=>{
+                    return (
+                      <>
+                        <Row className="text-center">
+                          <Col>{obj.NICK_NAME}</Col>
+                          <Col>2021.12.31</Col>
+                        </Row>
+                      </>
+                    )
+                  })
+                }
                 </div>
               </CardBody>
             </Card>

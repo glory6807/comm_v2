@@ -14,4 +14,8 @@ export class MainService {
         data = data[0];
         return data;
     }
+
+    async getRecentUsrList(){
+        return await this.dao.select("main", "selectRecentUsr");
+    }
 }

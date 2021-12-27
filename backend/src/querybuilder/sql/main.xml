@@ -10,14 +10,15 @@
             ,REG_DT
         FROM TM_BOARD
        ORDER BY REG_DT DESC
-       LIMIT 10
+       LIMIT 14
     </select>
 
     <select id="selectRecentUsr">
-        SELECT NICKNAME
+        SELECT NICK_NAME
+              ,REG_DT
           FROM TM_CM_USR
       ORDER BY REG_DT DESC
-         LIMIT 6
+         LIMIT 7
     </select>
 
     <select id="selectTotalCnt">
