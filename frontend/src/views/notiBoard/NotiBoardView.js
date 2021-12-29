@@ -4,37 +4,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import NotiAxios from "utils/NotiAxios.js";
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
+import Moment from 'react-moment';
 
 import {
   Card,
   CardHeader,
   Container,
   Row,
-  Table
+  Table,
+  Button
 } from "reactstrap";
 
 const NotiBoardView = () => {
+
+  const { oneNoti } = useSelector((state) => ({oneNoti : state.noti.oneNoti}));
+
   const dispatch = useDispatch();
   const { boardNo } = useParams();
-
-  const oneNoti = useSelector(state => state.noti.oneNoti);
-
-  function NotiView(param){
-    console.log('noti view');
-    NotiAxios.getOne(boardNo).then(
-      function(result){
-          console.log('result');
-          console.log(result);
-          dispatch(result);
-      }
-    )
-  }
-
-  useEffect(NotiView, []);
-
-  // useEffect(() => {
-  //   dispatch(postReducer.getOnePostAPI(board_no));
-  // }, [dispatch, board_no]);
 
   return(
     <>
@@ -46,37 +32,45 @@ const NotiBoardView = () => {
                 <div className="col">
                 <Card className="shadow">
                     <CardHeader className="border-0">
-                    <h3 className="mb-0">NOTICE BOARD VIEW</h3>
+                    <h3 className="mb-0">{oneNoti.BOARD_TTL}</h3>
                     </CardHeader>
                     <Table className="align-items-center table-flush" responsive>
-                        <thead className="thead-light">
+                        {/* <thead className="thead-light">
                         <tr>
-                            {/* <th scope="col">{oneNoti.board_no}</th> */}
-                            <th scope="col">title</th>
-                            <th scope="col">writer</th>
-                            <th scope="col">regDate</th>
+                            <td colSpan="2">{oneNoti.BOARD_TTL}</td>
                         </tr>
+                        </thead> */}
+                        <thead>
+                          <tr>
+                            <td align="left" width="50%">Writer : {oneNoti.BOARD_WRTR}</td>
+                          </tr>
+                          <tr>
+                            <td align="left">Date :
+                              <Moment format="YYYY/MM/DD">
+                                {oneNoti.REG_DT}
+                              </Moment></td>
+                          </tr>
                         </thead>
                         <tbody>
-                        { oneNoti && oneNoti.map(data => {
-                          return <tr>
-                                  <td>{data.board_no}</td>
-                                  <td>{data.board_title}</td>
-                                  <td>{data.board_wrtr}</td>
-                                  <td>{data.reg_dt}</td>
-                                </tr>
-                        })}
+                          <tr>
+                              <td colSpan="2" height="200px">
+                                  {oneNoti.BOARD_CNTN}
+                              </td>
+                          </tr>
+                          <tr>
+                            <td align="center">
+                              <Link to = '/noti/list'>
+                                <Button>list</Button>
+                              </Link>
+                              <Link to = '/noti/edit'>
+                                <Button>edit</Button>
+                                {/* <button type='button' onClick={() => goEdit(selectRowData.id)}>EDIT</button> */}
+                              </Link>
+                            </td>
+                          </tr>
                         </tbody>
                     </Table>
                 </Card>
-                        <Link to = '/noti/list'>
-                          <button>list</button>
-                          {/* <button type='button' onClick={goList}>LIST</button> */}
-                        </Link>
-                        <Link to = '/noti/edit'>
-                          <button>edit{oneNoti}</button>
-                          {/* <button type='button' onClick={() => goEdit(selectRowData.id)}>EDIT</button> */}
-                        </Link>
                 </div>
             </Row>
             </Container>

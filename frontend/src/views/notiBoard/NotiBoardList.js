@@ -35,6 +35,18 @@ const NotiList = () => {
         )
     }
 
+    const goNotiView = (id) => {
+        console.log('go noti view ;;; id : ' + id);
+        dispatch(selectNoti(id));
+    }
+
+    const selectNoti = (id) => ({
+        type: 'GET_NOTICE_ONE',
+        payload: {
+            id: id
+        }
+    });
+
     useEffect(NotiList, []);
 
     const setPage = useCallback( (page) => { 
@@ -69,15 +81,8 @@ const NotiList = () => {
                         { notiDatas && notiDatas.map(data => {
                             return  <tr>
                                         <th scope="col">{data.BOARD_NO}</th>
-                                        {/* <th scope="col" onClick={ () => { history.push({
-                                                                    pathname: '/noti/view',
-                                                                    search: `?boardNo=${data.BOARD_NO}`,
-                                                                    state: {  // location state
-                                                                        boardNo: data.BOARD_NO, 
-                                                                    }});  } }> */}
-                                        <th scope="col" onClick={ () => {history.push({pathname: `/noti/view/${data.BOARD_NO}`})} }>
-                                        {/* <th scope="col" onClick={()=>{}}> */}
-                                            <Link to={`/noti/view/${data.BOARD_NO}`}>
+                                        <th scope="col" onClick={ () => { goNotiView(data.BOARD_NO) } }>
+                                            <Link to='/noti/view'>
                                                 {data.BOARD_TTL}
                                             </Link>
                                         </th>

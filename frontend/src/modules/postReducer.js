@@ -2,7 +2,9 @@
 const initialState = {
     notiDatas: [],
     count: 0,
-    page: 0
+    page: 0,
+    id: '',
+    oneNoti: {}
 };
 
 const postReducer = (state = initialState, action) => {
@@ -15,8 +17,10 @@ const postReducer = (state = initialState, action) => {
                     page: action.payload.page }
         
         case 'GET_NOTICE_ONE':
+            console.log('post reducer - get notice one.. 제발 ㅠ');
             return { ...state,
-                    notiDatas: action.payload.notiDatas }
+                    oneNoti: state.notiDatas.find(row => row.BOARD_NO === action.payload.id) }
+        
         default:
             return state;
     }

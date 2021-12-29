@@ -20,18 +20,11 @@ const getList = async (page) => {
 
 const getOne = async (boardNo) => {
     console.log('noti axios - get one / board no : ' + boardNo);
-    const notiData = await CommonAxios({
+    return await CommonAxios({
         url: '/noti/view',
         method: 'GET',
         params: {'boardNo' : boardNo }
     })
-
-    return {
-        type: 'GET_NOTICE_ONE',
-        payload: {
-            oneNoti : notiData.data[0]
-        }
-    }
 }
 
 // const writeBoard = async () => {

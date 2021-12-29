@@ -18,10 +18,10 @@ function NotiBoard(match) {
         <Route exact path="/noti/list">
             <NotiList/>
         </Route>
-        <Route exact path="/noti/view/:boardNo">
+        <Route exact path="/noti/view">
             <NotiView/>
         </Route>
-        <Route exact path="/noti/edit/:boardNo">
+        <Route exact path="/noti/edit">
             <NotiEdit/>
         </Route>
         <Route exact path="/noti/write">
@@ -41,9 +41,7 @@ function NotiBoard(match) {
                     }
                  }
                }
-        />
-        <Route exact path="/notice-page/edit/:boardNo" component={NoticeEditForm}/>
-        <Route exact path="/notice-page/del/:boardNo" component={DeleteCom}/> */}
+        /> */}
       </Switch>
     </>
   );
