@@ -20,7 +20,18 @@ const NotiBoardView = () => {
   const { oneNoti } = useSelector((state) => ({oneNoti : state.noti.oneNoti}));
 
   const dispatch = useDispatch();
-  const { boardNo } = useParams();
+
+  const goEdit = (id) => {
+    console.log('go edit id : ' + id);
+    dispatch(editNoti(id));
+  }
+
+  const editNoti = (id) => ({
+    type: 'GET_NOTICE_ONE',
+    payload: {
+      id: id
+    }
+  })
 
   return(
     <>
@@ -63,8 +74,7 @@ const NotiBoardView = () => {
                                 <Button>list</Button>
                               </Link>
                               <Link to = '/noti/edit'>
-                                <Button>edit</Button>
-                                {/* <button type='button' onClick={() => goEdit(selectRowData.id)}>EDIT</button> */}
+                                <Button onClick={() => {goEdit(oneNoti.BOARD_NO)}}> 수정 </Button>
                               </Link>
                             </td>
                           </tr>

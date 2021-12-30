@@ -21,6 +21,10 @@ const postReducer = (state = initialState, action) => {
             return { ...state,
                     oneNoti: state.notiDatas.find(row => row.BOARD_NO === action.payload.id) }
         
+        // case 'EDIT_NOTICE_ONE':
+        //     console.log('post reducer - edit notice one');
+        //     return { ...state,
+        //             editNoti: }
         default:
             return state;
     }

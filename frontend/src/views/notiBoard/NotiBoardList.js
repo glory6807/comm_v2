@@ -2,6 +2,7 @@ import React, { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Moment from 'react-moment';
 
 import NotiAxios from "utils/NotiAxios.js";
 
@@ -87,7 +88,11 @@ const NotiList = () => {
                                             </Link>
                                         </th>
                                         <th scope="col">{data.BOARD_WRTR}</th>
-                                        <th scope="col">{data.REG_DT}</th>
+                                        <th scope="col">
+                                            <Moment format="YYYY/MM/DD">
+                                                {data.REG_DT}
+                                            </Moment>
+                                        </th>
                                     </tr>
                             })
                         }
