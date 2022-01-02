@@ -12,11 +12,16 @@ export class Querybuilder {
         host : this.connInfo.host,
         user : this.connInfo.user,
         database : this.connInfo.database,
-        password : this.connInfo.password
-        ,typeCast : function (field: any, next: any) {
+        password : this.connInfo.password,
+        charset : 'UTF8',
+        typeCast : function (field: any, next: any) {
             if (field.type == 'VAR_STRING') {
+                var buffer = field.buffer();
+                var bufStr = buffer.toString();
+                return bufStr;
+            }else if(field.type == 'BLOB'){
                 return field.string();
-            } 
+            }
             return next();
         }
     };
