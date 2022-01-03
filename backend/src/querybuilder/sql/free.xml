@@ -8,15 +8,14 @@
   </select>
 
   <select id="selectList" parameterType="number">
-    SELECT BOARD_NO
-          ,BOARD_TTL
-          ,BOARD_WRTR
-          ,REG_DT
+    SELECT *
       FROM TM_BOARD
      WHERE BOARD_TYPE = 'FREE'
        AND IS_DEL = 'N'
+  ORDER BY BOARD_NO DESC
       LIMIT 10 
      OFFSET ${offset}
+   
   </select>
 
   <select id="selectOne" parameterType="number">

@@ -22,7 +22,6 @@ const initialState = {
                  page : action.payload.page }
 
         case 'GET_FREE_DATA_ONE':
-          console.log('state? ' + JSON.stringify(state))
           return {
               ...state,
               // state 에 action 으로 전달받은 id값과 일치하는 data가 있다면 return 해준다.

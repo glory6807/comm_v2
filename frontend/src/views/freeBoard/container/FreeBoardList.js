@@ -1,6 +1,6 @@
  import React, { useEffect, useRef, useCallback } from "react";
  import { useSelector, useDispatch } from "react-redux";
- import { useLocation } from "react-router-dom";
+ import { useLocation, Link } from "react-router-dom";
  import AxiosData from "utils/FreeAxios.js"
 
  import {
@@ -11,6 +11,7 @@
   PaginationItem,
   PaginationLink,
   Row,
+  Col
 } from "reactstrap";
 
 // core components
@@ -76,9 +77,18 @@ const FreeBoard = () => {
           <Row>
             <div className="col">
               <Card className="shadow">
-                <CardHeader className="border-0">
-                  <h3 className="mb-0">FREE BOARD</h3>
-                </CardHeader>                
+              <CardHeader className="bg-white border-0">
+                <Row className="align-items-center">
+                  <Col xs="8">
+                    <h3 className="mb-0">FREE BOARD</h3>
+                  </Col>
+                  <Col className="text-right" xs="4">
+                    <button className="btn btn-primary">
+                      <Link to='/free/write'>WRITE</Link>
+                    </button>
+                  </Col>
+                </Row>
+              </CardHeader>               
                   <FreeBoardCntn freeDatas={freeDatas}/>
                   <Paging page={page} count={count} setPage={setPage}/>
               </Card>

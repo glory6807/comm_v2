@@ -1,29 +1,40 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
-import AxiosData from 'utils/FreeAxios.js'
+import { useLocation, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
     Card,
     CardHeader,
     Container,
     Row,
-    Table,
     Col,
-    Button,
     CardBody,
     Form,
-    Input,
-    FormGroup,
   } from "reactstrap";
 
 // core components
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
 
-const FreeBoardView = () => {
+const FreeBoardWrite = () => {
 
+  const dispatch = useDispatch();
   const { selectRowData } = useSelector((state) => ({selectRowData : state.free.selectRowData}));
+
+  const selectContent = (id) => {
+    dispatch(selectRow(id))
+  }
+
+  const selectRow = (id) => ({
+        type: 'GET_FREE_DATA_ONE',
+          payload: {
+            id: id
+          }
+  });
+
+
+
+
   //scroll
   const mainContent = React.useRef(null);
   const location = useLocation();
@@ -81,17 +92,12 @@ const FreeBoardView = () => {
                   <hr className="my-4" />
                   <div className="pl-lg-4">
                     <h4 className="mb-0 card-title">CONTENT</h4>
-                      <Input
-                        className="form-control-alternative"
-                        placeholder="A few words about you ..."
-                        rows="4"
-                        defaultValue="A beautiful Dashboard for Bootstrap 4. It is Free and
-                        Open Source."
-                        type="textarea"
-                      />
+                    <span className="card-stats p-2 mt-2 mb-4 mb-xl-0 card">{ selectRowData.BOARD_CNTN }</span>
                       <div className="text-center">
                         <button className="btn btn-info">LIST</button>
-                        <button className="btn btn-light">MODIFY</button>
+                        <button className="btn btn-light">
+                          <Link to='/free/modify'>MODIFY</Link>
+                        </button>
                       </div>
                   </div>
                 </Form>
@@ -107,4 +113,4 @@ const FreeBoardView = () => {
     );
 };
 
-export default FreeBoardView;
+export default FreeBoardWrite;
