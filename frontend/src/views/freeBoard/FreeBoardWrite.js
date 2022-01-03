@@ -21,9 +21,8 @@ import {
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import AuthFooter from "components/Footers/AuthFooter.js";
 
-const FreeBoardView = () => {
+const FreeBoardWrite = () => {
 
-  const { selectRowData } = useSelector((state) => ({selectRowData : state.free.selectRowData}));
   //scroll
   const mainContent = React.useRef(null);
   const location = useLocation();
@@ -62,25 +61,62 @@ const FreeBoardView = () => {
                 <Form>
                   <div className="pl-lg-4">
                     <Row>
-                      <Col>
-                          <h4 className="mb-0 card-title">TITLE</h4>
-                          <span className="card-stats p-2 mt-2 mb-4 mb-xl-0 card">{ selectRowData.BOARD_TTL }</span>
+                      <Col lg="6">
+                          <label
+                            className="form-control-label"
+                            htmlFor="input-username"
+                          >
+                            TITLE
+                          </label>
+                          <Input
+                            className="form-control-alternative"
+                            defaultValue="lucky.jesse"
+                            id="input-username"
+                            placeholder="Username"
+                            type="text"
+                          />
+                      </Col>
+                      <Col lg="6">
+                        <FormGroup>
+                          <label
+                            className="form-control-label"
+                            htmlFor="input-email"
+                          >
+                            WRITER
+                          </label>
+                          <Input
+                            className="form-control-alternative"
+                            id="input-email"
+                            placeholder="jesse@example.com"
+                            type="email"
+                          />
+                        </FormGroup>
                       </Col>
                     </Row>
                     <Row>
-                    <Col>
-                          <h4 className="mb-0 card-title">WRITER</h4>
-                          <span className="card-stats p-2 mt-2 mb-4 mb-xl-0 card">{ selectRowData.BOARD_WRTR }</span>
-                      </Col>
-                      <Col>
-                          <h4 className="mb-0 card-title">DATE</h4>
-                          <span className="card-stats p-2 mt-2 mb-4 mb-xl-0 card">{ selectRowData.REG_DT }</span>
+                      <Col lg="6">
+                        <FormGroup>
+                          <label
+                            className="form-control-label"
+                            htmlFor="input-first-name"
+                          >
+                            DATE
+                          </label>
+                          <Input
+                            className="form-control-alternative"
+                            defaultValue="Lucky"
+                            id="input-first-name"
+                            placeholder="First name"
+                            type="text"
+                          />
+                        </FormGroup>
                       </Col>
                     </Row>
                   </div>
                   <hr className="my-4" />
                   <div className="pl-lg-4">
-                    <h4 className="mb-0 card-title">CONTENT</h4>
+                    <FormGroup>
+                      <label>CONTENT</label>
                       <Input
                         className="form-control-alternative"
                         placeholder="A few words about you ..."
@@ -89,10 +125,7 @@ const FreeBoardView = () => {
                         Open Source."
                         type="textarea"
                       />
-                      <div className="text-center">
-                        <button className="btn btn-info">LIST</button>
-                        <button className="btn btn-light">MODIFY</button>
-                      </div>
+                    </FormGroup>
                   </div>
                 </Form>
               </CardBody>
@@ -107,4 +140,4 @@ const FreeBoardView = () => {
     );
 };
 
-export default FreeBoardView;
+export default FreeBoardWrite;
