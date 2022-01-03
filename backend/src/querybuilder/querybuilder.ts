@@ -16,9 +16,7 @@ export class Querybuilder {
         charset : 'UTF8',
         typeCast : function (field: any, next: any) {
             if (field.type == 'VAR_STRING') {
-                var buffer = field.buffer();
-                var bufStr = buffer.toString();
-                return bufStr;
+                return field.buffer().toString();
             }else if(field.type == 'BLOB'){
                 return field.string();
             }
