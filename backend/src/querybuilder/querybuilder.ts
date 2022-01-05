@@ -15,10 +15,8 @@ export class Querybuilder {
         password : this.connInfo.password,
         charset : 'UTF8',
         typeCast : function (field: any, next: any) {
-            if (field.type == 'VAR_STRING') {
+            if (field.type == 'VAR_STRING' || field.type == 'BLOB') {
                 return field.buffer().toString();
-            }else if(field.type == 'BLOB'){
-                return field.string();
             }
             return next();
         }
