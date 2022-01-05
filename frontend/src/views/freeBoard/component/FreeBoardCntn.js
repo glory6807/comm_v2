@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import Moment from 'react-moment';
 
 import { Table } from "reactstrap";
 
@@ -36,7 +37,11 @@ const FreeBoardCntn = ({freeDatas}) => {
                         <td onClick={ () => selectContent(data.BOARD_NO)}>
                           <Link to='/free/view'>{data.BOARD_TTL}</Link></td>
                         <td>{data.BOARD_WRTR}</td>
-                        <td>{data.REG_DT}</td>
+                        <td>
+                          <Moment format="YYYY/MM/DD">
+                            {data.REG_DT}
+                          </Moment>
+                        </td>
                       </tr>
             })
           }

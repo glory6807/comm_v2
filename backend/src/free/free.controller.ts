@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Query } from '@nestjs/common';
+import { Body, Controller, Get, Query, Post } from '@nestjs/common';
 import { FreeService } from './free.service'
 import { FreeParamDto } from 'src/dto/FreeParamDto';
 import { isNull } from 'util';
@@ -27,6 +27,16 @@ export class FreeController {
     @Get('/view')
     getOne(@Query('boardNo') boardNo: number){
         return this.freeService.getBoardOne(boardNo); 
+    }
+
+    @Post('/write')
+    writeOne(@Body() datas){
+        return this.freeService.writeBoardOne(datas);
+    }
+    
+    @Post('/modify')
+    modifyOne(@Body() datas){
+        return this.freeService.modifyBoardOne(datas);
     }
 
 }

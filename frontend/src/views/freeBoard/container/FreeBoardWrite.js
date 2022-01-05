@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import {
     Card,
@@ -15,6 +16,8 @@ import AuthFooter from "components/Footers/AuthFooter.js";
 import FreeBoardForm from "../component/FreeBoardForm.js";
 
 const FreeBoardWrite = () => {
+
+    const { selectRowData } = useSelector((state) => ({selectRowData : state.free.selectRowData}));
   
     //scroll
     const mainContent = React.useRef(null);
@@ -50,7 +53,7 @@ const FreeBoardWrite = () => {
                     </Col>
                   </Row>
                 </CardHeader>
-                <FreeBoardForm/>
+                <FreeBoardForm selectRowData={selectRowData}/>
               </Card>
               </div>
             </Row>

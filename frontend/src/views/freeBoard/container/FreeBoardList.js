@@ -6,10 +6,7 @@
  import {
   Card,
   CardHeader,
-  CardFooter,
   Container,
-  PaginationItem,
-  PaginationLink,
   Row,
   Col
 } from "reactstrap";
@@ -26,7 +23,7 @@ const FreeBoard = () => {
   const { freeDatas, count, page } = useSelector((state) => ({ freeDatas : state.free.freeDatas,
                                                          count : state.free.count,
                                                          page : state.free.page }));
-  
+
   console.log('count1 : ' + JSON.stringify(count))
   //setTotal(count)
   function FreeList() {
@@ -42,7 +39,8 @@ const FreeBoard = () => {
   
   useEffect(FreeList, []);
 
-  const setPage = useCallback( (page) => { 
+  const setPage = useCallback( (page) => {
+    
     AxiosData.getList(page).then(
       function(result){
        console.log('useCallback !! ')
@@ -50,6 +48,15 @@ const FreeBoard = () => {
       }
     )
    }, [dispatch] );
+
+  const createNew = () => {
+    dispatch(createNewOne())
+  }
+
+  const createNewOne = () => ({
+        type: 'CREATE_NEW_ONE'
+  });
+
 
   //scroll
   const mainContent = useRef(null);
@@ -83,7 +90,7 @@ const FreeBoard = () => {
                     <h3 className="mb-0">FREE BOARD</h3>
                   </Col>
                   <Col className="text-right" xs="4">
-                    <button className="btn btn-primary">
+                    <button className="btn btn-primary" onClick={ () => {createNew()} }>
                       <Link to='/free/write'>WRITE</Link>
                     </button>
                   </Col>

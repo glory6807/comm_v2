@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import {
     Card,
@@ -17,7 +17,6 @@ import FreeBoardForm from "../component/FreeBoardForm.js";
 
 const FreeBoardModify = () => {
 
-  const dispatch = useDispatch();
   const { selectRowData } = useSelector((state) => ({selectRowData : state.free.selectRowData}));
 
   //scroll

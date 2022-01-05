@@ -15,7 +15,6 @@
   ORDER BY BOARD_NO DESC
       LIMIT 10 
      OFFSET ${offset}
-   
   </select>
 
   <select id="selectOne" parameterType="number">
@@ -27,4 +26,35 @@
      WHERE BOARD_TYPE = 'FREE'
        AND BOARD_NO = ${boardNo}
   </select>
+
+  <insert id="writeOne">
+    INSERT INTO TM_BOARD (BOARD_NO, 
+                          BOARD_TYPE, 
+                          BOARD_TTL, 
+                          BOARD_CNTN, 
+                          BOARD_WRTR, 
+                          REG_DT, 
+                          MOD_DT, 
+                          IS_DEL)
+                  VALUES ((SELECT BOARD_NO 
+                             FROM (SELECT MAX(BOARD_NO) + 1 AS BOARD_NO 
+                                     FROM TM_BOARD
+                                  ) A
+                          ),
+                          'FREE',
+                          '${title}',
+                          '${content}',
+                          'WRITER1',
+                          NOW(), 
+                          NOW(),
+                          'N')
+  </insert>
+
+  <insert id="modifyOne">
+    UPDATE TM_BOARD
+       SET BOARD_TTL  = '${title}',
+           BOARD_CNTN = '${content}',
+           MOD_DT     = NOW()
+     WHERE BOARD_NO   = ${boardNo}
+  </insert>
 </mapper>

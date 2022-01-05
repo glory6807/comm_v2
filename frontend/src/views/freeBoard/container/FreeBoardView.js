@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -95,7 +95,7 @@ const FreeBoardWrite = () => {
                     <span className="card-stats p-2 mt-2 mb-4 mb-xl-0 card">{ selectRowData.BOARD_CNTN }</span>
                       <div className="text-center">
                         <button className="btn btn-info">LIST</button>
-                        <button className="btn btn-light">
+                        <button className="btn btn-light" onClick={ () => { selectContent(selectRowData.BOARD_NO) } }>
                           <Link to='/free/modify'>MODIFY</Link>
                         </button>
                       </div>

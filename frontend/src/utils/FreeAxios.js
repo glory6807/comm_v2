@@ -32,12 +32,28 @@ const getOne = async (boardNo) => {
     })
 }
 
+const writeOne = async (datas) => {
+    return await CommonAxios({
+        url: '/free/write',
+        method: 'POST',
+        data: {'datas' : datas}
+    })
+}
 
+const modifyOne = async (datas) => {
+    return await CommonAxios({
+        url: '/free/modify',
+        method: 'POST',
+        data: {'datas' : datas}
+    })
+}
 
 const Send = {
     getUser,
     getList,
-    getOne
+    getOne,
+    writeOne,
+    modifyOne
 }
 
 export default Send;
