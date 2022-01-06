@@ -27,10 +27,26 @@
       AND BOARD_NO = #{boardNo}
   </select>
 
-  <insert id="insertBoard">
-    <!-- INSERT INTO TM_BOARD
-      (BOARD_NO, BOARD_TYPE, BOARD_TTL, BOARD_CNTN, BOARD_WRTR, REG_DT, MOD_DT, IS_DEL)
-    VALUES
-      (2, 'NOTI', 'TITLE2', 'CONTENT2', 'WRITER2', NOW(), NOW(), 'N'); -->
+  <insert id="write">
+    INSERT INTO TM_BOARD (BOARD_NO, 
+                          BOARD_TYPE, 
+                          BOARD_TTL, 
+                          BOARD_CNTN, 
+                          BOARD_WRTR, 
+                          REG_DT, 
+                          MOD_DT, 
+                          IS_DEL)
+                  VALUES ((SELECT BOARD_NO 
+                             FROM (SELECT MAX(BOARD_NO) + 1 AS BOARD_NO 
+                                     FROM TM_BOARD
+                                  ) A
+                          ),
+                          'NOTI',
+                          '${title}',
+                          '${content}',
+                          '${writer}',
+                          NOW(), 
+                          NOW(),
+                          'N')
   </insert>
 </mapper>

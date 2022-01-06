@@ -1,4 +1,4 @@
-import { Injectable, Param } from '@nestjs/common';
+import { Body, Injectable, Param } from '@nestjs/common';
 import { Querybuilder } from 'src/querybuilder/querybuilder';
 
 @Injectable()
@@ -21,9 +21,13 @@ export class NotiService {
         return await this.dao.select("notice", "getOne", param);
     }
 
-    async insertBoard(param:any){
+    async write(@Body() notiData){
         console.log('notice service - write');
-        return await this.dao.insert("notice", "insertBoard", param);
+        const data = JSON.parse(JSON.stringify(notiData));
+        const param = { title : data.notiData.title,
+                        content : data.notiData.content,
+                        writer : data.notiData.writer }
+        return await this.dao.insert("notice", "write", param);
     }
 
 }

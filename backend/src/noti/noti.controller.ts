@@ -28,22 +28,10 @@ export class NotiController {
         return notiData;
     }
 
-
-    // @Get("/view/:boardNo")
-    // getOne(@Param() params : any){
-    //     console.log("Notice Controller - view");
-    //     console.log("board no : " + params);
-    //     console.log("type of : " + typeof params);
-    //     var exam = this.notiService.getOne(params);
-    //     console.log("exam : " + exam);
-    //     return exam;
-    // }
-
-    @Get("/write")
-    write(@Body() param : any){
-        console.log("Notice Controller 컨트롤러 - write");
-        return null;
-        // return this.notiService.insertBoard(param);
+    @Post('/write')
+    write(@Body() notiData){
+        console.log('noti controller - write');
+        return this.notiService.write(notiData);
     }
 
 }

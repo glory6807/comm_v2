@@ -14,6 +14,8 @@ import {
     CardHeader,
     Container,
     Row,
+    Col,
+    Button,
     Table
   } from "reactstrap";
 
@@ -67,8 +69,17 @@ const NotiList = () => {
                 <div className="col">
                 <Card className="shadow">
                     <CardHeader className="border-0">
-                    <h3 className="mb-0">NOTICE BOARD</h3>
-                    </CardHeader> 
+                        <Row>
+                            <Col>
+                                <h3 className="mb-0">NOTICE BOARD</h3>
+                            </Col>
+                            <Col className="text-right">
+                                <Link to = '/noti/write'>
+                                    <Button>WRITE</Button>
+                                </Link>
+                            </Col>
+                        </Row>
+                    </CardHeader>
                     <Table className="align-items-center table-flush" responsive>
                         <thead className="thead-light">
                         <tr>

@@ -1,62 +1,92 @@
-import React, { useState } from "react";
-import { Link } from 'react-router-dom';
-import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
-import { dataSave } from "modules/boardReducer";
-import { uriSave } from "modules/uriReducer";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import NotiAxios from "utils/NotiAxios.js";
+import AuthNavbar from "components/Navbars/AuthNavbar.js";
 
-function NotiBoardWrite(){
+import {
+  Card,
+  CardHeader,
+  Container,
+  Row,
+  Table,
+  Input,
+  Button
+} from "reactstrap";
 
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
+const NotiBoardWrite = () => {
+// 작성자명 -> admin 권한 가진 사람.. / 로그인한 사람 가져오기..
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-    const dispatch = useDispatch();
-    const history = useHistory();
+  let [title, setTitle] = useState();
+  let [content, setContent] = useState();
+  let [writer, setWriter] = useState();
 
-    function goList(){
-        dispatch(uriSave('/noti/list'));
+  function NoticeWriteValid(props){
+    if(props.title == null){
+      alert('제목을 입력해주세요.');
+      return ;
+    } else if(props.content == null){
+      alert('내용을 입력해주세요.');
+      return ;
+    } else {
+      // 저장 프로세스
+      if(window.confirm('저장하시겠습니까?')){
+        NotiAxios.write(props).then(
+          history.push("/noti/list")
+        )
       }
-
-    const onSave = () => {
-        const _inputData = {
-            id: '',
-            title: title,
-            content: content
-        }
-        dispatch(dataSave(_inputData))
-        setTitle('');
-        setContent('');
-        history.push('/noti/list');
-        dispatch(uriSave('/noti/list'));
     }
+  }
 
-    const handleTitle = (e) => {
-        setTitle(e.target.value)
+  function NotiWriteCancel(){
+    if(window.confirm('작성 중인 글쓰기를 종료하시겠습니까?')){
+      history.push('/noti/list');
     }
+  }
 
-    const handleContent = (e) => {
-        setContent(e.target.value)
-    }
-
-    return (
-        <div>
-            <h2>NOTI BOARD WRITE</h2>
-            <div>
-                <div>
-                    <input type='text' className='inputTitle' placeholder='제목을 입력해주세요' onChange={handleTitle} value={title}/>
+  return(
+    <>
+    <div className="main-content">
+        <AuthNavbar />
+        <div className="header bg-gradient-info py-7 py-lg-8">
+            <Container>  
+            <Row>
+                <div className="col">
+                <Card className="shadow">
+                    <CardHeader className="border-0">
+                        <h3 className="mb-0">
+                            <Input placeholder="제목을 입력해주세요." onChange={(e)=>{setTitle(e.target.value)}}></Input>
+                        </h3>
+                    </CardHeader>
+                    <Table className="align-items-center table-flush" responsive>
+                        <tbody>
+                          <tr>
+                            <td colSpan="2" height="200px">
+                                <textarea placeholder="내용을 입력해주세요." onChange={(e)=>{setContent(e.target.value)}}>
+                                    
+                                </textarea>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td align="center">
+                              <Button onClick={()=>{NotiWriteCancel()}}>list</Button>
+                              <Button onClick={()=>{NoticeWriteValid({title:title, content:content, writer:'writer..'})}}> 등록 </Button>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </Table>
+                </Card>
                 </div>
-                <div>
-                    <textarea className='inputContent' placeholder='내용을 입력헤주세요' onChange={handleContent} value={content} />
-                </div>
-                <div>
-                    <button type='button' onClick={onSave}>WRITE</button>
-                    <Link to = '/noti/list'>
-                        <button type='button' onClick={goList}>BACK</button>
-                    </Link>
-                </div>
-            </div>
+            </Row>
+            </Container>
         </div>
-    )
+        </div>
+    </>
+  )
+
 }
 
 export default NotiBoardWrite;
