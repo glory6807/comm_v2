@@ -32,7 +32,7 @@ const AdminNavbar = () => {
       var email = CookieUtils.getCookie("comm_v2_email");
       var nick_name = CookieUtils.getCookie("comm_v2_nick_name");
       var token = CookieUtils.getCookie("comm_v2_token");
-     dispatch(loginDispatch(user_id, email, nick_name, token));
+      dispatch(loginDispatch(user_id, email, nick_name, token));
     }
   }, []);
 

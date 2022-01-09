@@ -20,10 +20,8 @@ const Login = () => {
       if(response.data === ""){
         
       }else{
-        console.log("AXIOS RETURN>>>>>")
-        console.log(response);
         dispatch(loginDispatch(response.data.user_id, response.data.email, response.data.nick_name, response.data.comm_v2_token));
-        //CookieUtil.setLoginCookie(response.data);
+        CookieUtil.setLoginCookie(response.data);
         history.push("/main");
       }
 

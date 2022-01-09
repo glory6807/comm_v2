@@ -60,4 +60,12 @@ export class AuthService {
         }
     }
 
+    async getAuthById(id:any){
+        var sqlParam = {
+            'id':id
+        }
+        var returnData = await this.dao.select("auth", "selectAuthById", sqlParam)
+
+        return returnData[0];
+    }
 }

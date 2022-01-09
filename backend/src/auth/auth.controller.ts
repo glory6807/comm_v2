@@ -21,9 +21,12 @@ export class AuthController {
         var result = await this.authService.saveUserByProfile(profile.data);
 
         if (result){
+            var auth = await this.authService.getAuthById(profile.data.id);
             var comm_v2_token = await this.jwtService.createJwtToken(profile.data.id
                                                                     ,profile.data.kakao_account.email
-                                                                    ,profile.data.properties.nickname);
+                                                                    ,profile.data.properties.nickname
+                                                                    );
+            comm_v2_token = Object.assign(comm_v2_token, auth);
             
             return comm_v2_token;
         }else{

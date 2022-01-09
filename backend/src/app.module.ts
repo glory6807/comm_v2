@@ -29,5 +29,6 @@ import { AnalyzeSchedulerService } from './schedule/analyze-scheduler.service';
 })
 export class AppModule implements NestModule{
   configure(consumer: MiddlewareConsumer){
+    consumer.apply(AuthCheckMiddleware).forRoutes(MemberController);
   }
 }

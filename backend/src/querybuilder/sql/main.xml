@@ -2,15 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="main">  
     <select id="selectRecentBoardList">
-        SELECT BOARD_NO
-            ,BOARD_TYPE
-            ,BOARD_TTL
-            ,BOARD_CNTN
-            ,BOARD_WRTR
-            ,REG_DT
-        FROM TM_BOARD
-       ORDER BY REG_DT DESC
-       LIMIT 14
+        SELECT A.BOARD_NO
+              ,A.BOARD_TYPE
+              ,A.BOARD_TTL
+              ,A.BOARD_CNTN
+              ,B.NICK_NAME AS BOARD_WRTR
+              ,A.REG_DT
+          FROM TM_BOARD AS A
+          LEFT OUTER JOIN TM_CM_USR AS B
+            ON A.BOARD_WRTR = B.USR_ID
+         ORDER BY REG_DT DESC
+         LIMIT 14
     </select>
 
     <select id="selectRecentUsr">

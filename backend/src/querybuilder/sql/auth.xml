@@ -24,7 +24,20 @@
     SELECT USR_ID
           ,NICK_NAME
           ,REG_TYPE
-      FROM TM_CM_USR
+          ,AUTH
+      FROM TM_CM_USR A
+          ,(SELECT USR_ID
+                  ,GROUP_CONCAT(USR_AUTH ORDER BY USR_AUTH DESC SEPARATOR ',') AS AUTH
+              FROM TN_CM_USR_AUTH
+            GROUP BY USR_ID) B
+     WHERE A.USR_ID = B.USR_ID
+       AND USR_ID = #{id}
+  </select>
+
+  <select id="selectAuthById">
+    SELECT GROUP_CONCAT(USR_AUTH SEPARATOR ',') AS AUTH
+      FROM TN_CM_USR_AUTH
      WHERE USR_ID = #{id}
+     GROUP BY USR_ID
   </select>
 </mapper>

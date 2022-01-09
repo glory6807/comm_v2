@@ -16,7 +16,13 @@ export class Querybuilder {
         charset : 'UTF8',
         typeCast : function (field: any, next: any) {
             if (field.type == 'VAR_STRING' || field.type == 'BLOB') {
-                return field.buffer().toString();
+                var buffer = field.buffer();
+
+                if(buffer == null){
+                    return null;
+                }
+
+                return buffer.toString();
             }
             return next();
         }
