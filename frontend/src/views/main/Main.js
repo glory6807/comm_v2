@@ -32,7 +32,6 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    console.log(recentBoardList)
   }, [recentBoardList]);
 
   return (
