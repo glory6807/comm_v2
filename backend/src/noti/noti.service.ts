@@ -22,12 +22,17 @@ export class NotiService {
     }
 
     async write(@Body() notiData){
-        console.log('notice service - write');
         const data = JSON.parse(JSON.stringify(notiData));
         const param = { title : data.notiData.title,
                         content : data.notiData.content,
                         writer : data.notiData.writer }
         return await this.dao.insert("notice", "write", param);
+    }
+
+    async delete(@Body() boardNo){
+        const data = JSON.parse(JSON.stringify(boardNo));
+        const param = { boardNo : data.boardNo }
+        return await this.dao.insert("notice", "delete", param);
     }
 
 }

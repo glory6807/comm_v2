@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Moment from 'react-moment';
 
@@ -21,13 +21,20 @@ import {
 
 const NotiList = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
 
     // post list 가져옴
     const { notiDatas, count, page } = useSelector((state) => ({
                                         notiDatas : state.noti.notiDatas,
                                         count : state.noti.count,
                                         page : state.noti.page}));
+
+    const {id, email, nickname, comm_v2_token}  =
+        useSelector((state) => ({ id : state.login.id, 
+            email : state.login.email, 
+            nickname : state.login.nickname,
+            comm_v2_token : state.login.comm_v2_token
+    }));
 
     function NotiList(param) {
         // 초기 게시글 가져오기
@@ -39,7 +46,6 @@ const NotiList = () => {
     }
 
     const goNotiView = (id) => {
-        console.log('go noti view ;;; id : ' + id);
         dispatch(selectNoti(id));
     }
 
@@ -74,9 +80,16 @@ const NotiList = () => {
                                 <h3 className="mb-0">NOTICE BOARD</h3>
                             </Col>
                             <Col className="text-right">
-                                <Link to = '/noti/write'>
-                                    <Button>WRITE</Button>
-                                </Link>
+                                {
+                                    id != null ?
+                                    <>
+                                    <Link to = '/noti/write'>
+                                        <Button>WRITE</Button>
+                                    </Link>
+                                    </>
+                                    :
+                                    <></>
+                                }
                             </Col>
                         </Row>
                     </CardHeader>

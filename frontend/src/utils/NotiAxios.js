@@ -1,7 +1,6 @@
 import CommonAxios from './CommonAxios.js'
 
 const getList = async (page) => {
-    console.log('noti axios - get list / page : ' + page);
     const notiListData = await CommonAxios({
         url: '/noti/list',
         method: 'GET',
@@ -18,18 +17,16 @@ const getList = async (page) => {
     }
 }
 
-const getOne = async (boardNo) => {
-    console.log('noti axios - get one / board no : ' + boardNo);
-    return await CommonAxios({
-        url: '/noti/view',
-        method: 'GET',
-        params: {'boardNo' : boardNo }
-    })
-}
+// const getOne = async (boardNo) => {
+//     console.log('noti axios - get one / board no : ' + boardNo);
+//     return await CommonAxios({
+//         url: '/noti/view',
+//         method: 'GET',
+//         params: {'boardNo' : boardNo }
+//     })
+// }
 
 const write = async (notiData) => {
-    console.log('noti axios - write');
-    console.log('noti : '+ notiData);
     return await CommonAxios({
         url: '/noti/write',
         method: 'POST',
@@ -37,15 +34,16 @@ const write = async (notiData) => {
     })
 }
 
-// const writeBoard = async () => {
-//     return await CommonAxios({
-//         url: '/noti/write',
-//         method: 'GET'
-//     })
-// }
+const delOne = async (boardNo) => {
+    return await CommonAxios({
+        url: '/noti/delete',
+        method: 'POST',
+        data: {'boardNo': boardNo}
+    })
+}
 
 const Send = {
-    getList, getOne, write
+    getList, write, delOne
 }
 
 export default Send;
