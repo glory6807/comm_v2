@@ -13,7 +13,7 @@ import {
 
 const FreeBoardForm = ({selectRowData}) => {
 
-  const history = useHistory();  
+  const history = useHistory();
 
   // State
   let [inputData, setInputData] = useState({
@@ -119,19 +119,23 @@ const FreeBoardForm = ({selectRowData}) => {
               </Form>
               { selectRowData.BOARD_NO === '' ? 
                 <div className="text-center">
-                  <button className="btn btn-info">
-                    <Link to='/free/list'>CANCEL</Link>
-                  </button>
+                  <Link to='/free/list'>
+                    <button className="btn btn-info">
+                      CANCEL
+                    </button>
+                  </Link>
                   <button className="btn btn-light" onClick={() => { FreeWrite(inputData) }}>
                     <Link to='/free/write'>REGIST</Link>
                   </button>
                 </div> :
                 <div className="text-center">
-                  <button className="btn btn-info">
-                    <Link to='/free/list'>LIST</Link>
-                  </button>
+                  <Link to='/free/list'>
+                    <button className="btn btn-info">
+                      CANCEL
+                    </button>
+                  </Link>
                   <button className="btn btn-light" onClick={() => { FreeModify(inputData,selectRowData.BOARD_NO) }}>
-                    <Link to='/free/modify'>MODIFY</Link>
+                    <Link to='/free/modify'>REGIST</Link>
                   </button>
                 </div>
               }

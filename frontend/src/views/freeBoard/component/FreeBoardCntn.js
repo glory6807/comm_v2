@@ -34,14 +34,24 @@ const FreeBoardCntn = ({freeDatas}) => {
           { freeDatas && freeDatas.map(data => {
               return  <tr>
                         <td>{data.BOARD_NO}</td>
-                        <td onClick={ () => selectContent(data.BOARD_NO)}>
-                          <Link to='/free/view'>{data.BOARD_TTL}</Link></td>
-                        <td>{data.BOARD_WRTR}</td>
-                        <td>
-                          <Moment format="YYYY/MM/DD">
-                            {data.REG_DT}
-                          </Moment>
-                        </td>
+                        { data.IS_DEL === 'Y' ?
+                            <>
+                              <td>삭제된 게시글입니다</td>
+                              <td></td>
+                              <td></td>
+                            </> :
+                            <>
+                            <td onClick={ () => selectContent(data.BOARD_NO)}>
+                              <Link to='/free/view'>{data.BOARD_TTL}</Link>
+                            </td>
+                            <td>{data.BOARD_WRTR}</td>
+                            <td>
+                            <Moment format="YYYY/MM/DD">
+                              {data.REG_DT}
+                            </Moment>
+                          </td>
+                            </>
+                        }
                       </tr>
             })
           }

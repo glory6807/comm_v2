@@ -48,12 +48,21 @@ const modifyOne = async (datas) => {
     })
 }
 
+const deleteOne = async (boardNo) => {
+    return await CommonAxios({
+        url: '/free/delete',
+        method: 'GET',
+        params: {'boardNo' : boardNo}
+    })
+}
+
 const Send = {
     getUser,
     getList,
     getOne,
     writeOne,
-    modifyOne
+    modifyOne,
+    deleteOne
 }
 
 export default Send;

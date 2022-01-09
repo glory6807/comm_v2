@@ -38,4 +38,11 @@ export class FreeService {
         return await this.dao.insert("free", "modifyOne", param)
     }
 
+    async deleteBoardOne(@Param('boardNo') boardNo :number){
+        const param = { boardNo : boardNo }
+        console.log(boardNo)
+        console.log('deleteOne')
+        return await this.dao.select("free", "deleteOne", param);
+    }
+
 }

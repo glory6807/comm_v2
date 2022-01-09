@@ -39,4 +39,11 @@ export class FreeController {
         return this.freeService.modifyBoardOne(datas);
     }
 
+    @Get('/delete')
+    deleteOne(@Query('boardNo') boardNo: number){
+        console.log(boardNo)
+        console.log('deleteOne')
+        return this.freeService.deleteBoardOne(boardNo);
+    }
+
 }

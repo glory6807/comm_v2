@@ -1,6 +1,6 @@
  import React, { useEffect, useRef, useCallback } from "react";
  import { useSelector, useDispatch } from "react-redux";
- import { useLocation, Link } from "react-router-dom";
+ import { useHistory, useLocation } from "react-router-dom";
  import AxiosData from "utils/FreeAxios.js"
 
  import {
@@ -19,6 +19,7 @@ import Paging from "components/Pagination/Paging.js";
 
 const FreeBoard = () => {
 
+  const history = useHistory();
   const dispatch = useDispatch();
   const { freeDatas, count, page } = useSelector((state) => ({ freeDatas : state.free.freeDatas,
                                                          count : state.free.count,
@@ -51,6 +52,7 @@ const FreeBoard = () => {
 
   const createNew = () => {
     dispatch(createNewOne())
+    history.push("/free/write")
   }
 
   const createNewOne = () => ({
@@ -91,7 +93,7 @@ const FreeBoard = () => {
                   </Col>
                   <Col className="text-right" xs="4">
                     <button className="btn btn-primary" onClick={ () => {createNew()} }>
-                      <Link to='/free/write'>WRITE</Link>
+                      WRITE
                     </button>
                   </Col>
                 </Row>

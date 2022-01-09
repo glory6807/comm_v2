@@ -11,7 +11,6 @@
     SELECT *
       FROM TM_BOARD
      WHERE BOARD_TYPE = 'FREE'
-       AND IS_DEL = 'N'
   ORDER BY BOARD_NO DESC
       LIMIT 10 
      OFFSET ${offset}
@@ -50,11 +49,17 @@
                           'N')
   </insert>
 
-  <insert id="modifyOne">
+  <update id="modifyOne">
     UPDATE TM_BOARD
        SET BOARD_TTL  = '${title}',
            BOARD_CNTN = '${content}',
            MOD_DT     = NOW()
      WHERE BOARD_NO   = ${boardNo}
-  </insert>
+  </update>
+
+  <update id="deleteOne">
+    UPDATE TM_BOARD
+       SET IS_DEL = 'Y'
+     WHERE BOARD_NO = ${boardNo}
+  </update>
 </mapper>

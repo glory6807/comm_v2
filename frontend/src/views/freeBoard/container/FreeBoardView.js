@@ -1,6 +1,7 @@
 import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import AxiosData from "utils/FreeAxios.js"
 
 import {
     Card,
@@ -18,11 +19,13 @@ import AuthFooter from "components/Footers/AuthFooter.js";
 
 const FreeBoardWrite = () => {
 
+  const history = useHistory();
   const dispatch = useDispatch();
   const { selectRowData } = useSelector((state) => ({selectRowData : state.free.selectRowData}));
 
   const selectContent = (id) => {
     dispatch(selectRow(id))
+    history.push("/free/modify")
   }
 
   const selectRow = (id) => ({
@@ -32,7 +35,11 @@ const FreeBoardWrite = () => {
           }
   });
 
-
+  function deleteContent(boardNo) {
+    AxiosData.deleteOne(boardNo).then(
+      history.push("/main")
+    )
+  }
 
 
   //scroll
@@ -94,9 +101,18 @@ const FreeBoardWrite = () => {
                     <h4 className="mb-0 card-title">CONTENT</h4>
                     <span className="card-stats p-2 mt-2 mb-4 mb-xl-0 card">{ selectRowData.BOARD_CNTN }</span>
                       <div className="text-center">
-                        <button className="btn btn-info">LIST</button>
+                        <Link to='/free/list'>
+                          <button className="btn btn-info">
+                            LIST
+                          </button>
+                        </Link>
                         <button className="btn btn-light" onClick={ () => { selectContent(selectRowData.BOARD_NO) } }>
-                          <Link to='/free/modify'>MODIFY</Link>
+                          {/* <Link to='/free/modify'>MODIFY</Link> */}
+                          MODIFY
+                        </button>
+                        <button className="btn btn-light" onClick={ () => { deleteContent(selectRowData.BOARD_NO) } }>
+                          {/* <Link to='/free/modify'>MODIFY</Link> */}
+                          DELETE
                         </button>
                       </div>
                   </div>
