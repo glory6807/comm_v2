@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member">  
-  <select id="selectList">
+  <select id="selectListCount" resultType="number">
+    SELECT COUNT(*) AS COUNT
+      FROM TM_BOARD 
+     WHERE BOARD_TYPE = 'MEM'
+  </select>
+
+  <select id="selectList" parameterType="number">
     SELECT BOARD_NO
           ,BOARD_TTL
           ,BOARD_WRTR
           ,REG_DT
+          ,BOARD_CNTN
       FROM TM_BOARD
      WHERE BOARD_TYPE = 'MEM'
        AND IS_DEL = 'N'
+      LIMIT 10 
+     OFFSET ${offset}
   </select>
 
   <select id="selectOne" parameterType="number">

@@ -14,8 +14,11 @@ import {
   Col,
 } from "reactstrap";
 import { useEffect } from "react";
+import CookieUtils from "utils/CookieUtil";
 
 const AdminNavbar = () => {
+  const dispatch = useDispatch();
+
 
   const {id, email, nickname, comm_v2_token}  = useSelector((state) => ({ id : state.login.id, 
                                                                         email : state.login.email, 
@@ -81,7 +84,11 @@ const AdminNavbar = () => {
               </NavItem>
               <NavItem>
                 <NavLink className="nav-link-icon" to="/auth/login" tag={Link}>
-                  {nickname}&nbsp;님
+                  {
+                    nickname === null || nickname === undefined || nickname === '' 
+                    ?"로그인" 
+                    :nickname + " 님"
+                  }
                 </NavLink>
               </NavItem>
             </Nav>

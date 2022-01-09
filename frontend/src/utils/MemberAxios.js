@@ -1,11 +1,20 @@
 import CommonAxios from './CommonAxios.js'
 
 
-const getList = async () => {
-    return await CommonAxios({
+const getList = async (page) => {
+    console.log('page? ' + page)
+    const MemListData = await CommonAxios({
         url: '/member/list',
-        method: 'GET'
+        method: 'GET',
+        params: {'page' : page}
     })
+
+    return {
+            type: 'GET_MEM_DATA',
+            payload : { memDatas : MemListData.data[0],
+                        count : MemListData.data[1],                    
+                        page : MemListData.data[2]}
+    }
 }
 
 const getOne = async (boardNo) => {
@@ -16,8 +25,6 @@ const getOne = async (boardNo) => {
         params: {'boardNo' : boardNo}
     })
 }
-
-
 
 const Send = {
     getList,

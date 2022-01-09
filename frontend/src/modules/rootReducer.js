@@ -7,6 +7,7 @@ import boardReducer from "./boardReducer"
 import postReducer from "./postReducer";
 import freeReducer from './freeReducer';
 import loginReducer from "./loginReducer";
+import memReducer from "./memReducer";
 
 export const history = createBrowserHistory();
 
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     // boardReducer, 
     noti : postReducer, 
     free : freeReducer,
+    mem : memReducer,
     login : loginReducer
 });
 
