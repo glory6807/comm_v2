@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import NotiAxios from "utils/NotiAxios.js";
+import { useHistory } from "react-router-dom";
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 import Moment from 'react-moment';
 
@@ -17,12 +17,20 @@ import {
 
 const NotiBoardView = () => {
 
+  const history = useHistory();
+
   const { oneNoti } = useSelector((state) => ({oneNoti : state.noti.oneNoti}));
+
+  const {id, email, nickname, comm_v2_token}  =
+    useSelector((state) => ({ id : state.login.id, 
+      email : state.login.email, 
+      nickname : state.login.nickname,
+      comm_v2_token : state.login.comm_v2_token
+  }));
 
   const dispatch = useDispatch();
 
   const goEdit = (id) => {
-    console.log('go edit id : ' + id);
     dispatch(editNoti(id));
   }
 
@@ -32,6 +40,14 @@ const NotiBoardView = () => {
       id: id
     }
   })
+
+  function goDelete(id){
+    if(window.confirm('삭제하시겠습니까?')){
+      NotiAxios.delOne(id).then(
+        history.push('/list')
+      )
+    }
+  }
 
   return(
     <>
@@ -46,11 +62,6 @@ const NotiBoardView = () => {
                     <h3 className="mb-0">{oneNoti.BOARD_TTL}</h3>
                     </CardHeader>
                     <Table className="align-items-center table-flush" responsive>
-                        {/* <thead className="thead-light">
-                        <tr>
-                            <td colSpan="2">{oneNoti.BOARD_TTL}</td>
-                        </tr>
-                        </thead> */}
                         <thead>
                           <tr>
                             <td align="left" width="50%">Writer : {oneNoti.BOARD_WRTR}</td>
@@ -73,9 +84,18 @@ const NotiBoardView = () => {
                               <Link to = '/noti/list'>
                                 <Button>list</Button>
                               </Link>
-                              <Link to = '/noti/edit'>
-                                <Button onClick={() => {goEdit(oneNoti.BOARD_NO)}}> 수정 </Button>
-                              </Link>
+                              {
+                                oneNoti.BOARD_WRTR == nickname
+                                ?
+                                <>
+                                <Link to = '/noti/edit'>
+                                  <Button onClick={() => {goEdit(oneNoti.BOARD_NO)}}> 수정 </Button>
+                                </Link>
+                                <Button onClick={() => {goDelete(oneNoti.BOARD_NO)}}> 삭제 </Button>
+                                </>
+                                :
+                                <></>
+                              }
                             </td>
                           </tr>
                         </tbody>

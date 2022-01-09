@@ -3,7 +3,6 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 
 import uriReducer from "./uriReducer";
-import boardReducer from "./boardReducer"
 import postReducer from "./postReducer";
 import freeReducer from './freeReducer';
 import loginReducer from "./loginReducer";
@@ -13,7 +12,6 @@ export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
     uriReducer, 
-    // boardReducer, 
     noti : postReducer, 
     free : freeReducer,
     mem : memReducer,

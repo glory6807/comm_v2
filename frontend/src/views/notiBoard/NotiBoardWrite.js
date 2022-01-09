@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import NotiAxios from "utils/NotiAxios.js";
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
 
@@ -17,12 +17,19 @@ import {
 
 const NotiBoardWrite = () => {
 // 작성자명 -> admin 권한 가진 사람.. / 로그인한 사람 가져오기..
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const history = useHistory();
+
+  const {id, email, nickname, comm_v2_token}  =
+    useSelector((state) => ({ id : state.login.id, 
+      email : state.login.email, 
+      nickname : state.login.nickname,
+      comm_v2_token : state.login.comm_v2_token
+  }));
 
   let [title, setTitle] = useState();
   let [content, setContent] = useState();
-  let [writer, setWriter] = useState();
+  // let [writer, setWriter] = useState();
 
   function NoticeWriteValid(props){
     if(props.title == null){
@@ -73,7 +80,7 @@ const NotiBoardWrite = () => {
                           <tr>
                             <td align="center">
                               <Button onClick={()=>{NotiWriteCancel()}}>list</Button>
-                              <Button onClick={()=>{NoticeWriteValid({title:title, content:content, writer:'writer..'})}}> 등록 </Button>
+                              <Button onClick={()=>{NoticeWriteValid({title:title, content:content, writer:id})}}> 등록 </Button>
                             </td>
                           </tr>
                         </tbody>
