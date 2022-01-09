@@ -49,4 +49,9 @@
                           NOW(),
                           'N')
   </insert>
+  <insert id="delete" parameterType="number">
+    UPDATE TM_BOARD
+    SET IS_DEL = 'Y'
+    WHERE BOARD_NO = '${boardNo}'
+  </insert>
 </mapper>

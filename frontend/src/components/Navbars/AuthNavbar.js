@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -25,6 +26,28 @@ const AdminNavbar = () => {
                                                                         nickname : state.login.nickname,
                                                                         comm_v2_token : state.login.comm_v2_token
                                                                       }));
+
+  useEffect(() => {
+    if(id == "" || id == null || id == undefined){
+      var user_id = CookieUtils.getCookie("comm_v2_user_id");
+      var email = CookieUtils.getCookie("comm_v2_email");
+      var nick_name = CookieUtils.getCookie("comm_v2_nick_name");
+      var token = CookieUtils.getCookie("comm_v2_token");
+      dispatch(loginDispatch(user_id, email, nick_name, token));
+    }
+  }, []);
+
+  const loginDispatch = (id, email, nickname, comm_v2_token) => {
+    return {
+      type: 'GET_TOKEN_DATA',
+        payload: {
+          id: id,
+          email: email,
+          nickname: nickname,
+          comm_v2_token : comm_v2_token
+        }
+    };
+  }
 
   return (
     <>

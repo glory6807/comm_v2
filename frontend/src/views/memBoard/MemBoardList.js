@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useRef, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";

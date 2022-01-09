@@ -9,7 +9,6 @@ export class NotiController {
 
     @Get("/list")
     async getList(@Query('page') curPage: number){
-        console.log('notice controller - list');
         if(isNaN(curPage)) {
             curPage = 1;
         }
@@ -21,17 +20,21 @@ export class NotiController {
         return array;
     }
 
-    @Get("/view")
-    async getOne(@Query('boardNo') boardNo: number){
-        console.log('notice controller - get one');
-        const notiData = await this.notiService.getOne(boardNo);
-        return notiData;
-    }
+    // @Get("/view")
+    // async getOne(@Query('boardNo') boardNo: number){
+    //     const notiData = await this.notiService.getOne(boardNo);
+    //     return notiData;
+    // }
 
     @Post('/write')
     write(@Body() notiData){
-        console.log('noti controller - write');
         return this.notiService.write(notiData);
     }
+
+    @Post("/delete")
+    async delete(@Body() boardNo){
+        return this.notiService.delete(boardNo);
+    }
+
 
 }

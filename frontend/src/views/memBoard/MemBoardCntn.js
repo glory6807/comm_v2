@@ -1,15 +1,18 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useHistory } from 'react-router';
 
 import { Table } from "reactstrap";
 
 const MemBoardCntn = ({memDatas}) => {
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const selectContent = (id) => {
-      dispatch(selectRow(id))
+      dispatch(selectRow(id));
+      history.push("/mem/view");
     }
 
     const selectRow = (id) => ({
@@ -33,8 +36,7 @@ const MemBoardCntn = ({memDatas}) => {
           { memDatas && memDatas.map(data => {
               return  <tr>
                         <td>{data.BOARD_NO}</td>
-                        <td onClick={ () => selectContent(data.BOARD_NO)}>
-                          <Link to='/member/view'>{data.BOARD_TTL}</Link></td>
+                        <td onClick={ () => selectContent(data.BOARD_NO)}><Link>{data.BOARD_TTL}</Link></td>
                         <td>{data.BOARD_WRTR}</td>
                         <td>{data.REG_DT}</td>
                       </tr>

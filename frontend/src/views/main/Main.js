@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   CardHeader,
@@ -32,7 +32,6 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    console.log(recentBoardList)
   }, [recentBoardList]);
 
   return (
