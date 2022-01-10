@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AxiosData from "utils/FreeAxios.js"
 import { useHistory, Link } from "react-router-dom";
 
@@ -21,6 +21,18 @@ const FreeBoardForm = ({selectRowData}) => {
     content: selectRowData.BOARD_CNTN
   });
 
+  useEffect(formCheck, []);
+
+  function formCheck() {
+    if(selectRowData.BOARD_NO === '') {
+      setInputData({
+        ...inputData,
+        title : '',
+        content : ''
+    })
+    }
+  }
+
   const onChangeText = (e) => {
     setInputData({
         ...inputData,
@@ -29,17 +41,28 @@ const FreeBoardForm = ({selectRowData}) => {
   }
 
   function FreeModify(modifyData, boardNo) {
-    const datas = {modifyData, boardNo}
-    AxiosData.modifyOne(datas).then(
-      history.push("/free/list")
-    )
+    if(modifyData.title === '' || modifyData.content === '') {
+      alert('빈칸을 채워주세요!');
+      return false;
+    } else {
+      const datas = {modifyData, boardNo}
+      AxiosData.modifyOne(datas).then(
+        history.push("/free/list")
+      )
+    }
   }
 
   function FreeWrite(writeData) {
-    AxiosData.writeOne(writeData).then(
-      history.push("/main")
-    //history.push("/free/list")    등록 후 리스트 업데이트가 안됨,,일단 main으로 가게 해놓음
-    )
+    console.log(writeData)
+    if(writeData.title === '' || writeData.content === '') {
+      alert('빈칸을 채워주세요!');
+      return false;
+    } else {
+      AxiosData.writeOne(writeData).then(
+        history.push("/main")
+      //history.push("/free/list")    등록 후 리스트 업데이트가 안됨,,일단 main으로 가게 해놓음
+      )
+    }
   }
 
   return (
@@ -63,7 +86,7 @@ const FreeBoardForm = ({selectRowData}) => {
                           type="text"
                         />
                     </Col>
-                    <Col lg="6">
+                    {/* <Col lg="6">
                       <FormGroup>
                         <label
                           className="form-control-label"
@@ -79,7 +102,7 @@ const FreeBoardForm = ({selectRowData}) => {
                           type="text"
                         />
                       </FormGroup>
-                    </Col>
+                    </Col> */}
                   </Row>
                   {/* <Row>
                     <Col lg="6">

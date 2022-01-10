@@ -42,14 +42,16 @@ const FreeBoardCntn = ({freeDatas}) => {
                             </> :
                             <>
                             <td onClick={ () => selectContent(data.BOARD_NO)}>
-                              <Link to='/free/view'>{data.BOARD_TTL}</Link>
+                              <Link to='/free/view'>
+                                {data.BOARD_TTL}
+                              </Link>
                             </td>
                             <td>{data.BOARD_WRTR}</td>
                             <td>
-                            <Moment format="YYYY/MM/DD">
-                              {data.REG_DT}
-                            </Moment>
-                          </td>
+                              <Moment format="YYYY/MM/DD">
+                                {data.REG_DT}
+                              </Moment>
+                            </td>
                             </>
                         }
                       </tr>
