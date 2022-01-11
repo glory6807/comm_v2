@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
+import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
-import store from "modules/rootReducer";
+import { store, persistor } from 'modules/store';
 
 import "assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -22,19 +23,21 @@ import Main from "views/main/Main";
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
-      <Switch>
-        <Route path="/free/:d" render={(props) => <FreeBoard {...props} />} />
-        <Route path="/mem/:d" render={(props) => <MemBoard {...props} />} />
-        <Route path="/noti/:d" render={(props) => <NotiBoard {...props} />} />
+    <PersistGate persistor={persistor}>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/free/:d" render={(props) => <FreeBoard {...props} />} />
+          <Route path="/mem/:d" render={(props) => <MemBoard {...props} />} />
+          <Route path="/noti/:d" render={(props) => <NotiBoard {...props} />} />
 
-        <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
-        <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
-        <Route path="/kakaoLogin" render={(props) => <KakaoLogin {...props} />} />
-        <Route path="/main" render={(props) => <Main {...props} />} />
-        <Redirect from="/" to="/auth/login" />
-      </Switch>
-    </BrowserRouter>
+          <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
+          <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
+          <Route path="/kakaoLogin" render={(props) => <KakaoLogin {...props} />} />
+          <Route path="/main" render={(props) => <Main {...props} />} />
+          <Redirect from="/" to="/auth/login" />
+        </Switch>
+      </BrowserRouter>
+    </PersistGate>
   </Provider>
   ,document.getElementById("root")
 );
