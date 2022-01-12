@@ -18,26 +18,46 @@ const FreeBoardForm = ({selectRowData}) => {
   // State
   let [inputData, setInputData] = useState({
     title: selectRowData.BOARD_TTL,
-    content: selectRowData.BOARD_CNTN
+    writer: selectRowData.BOARD_WRITER,
+    content: selectRowData.BOARD_CNTN,
+    password: selectRowData.BOARD_PW,
+
   });
 
-  useEffect(formCheck, []);
+  useEffect(typeCheck, []);
 
-  function formCheck() {
+  //등록 OR 수정
+  function typeCheck() {
     if(selectRowData.BOARD_NO === '') {
       setInputData({
         ...inputData,
         title : '',
-        content : ''
+        writer : '',
+        password : ''
     })
     }
   }
 
+  // title, writer, content set
   const onChangeText = (e) => {
     setInputData({
         ...inputData,
         [e.target.name]: e.target.value
     })
+  }
+
+  // password 유효성검사 및 set 
+  const onChangePw = (e) => {
+    const inputPw = e.target.value
+    //유효성 통과 못한 글자는 빈칸으로 set
+    const inputPwSet = inputPw.replace(/[^0-9]/g, '')
+
+    setInputData({
+      ...inputData,
+      [e.target.name]: inputPwSet
+    })
+
+    console.log(inputData.password)
   }
 
   function FreeModify(modifyData, boardNo) {
@@ -53,11 +73,14 @@ const FreeBoardForm = ({selectRowData}) => {
   }
 
   function FreeWrite(writeData) {
-    console.log(writeData)
-    if(writeData.title === '' || writeData.content === '') {
+    if(writeData.title === '' || writeData.writer === '' || writeData.content === '') {
       alert('빈칸을 채워주세요!');
       return false;
     } else {
+      if(writeData.password === '' || writeData.password.length < 4) {
+        alert('비밀번호는 4자리의 숫자로 입력해주세요');
+        return false;
+      }
       AxiosData.writeOne(writeData).then(
         history.push("/main")
       //history.push("/free/list")    등록 후 리스트 업데이트가 안됨,,일단 main으로 가게 해놓음
@@ -82,11 +105,11 @@ const FreeBoardForm = ({selectRowData}) => {
                           defaultValue={inputData.title}
                           onChange={onChangeText}
                           name="title"
-                          placeholder="title"
+                          placeholder="제목을 입력해주세요"
                           type="text"
                         />
                     </Col>
-                    {/* <Col lg="6">
+                    <Col lg="6">
                       <FormGroup>
                         <label
                           className="form-control-label"
@@ -96,33 +119,15 @@ const FreeBoardForm = ({selectRowData}) => {
                         </label>
                         <Input
                           className="form-control-alternative"
-                          defaultValue={selectRowData.BOARD_WRTR}
+                          defaultValue={inputData.writer}
+                          onChange={onChangeText}
                           name="writer"
-                          placeholder="writer"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col> */}
-                  </Row>
-                  {/* <Row>
-                    <Col lg="6">
-                      <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-first-name"
-                        >
-                          DATE
-                        </label>
-                        <Input
-                          className="form-control-alternative"
-                          defaultValue={selectRowData.REG_DT}
-                          name="date"
-                          placeholder="date"
+                          placeholder="작성자를 입력해주세요"
                           type="text"
                         />
                       </FormGroup>
                     </Col>
-                  </Row> */}
+                  </Row>
                 </div>
                 <hr className="my-4" />
                 <div className="pl-lg-4">
@@ -134,11 +139,29 @@ const FreeBoardForm = ({selectRowData}) => {
                       defaultValue={inputData.content}
                       onChange={onChangeText}
                       name="content"
-                      placeholder="content"
+                      placeholder="내용을 입력해주세요"
                       type="textarea"
                     />
                   </FormGroup>
                 </div>
+                <hr className="my-4" />
+                <Col lg="6">
+                  <label
+                    className="form-control-label"
+                    htmlFor="input-username"
+                  >
+                    PASSWORD
+                  </label>
+                  <Input
+                    className="form-control-alternative"
+                    defaultValue={inputData.password}
+                    maxLength={4}
+                    onChange={onChangePw}
+                    name="password"
+                    placeholder="4자리의 숫자를 입력해주세요"
+                    type="password"
+                  />
+                </Col>
               </Form>
               { selectRowData.BOARD_NO === '' ? 
                 <div className="text-center">

@@ -34,7 +34,8 @@
                           BOARD_WRTR, 
                           REG_DT, 
                           MOD_DT, 
-                          IS_DEL)
+                          IS_DEL,
+                          BOARD_PW)
                   VALUES ((SELECT BOARD_NO 
                              FROM (SELECT MAX(BOARD_NO) + 1 AS BOARD_NO 
                                      FROM TM_BOARD
@@ -46,7 +47,8 @@
                           'WRITER1',
                           NOW(), 
                           NOW(),
-                          'N')
+                          'N',
+                          ${password})
   </insert>
 
   <update id="modifyOne">

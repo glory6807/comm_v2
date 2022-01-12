@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory, useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import Moment from 'react-moment';
 import AxiosData from "utils/FreeAxios.js"
 
 import {
@@ -10,7 +11,6 @@ import {
     Row,
     Col,
     CardBody,
-    Form,
   } from "reactstrap";
 
 // core components
@@ -76,47 +76,46 @@ const FreeBoardWrite = () => {
                   </Col>
                 </Row>
               </CardHeader>
-              <CardBody>
-                <Form>
-                  <div className="pl-lg-4">
-                    <Row>
-                      <Col>
-                          <h4 className="mb-0 card-title">TITLE</h4>
-                          <span className="card-stats p-2 mt-2 mb-4 mb-xl-0 card">{ selectRowData.BOARD_TTL }</span>
-                      </Col>
-                    </Row>
-                    <Row>
+              <CardBody className="free">
+                <div className="pl-lg-4 pr-lg-4">
+                  <Row>
+                    <Col className="cmb-2 cft-3">
+                      <span>{ selectRowData.BOARD_TTL }</span>
+                    </Col>
+                  </Row>
+                  <Row className="f-r">
                     <Col>
-                          <h4 className="mb-0 card-title">WRITER</h4>
-                          <span className="card-stats p-2 mt-2 mb-4 mb-xl-0 card">{ selectRowData.BOARD_WRTR }</span>
-                      </Col>
-                      <Col>
-                          <h4 className="mb-0 card-title">DATE</h4>
-                          <span className="card-stats p-2 mt-2 mb-4 mb-xl-0 card">{ selectRowData.REG_DT }</span>
-                      </Col>
-                    </Row>
+                      <span>{ selectRowData.BOARD_WRTR }</span>
+                    </Col>
+                    <Col>
+                      <span>
+                        <Moment format="YYYY/MM/DD">
+                          { selectRowData.REG_DT }
+                        </Moment>  
+                      </span>
+                    </Col>
+                  </Row>
+                  <br/>
+                  <hr/>
+                  <Row className="mb-2">
+                    <Col>
+                      <span>{ selectRowData.BOARD_CNTN }</span>
+                    </Col>
+                  </Row>
+                  <div className="text-center">
+                    <Link className="btn btn-info" to='/free/list'>
+                      LIST
+                    </Link>
+                    <button className="btn btn-light" 
+                            onClick={ () => { selectContent(selectRowData.BOARD_NO) } }>
+                      MODIFY
+                    </button>
+                    <button className="btn btn-light" 
+                            onClick={ () => { deleteContent(selectRowData.BOARD_NO) } }>
+                      DELETE
+                    </button>
                   </div>
-                  <hr className="my-4" />
-                  <div className="pl-lg-4">
-                    <h4 className="mb-0 card-title">CONTENT</h4>
-                    <span className="card-stats p-2 mt-2 mb-4 mb-xl-0 card">{ selectRowData.BOARD_CNTN }</span>
-                      <div className="text-center">
-                        <Link to='/free/list'>
-                          <button className="btn btn-info">
-                            LIST
-                          </button>
-                        </Link>
-                        <button className="btn btn-light" onClick={ () => { selectContent(selectRowData.BOARD_NO) } }>
-                          {/* <Link to='/free/modify'>MODIFY</Link> */}
-                          MODIFY
-                        </button>
-                        <button className="btn btn-light" onClick={ () => { deleteContent(selectRowData.BOARD_NO) } }>
-                          {/* <Link to='/free/modify'>MODIFY</Link> */}
-                          DELETE
-                        </button>
-                      </div>
-                  </div>
-                </Form>
+                </div>
               </CardBody>
             </Card>
             </div>

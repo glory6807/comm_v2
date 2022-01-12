@@ -26,6 +26,7 @@ export class FreeService {
     async writeBoardOne(@Body() datas){
         const jsonData = JSON.parse(JSON.stringify(datas));
         const param = { title   : jsonData.datas.title,
+                        password: jsonData.datas.password,
                         content : jsonData.datas.content}
         return await this.dao.insert("free", "writeOne", param)
     }
