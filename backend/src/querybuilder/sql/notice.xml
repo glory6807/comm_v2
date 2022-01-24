@@ -7,14 +7,33 @@
     FROM TM_BOARD
     WHERE BOARD_TYPE = 'NOTI'
       AND IS_DEL = 'N'
+
+    <!-- SELECT COUNT(*) AS COUNT
+    FROM TM_BOARD a, TM_CM_USR b
+    WHERE a.BOARD_WRTR = b.USR_ID
+      AND BOARD_TYPE = 'NOTI'
+      AND IS_DEL = 'N' -->
   </select>
 
-  <select id="selectList" parameterType="number">
+  <!-- <select id="selectList" parameterType="number">
     SELECT *
     FROM TM_BOARD
     WHERE BOARD_TYPE = 'NOTI'
       AND IS_DEL = 'N'
     ORDER BY BOARD_NO DESC
+    LIMIT 10
+    OFFSET ${offset}
+  </select> -->
+
+  <select id="selectList" parameterType="number">
+    SELECT a.BOARD_NO, a.BOARD_TTL,
+           a.BOARD_CNTN, a.BOARD_WRTR, a.REG_DT,
+           b.USR_ID, b.NICK_NAME
+    FROM TM_BOARD a LEFT OUTER JOIN TM_CM_USR b
+      ON a.BOARD_WRTR = b.USR_ID
+    WHERE a.BOARD_TYPE = 'NOTI'
+      AND a.IS_DEL = 'N'
+    ORDER BY a.BOARD_NO DESC
     LIMIT 10
     OFFSET ${offset}
   </select>
@@ -49,6 +68,14 @@
                           NOW(),
                           'N')
   </insert>
+
+  <insert id="edit">
+    UPDATE TM_BOARD
+    SET BOARD_TTL = '${title}',
+        BOARD_CNTN = '${content}'
+    WHERE BOARD_NO = '${boardNo}'
+  </insert>
+
   <insert id="delete" parameterType="number">
     UPDATE TM_BOARD
     SET IS_DEL = 'Y'

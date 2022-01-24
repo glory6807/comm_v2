@@ -34,6 +34,14 @@ const write = async (notiData) => {
     })
 }
 
+const editOne = async (notiData) => {
+    return await CommonAxios({
+        url: '/noti/edit',
+        method: 'POST',
+        data: {'notiData' : notiData}
+    })
+}
+
 const delOne = async (boardNo) => {
     return await CommonAxios({
         url: '/noti/delete',
@@ -43,7 +51,7 @@ const delOne = async (boardNo) => {
 }
 
 const Send = {
-    getList, write, delOne
+    getList, write, editOne, delOne
 }
 
 export default Send;

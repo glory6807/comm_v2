@@ -64,7 +64,7 @@ const NotiBoardView = () => {
                     <Table className="align-items-center table-flush" responsive>
                         <thead>
                           <tr>
-                            <td align="left" width="50%">Writer : {oneNoti.BOARD_WRTR}</td>
+                            <td align="left" width="50%">Writer : {oneNoti.NICK_NAME}</td>
                           </tr>
                           <tr>
                             <td align="left">Date :
@@ -85,7 +85,7 @@ const NotiBoardView = () => {
                                 <Button>list</Button>
                               </Link>
                               {
-                                oneNoti.BOARD_WRTR == nickname
+                                oneNoti.BOARD_WRTR == id
                                 ?
                                 <>
                                 <Link to = '/noti/edit'>

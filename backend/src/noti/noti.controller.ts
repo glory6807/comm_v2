@@ -20,15 +20,14 @@ export class NotiController {
         return array;
     }
 
-    // @Get("/view")
-    // async getOne(@Query('boardNo') boardNo: number){
-    //     const notiData = await this.notiService.getOne(boardNo);
-    //     return notiData;
-    // }
-
     @Post('/write')
     write(@Body() notiData){
         return this.notiService.write(notiData);
+    }
+
+    @Post("/edit")
+    async edit(@Body() notiData){
+        return this.notiService.edit(notiData);
     }
 
     @Post("/delete")

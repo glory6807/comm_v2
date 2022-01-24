@@ -111,7 +111,18 @@ const NotiList = () => {
                                                 {data.BOARD_TTL}
                                             </Link>
                                         </th>
-                                        <th scope="col">{data.BOARD_WRTR}</th>
+                                        <th scope="col">
+                                            {
+                                                data.NICK_NAME != null ?
+                                                <>
+                                                    {data.NICK_NAME}
+                                                </>
+                                                :
+                                                <>
+                                                anonymity
+                                                </>
+                                            }
+                                        </th>
                                         <th scope="col">
                                             <Moment format="YYYY/MM/DD">
                                                 {data.REG_DT}
