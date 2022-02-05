@@ -22,7 +22,7 @@ const GLogin = () => {
                 res
             }
         }).then((res)=> {
-            const googleToken = res.data;
+            // const googleToken = res.data;
             dispatch(loginDispatch(res.data.user_id, 
                                     res.data.email, 
                                     res.data.nick_name, 

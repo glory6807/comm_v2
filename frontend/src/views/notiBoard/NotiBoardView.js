@@ -85,7 +85,7 @@ const NotiBoardView = () => {
                                 <Button>list</Button>
                               </Link>
                               {
-                                oneNoti.BOARD_WRTR == id
+                                oneNoti.BOARD_WRTR === id
                                 ?
                                 <>
                                 <Link to = '/noti/edit'>

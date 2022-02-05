@@ -2,7 +2,6 @@ import { combineReducers  } from "redux";
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import uriReducer from "./uriReducer";
 import postReducer from "./postReducer";
 import freeReducer from './freeReducer';
 import loginReducer from "./loginReducer";
@@ -20,7 +19,6 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-    uriReducer, 
     noti : postReducer, 
     free : freeReducer,
     mem : memReducer,

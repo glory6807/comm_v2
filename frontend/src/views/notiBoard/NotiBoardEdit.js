@@ -55,8 +55,9 @@ const NotiBoardEdit = () => {
       const editData = {boardNo, title, content}
       if(window.confirm('저장하시겠습니까?')){
         NotiAxios.editOne(editData).then(
-          history.push("/noti/list")
-          // 왜 list로 안갈까?
+          dispatch(selectNoti(boardNo))
+          // history.push("/noti/list")
+          // 왜 list로 안갈까?.. view로도 안가네..
         )
       }
     }
